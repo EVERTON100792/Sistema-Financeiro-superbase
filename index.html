@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Financeiro com Supabase</title>
     
-    <link rel="manifest" href="manifest.json">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -73,38 +71,21 @@
         .transaction-item { border-left: 5px solid; }
         .transaction-item.income { border-left-color: var(--success-color); }
         .transaction-item.expense { border-left-color: var(--error-color); }
-        .transaction-item.transfer { border-left-color: var(--accent-color); }
-        .transaction-item.due-soon { border-left-color: var(--warning-color) !important; background-color: color-mix(in srgb, var(--primary-color) 80%, var(--warning-color) 20%); }
-        .transaction-item.overdue { border-left-color: var(--error-color) !important; background-color: color-mix(in srgb, var(--primary-color) 80%, var(--error-color) 20%); }
-        body.light-mode .transaction-item.due-soon { background-color: #fffbe6; }
-        body.light-mode .transaction-item.overdue { background-color: #ffeef0; }
         .transaction-item.paid { opacity: 0.7; }
         .transaction-item .info .description { font-weight: 500; }
         .transaction-item .info .details { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.8rem; color: var(--text-muted-color); margin-top: 5px; }
         .transaction-item .info .details .details-tag { background-color: var(--secondary-color); padding: 2px 8px; border-radius: 5px; }
         .transaction-item .info .details .paid-tag { background-color: var(--success-color); color: white; font-weight: bold; }
-        .transaction-item.due-soon .info .details .due-date-tag { background-color: var(--warning-color); color: #1f2937; font-weight: 500;}
-        .transaction-item.overdue .info .details .due-date-tag { background-color: var(--error-color); color: white; }
         .transaction-item .amount { font-weight: 600; font-size: 1.1rem; }
         .transaction-item .amount.income { color: var(--success-color); }
         .transaction-item .amount.expense { color: var(--error-color); }
-        .transaction-item .amount.transfer { color: var(--accent-color); }
-        .progress-bar-container { width: 100%; background-color: var(--secondary-color); border-radius: var(--border-radius); overflow: hidden; margin-top: 5px; }
-        .progress-bar { height: 15px; background-color: var(--accent-color); border-radius: var(--border-radius); width: 0; transition: width 0.5s; text-align: center; color: white; font-size: 0.7rem; line-height: 15px; }
-        .progress-bar.over { background-color: var(--error-color); }
-        .goal-contribution-form { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--secondary-color); }
-        .goal-contribution-form input, .goal-contribution-form select { flex-grow: 1; width: auto; }
-        .goal-contribution-form .btn { flex-shrink: 0; }
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-        .single-form-layout { max-width: 500px; margin: 0 auto; }
         .list-item, .category-item { flex-direction: column; }
         .list-item-header { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; }
         .list-item .main-info { flex-grow: 1; }
         .actions { display: flex; align-items: center; gap: 8px; position: relative; }
         .actions button { background: none; border: none; cursor: pointer; color: var(--text-muted-color); padding: 5px; font-size: 1rem; display: inline-flex; align-items: center; justify-content: center; }
         .actions button:hover { color: var(--accent-color); }
-        .delete-button { background-color: var(--error-color) !important; color: white !important; border-radius: 50%; width: 28px; height: 28px; }
-        .delete-button:hover { background-color: #c0392b !important; }
+        .delete-button { background: none; border: none; font-size: 1.2rem; }
         #transaction-form-blocker { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); color: white; display: flex; justify-content: center; align-items: center; text-align: center; padding: 20px; border-radius: var(--border-radius); z-index: 10; backdrop-filter: blur(5px); transition: opacity 0.3s, visibility 0.3s; }
         #transaction-form-blocker.hidden { opacity: 0; visibility: hidden; }
         ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--primary-color); }
@@ -132,7 +113,7 @@
     <div id="login-container">
         <div class="login-box card">
             <h1>Acesso Seguro</h1>
-            <p style="margin-bottom: 20px; color: var(--text-muted-color);">Para começar, digite seu nome. Seus dados serão salvos localmente no seu navegador.</p>
+            <p style="margin-bottom: 20px; color: var(--text-muted-color);">Para começar, digite seu nome.</p>
             <div class="form-group">
                 <input type="text" id="username" placeholder="Digite seu nome de usuário" required>
             </div>
@@ -157,11 +138,7 @@
                 <button class="tab-btn active" data-tab="dashboard">Painel</button>
                 <button class="tab-btn" data-tab="accounts">Contas</button>
                 <button class="tab-btn" data-tab="categories">Categorias</button>
-                <button class="tab-btn" data-tab="transfers">Transferências</button>
-                <button class="tab-btn" data-tab="budgets">Orçamentos</button>
-                <button class="tab-btn" data-tab="goals">Metas</button>
-                <button class="tab-btn" data-tab="recurrences">Recorrências</button>
-            </aside>
+                </aside>
 
             <main>
                 <div id="tab-dashboard" class="tab-content active">
@@ -180,13 +157,6 @@
                         </div>
                     </section>
                     
-                    <section class="card" style="margin-bottom: 30px;">
-                        <h2>Visão Geral do Mês</h2>
-                        <div id="main-overview-chart-container">
-                            <canvas id="main-overview-chart"></canvas>
-                        </div>
-                    </section>
-                    
                     <div class="dashboard-layout">
                         <aside class="card">
                             <div id="transaction-form-blocker">
@@ -197,13 +167,13 @@
                             </div>
                             <h2 id="transaction-form-title">Nova Transação</h2>
                             <form id="transaction-form">
-                                    <div class="form-group">
-                                        <label for="transaction-type">Tipo</label>
-                                        <select id="transaction-type" required>
-                                            <option value="expense">Despesa</option>
-                                            <option value="income">Receita</option>
-                                        </select>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="transaction-type">Tipo</label>
+                                    <select id="transaction-type" required>
+                                        <option value="expense">Despesa</option>
+                                        <option value="income">Receita</option>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="description">Descrição</label>
                                     <input type="text" id="description" placeholder="Ex: Aluguel, Salário" required>
@@ -235,22 +205,9 @@
                         </aside>
                         <section class="card">
                             <h2>Histórico de Transações</h2>
-                            <div class="filters-and-actions">
-                                <div class="form-group"> <select id="date-filter"> <option value="all">Todo o Período</option> <option value="7">Últimos 7 dias</option> <option value="30">Últimos 30 dias</option> <option value="month">Este Mês</option> </select> </div>
-                                <div class="form-group"> <select id="category-filter"></select> </div>
-                                <div class="form-group"> <select id="payment-status-filter"> <option value="all">Todos os Status</option> <option value="paid">Pagas</option> <option value="unpaid">A Pagar</option> </select> </div>
-                                <button id="export-csv" class="btn btn-secondary">CSV</button>
-                                <button id="export-pdf" class="btn btn-secondary">PDF</button>
-                            </div>
                             <ul id="transaction-list"></ul>
                         </section>
                     </div>
-                    <section class="card" style="margin-top: 30px;">
-                        <h2>Evolução do Patrimônio</h2>
-                        <div id="evolution-chart-container">
-                            <canvas id="evolution-chart"></canvas>
-                        </div>
-                    </section>
                 </div>
 
                 <div id="tab-accounts" class="tab-content">
@@ -258,9 +215,9 @@
                         <div class="card">
                             <h2 id="account-form-title">Adicionar Conta/Cartão</h2>
                             <form id="account-form">
-                                <div class="form-group"> <label for="account-name">Nome da Conta/Cartão</label> <input type="text" id="account-name" placeholder="Ex: Banco do Brasil, Nubank" required> </div>
-                                <div class="form-group"> <label for="account-type">Tipo</label> <select id="account-type" required> <option value="checking">Conta Corrente</option> <option value="savings">Poupança</option> <option value="cash">Dinheiro</option> <option value="credit_card">Cartão de Crédito</option> </select> </div>
-                                <div class="form-group"> <label for="initial-balance" id="initial-balance-label">Saldo Inicial</label> <input type="number" id="initial-balance" step="0.01" value="0" name="initial_balance" required> </div>
+                                <div class="form-group"> <label for="account-name">Nome da Conta/Cartão</label> <input type="text" id="account-name" required> </div>
+                                <div class="form-group"> <label for="account-type">Tipo</label> <select id="account-type" required> <option value="checking">Conta Corrente</option> <option value="savings">Poupança</option> <option value="credit_card">Cartão de Crédito</option> </select> </div>
+                                <div class="form-group"> <label for="initial-balance" id="initial-balance-label">Saldo Inicial</label> <input type="number" id="initial-balance" step="0.01" value="0" required> </div>
                                 <div class="form-buttons" id="account-form-buttons"> <button type="submit" class="btn btn-primary">Salvar Conta</button> </div>
                             </form>
                         </div>
@@ -276,7 +233,7 @@
                         <div class="card">
                             <h2 id="category-form-title">Adicionar Categoria</h2>
                             <form id="category-form">
-                                <div class="form-group"> <label for="category-name">Nome da Categoria</label> <input type="text" id="category-name" placeholder="Ex: Supermercado" required> </div>
+                                <div class="form-group"> <label for="category-name">Nome da Categoria</label> <input type="text" id="category-name" required> </div>
                                 <div class="form-buttons" id="category-form-buttons"> <button type="submit" class="btn btn-primary">Adicionar Categoria</button> </div>
                             </form>
                         </div>
@@ -286,7 +243,7 @@
                         </div>
                     </div>
                 </div>
-                 </main>
+            </main>
         </div>
     </div>
 
@@ -296,58 +253,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =================================================================
-    // PASSO 1: CONFIGURAÇÃO DO SUPABASE
-    // Cole sua URL e Chave Pública Anon que você pegou do painel do Supabase.
+    // CONFIGURAÇÃO DO SUPABASE
     // =================================================================
-    const SUPABASE_URL = 'https://wwdggoxhofsltrykrird.supabase.co'; // <<< COLE AQUI A URL
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3ZGdnb3hob2ZzbHRyeWtyaXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyNzA0NzUsImV4cCI6MjA2NTg0NjQ3NX0.GICNiOxhauSvT5lgie2rNK4TvqAxRv7wW3E1c4eOdzw'; // <<< COLE AQUI A CHAVE
+    const SUPABASE_URL = 'https://wwdggoxhofsltrykrird.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3ZGdnb3hob2ZzbHRyeWtyaXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyNzA0NzUsImV4cCI6MjA2NTg0NjQ3NX0.GICNiOxhauSvT5lgie2rNK4TvqAxRv7wW3E1c4eOdzw';
     
-    if (SUPABASE_URL.includes('SEU_PROJETO') || SUPABASE_KEY.includes('SUA_CHAVE')) {
-        alert('ATENÇÃO: Configure suas chaves do Supabase no código JavaScript para a aplicação funcionar!');
-    }
+    // CORRIGIDO: A chamada agora usa 'supabase' minúsculo, que é o objeto criado pelo script do CDN.
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-
-    // =================================================================
-    // NOVA FUNÇÃO PARA CARREGAR TODOS OS DADOS DO SUPABASE
-    // =================================================================
     const loadAllData = async () => {
         console.log("Buscando dados do Supabase...");
         try {
-            const [transactionsRes, accountsRes, categoriesRes] = await Promise.all([
-                supabase.from('transactions').select(`*, accounts(*), categories(*)`).order('date', { ascending: false }),
-                supabase.from('accounts').select('*'),
-                supabase.from('categories').select('*')
-            ]);
+            const { data: transactionsData, error: transactionsError } = await supabase
+                .from('transactions')
+                .select(`*, accounts(name), categories(name)`)
+                .order('date', { ascending: false });
 
-            if (transactionsRes.error) throw transactionsRes.error;
-            if (accountsRes.error) throw accountsRes.error;
-            if (categoriesRes.error) throw categoriesRes.error;
+            const { data: accountsData, error: accountsError } = await supabase.from('accounts').select('*');
+            const { data: categoriesData, error: categoriesError } = await supabase.from('categories').select('*');
 
-            financeApp.state.transactions = transactionsRes.data || [];
-            financeApp.state.accounts = accountsRes.data || [];
-            financeApp.state.categories = categoriesRes.data || [];
+            if (transactionsError) throw transactionsError;
+            if (accountsError) throw accountsError;
+            if (categoriesError) throw categoriesError;
+
+            financeApp.state.transactions = transactionsData || [];
+            financeApp.state.accounts = accountsData || [];
+            financeApp.state.categories = categoriesData || [];
             
-            console.log("Dados carregados:", financeApp.state);
-
+            console.log("Dados carregados com sucesso!");
         } catch (error) {
             console.error("Erro ao carregar dados do Supabase:", error);
-            alert("Falha ao buscar dados do backend. Verifique o console.");
+            alert(`Falha ao buscar dados do backend: ${error.message}`);
         }
     };
 
-
     const financeApp = {
         elements: {},
-        charts: {},
-        state: {
-            user: null, 
-            transactions: [], 
-            accounts: [], 
-            categories: [],
-            // ... outros estados
-        },
+        state: { user: null, transactions: [], accounts: [], categories: [] },
 
         async init() {
             this.cacheDOMElements();
@@ -356,44 +298,27 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         async initApp() {
-            // A inicialização agora é assíncrona
             await loadAllData();
-            
             this.applySavedTheme();
             this.elements.welcomeMessage.textContent = `Olá, ${this.state.user}!`;
             document.getElementById('date').valueAsDate = new Date();
-            this.initCharts();
-            this.handleTransactionTypeChange();
             this.updateAllRenders();
         },
         
         cacheDOMElements() {
-            // O cache de elementos permanece o mesmo
-            this.elements = {
-                loginContainer: document.getElementById('login-container'),
-                appContainer: document.getElementById('app-container'),
-                loginBtn: document.getElementById('login-btn'),
-                logoutBtn: document.getElementById('logout-btn'),
-                usernameInput: document.getElementById('username'),
-                welcomeMessage: document.getElementById('welcome-message'),
-                themeToggle: document.getElementById('theme-toggle'),
-                initialBalanceLabel: document.getElementById('initial-balance-label'),
-                accountTypeSelect: document.getElementById('account-type'),
-                dueDateInput: document.getElementById('due-date'),
-                dueDateGroup: document.getElementById('due-date-group'),
-                transactionTypeSelect: document.getElementById('transaction-type'),
-                tabButtons: document.querySelectorAll('.tab-btn'),
-                tabContents: document.querySelectorAll('.tab-content'),
-                transactionForm: document.getElementById('transaction-form'),
-                transactionFormBlocker: document.getElementById('transaction-form-blocker'),
-                menuToggle: document.getElementById('menu-toggle'),
-                sidebarNav: document.querySelector('.sidebar-nav'),
-                menuOverlay: document.getElementById('menu-overlay'),
-            };
+            const ids = ['login-container', 'app-container', 'login-btn', 'logout-btn', 'username', 'welcome-message', 'theme-toggle', 'initial-balance-label', 'account-type', 'due-date', 'due-date-group', 'transaction-type', 'transaction-form', 'transaction-form-blocker', 'menu-toggle', 'menu-overlay', 'balance', 'total-income', 'total-expense', 'transaction-list', 'account-form', 'accounts-list', 'category-form', 'categories-list'];
+            ids.forEach(id => {
+                const camelCaseId = id.replace(/-([a-z])/g, g => g[1].toUpperCase());
+                this.elements[camelCaseId] = document.getElementById(id);
+            });
+            this.elements.tabButtons = document.querySelectorAll('.tab-btn');
+            this.elements.tabContents = document.querySelectorAll('.tab-content');
+            this.elements.sidebarNav = document.querySelector('.sidebar-nav');
         },
 
         addEventListeners() {
             this.elements.loginBtn.addEventListener('click', () => this.handleLogin());
+            this.elements.logoutBtn.addEventListener('click', () => this.handleLogout());
             this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
             this.elements.tabButtons.forEach(tab => tab.addEventListener('click', (e) => this.handleTabClick(e)));
             this.elements.menuToggle.addEventListener('click', () => {
@@ -404,49 +329,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.elements.sidebarNav.classList.remove('visible');
                 this.elements.menuOverlay.classList.remove('visible');
             });
-
-            // Adiciona listeners para os formulários
-            document.getElementById('transaction-form').addEventListener('submit', (e) => this.handleTransaction(e));
-            document.getElementById('account-form').addEventListener('submit', (e) => this.handleAccount(e));
-            document.getElementById('category-form').addEventListener('submit', (e) => this.handleCategorySubmit(e));
-
-            // Listeners para filtros
-            document.getElementById('date-filter').addEventListener('change', () => this.renderTransactions());
-            document.getElementById('category-filter').addEventListener('change', () => this.renderTransactions());
-            document.getElementById('payment-status-filter').addEventListener('change', () => this.renderTransactions());
-            
-            // Listeners para ações na lista de transações (deleção, pagamento)
-            document.getElementById('transaction-list').addEventListener('click', async (e) => {
+            this.elements.transactionForm.addEventListener('submit', (e) => this.handleTransaction(e));
+            this.elements.accountForm.addEventListener('submit', (e) => this.handleAccount(e));
+            this.elements.categoryForm.addEventListener('submit', (e) => this.handleCategorySubmit(e));
+            this.elements.transactionList.addEventListener('click', async (e) => {
                 const deleteButton = e.target.closest('.delete-button');
-                const payButton = e.target.closest('.pay-btn');
-
-                if (deleteButton) {
-                    const id = deleteButton.dataset.id;
-                    await this.deleteTransaction(id);
-                }
-                if (payButton) {
-                    const id = payButton.dataset.id;
-                    await this.markAsPaid(id);
-                }
+                if (deleteButton) await this.deleteTransaction(deleteButton.dataset.id);
             });
         },
         
         checkLogin() {
-            // Mantendo o login local por simplicidade, mas o ideal seria usar o Auth do Supabase
             const user = localStorage.getItem('financeAppUser');
             if (user) {
                 this.state.user = user;
                 this.elements.loginContainer.style.display = 'none';
                 this.elements.appContainer.style.display = 'block';
-                this.initApp(); // Chama a inicialização assíncrona
+                this.initApp();
             } else {
                 this.elements.loginContainer.style.display = 'flex';
                 this.elements.appContainer.style.display = 'none';
             }
         },
 
+        handleLogout() {
+            if(confirm('Deseja realmente sair?')) {
+                localStorage.removeItem('financeAppUser');
+                window.location.reload();
+            }
+        },
+
         handleLogin() {
-            const username = this.elements.usernameInput.value.trim();
+            const username = this.elements.username.value.trim();
             if (username) {
                 localStorage.setItem('financeAppUser', username);
                 this.checkLogin();
@@ -454,10 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Por favor, digite seu nome.');
             }
         },
-        
-        // =================================================================
-        // FUNÇÕES DE CRUD - MODIFICADAS PARA USAR SUPABASE
-        // =================================================================
 
         async handleTransaction(e) {
             e.preventDefault();
@@ -469,17 +378,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 account_id: form.elements['account-select'].value,
                 category_id: form.elements['category-select'].value,
                 type: form.elements['transaction-type'].value,
-                due_date: form.elements['due-date'].value || null,
                 is_paid: form.elements['transaction-type'].value === 'income',
-                // user_id: 'SEU_USER_ID' // Adicionar quando tiver autenticação
             };
-
             const { error } = await supabase.from('transactions').insert([newTransaction]);
             if (error) {
-                console.error('Erro ao adicionar transação:', error);
-                alert('Falha ao salvar a transação.');
+                alert(`Falha ao salvar a transação: ${error.message}`);
             } else {
-                alert('Transação adicionada com sucesso!');
                 form.reset();
                 await loadAllData();
                 this.updateAllRenders();
@@ -492,14 +396,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const newAccount = {
                 name: form.elements['account-name'].value,
                 type: form.elements['account-type'].value,
-                initial_balance: parseFloat(form.elements['initial_balance'].value)
+                initial_balance: parseFloat(form.elements['initial-balance'].value)
             };
-            
             const { error } = await supabase.from('accounts').insert([newAccount]);
             if(error) {
-                console.error("Erro ao salvar conta:", error);
+                alert(`Erro ao salvar conta: ${error.message}`);
             } else {
-                alert('Conta salva com sucesso!');
                 form.reset();
                 await loadAllData();
                 this.updateAllRenders();
@@ -510,12 +412,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const form = e.target;
             const newCategory = { name: form.elements['category-name'].value };
-
             const { error } = await supabase.from('categories').insert([newCategory]);
             if(error) {
-                 console.error("Erro ao salvar categoria:", error);
+                alert(`Erro ao salvar categoria: ${error.message}`);
             } else {
-                alert('Categoria salva com sucesso!');
                 form.reset();
                 await loadAllData();
                 this.updateAllRenders();
@@ -526,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (confirm('Tem certeza que deseja deletar esta transação?')) {
                 const { error } = await supabase.from('transactions').delete().eq('id', id);
                 if(error) {
-                    console.error("Erro ao deletar:", error);
+                    alert(`Erro ao deletar: ${error.message}`);
                 } else {
                     await loadAllData();
                     this.updateAllRenders();
@@ -534,103 +434,79 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
 
-        async markAsPaid(id) {
-            const { error } = await supabase.from('transactions').update({ is_paid: true }).eq('id', id);
-            if(error) {
-                console.error("Erro ao marcar como pago:", error);
-            } else {
-                await loadAllData();
-                this.updateAllRenders();
-            }
-        },
-
-        // =================================================================
-        // FUNÇÕES DE RENDERIZAÇÃO E UI - MODIFICADAS LEVEMENTE
-        // =================================================================
-        
         updateAllRenders() {
             this.toggleTransactionFormLock();
-            this.updateAccountBalances(); // Esta função precisará ser adaptada ou removida
+            this.updateAccountBalances(); 
             this.populateSelectors();
             this.renderSummary();
             this.renderTransactions();
             this.renderAccounts();
             this.renderCategories();
-            this.updateCharts();
         },
 
         populateSelectors() {
-            // Agora populamos os selects com dados do estado (que veio do Supabase)
-            const categoryOptions = this.state.categories.map(c => ({ value: c.id, text: c.name }));
-            const accountOptions = this.state.accounts.map(a => ({ value: a.id, text: a.name }));
-            
-            const fillSelect = (selectId, options) => {
-                const select = document.getElementById(selectId);
+            const fill = (id, data, valueField, textField) => {
+                const select = document.getElementById(id);
                 if(select) {
-                    select.innerHTML = '<option value="">Selecione...</option>'; // Placeholder
-                    options.forEach(opt => {
+                    select.innerHTML = '<option value="">Selecione...</option>';
+                    data.forEach(item => {
                         const option = document.createElement('option');
-                        option.value = opt.value;
-                        option.textContent = opt.text;
+                        option.value = item[valueField];
+                        option.textContent = item[textField];
                         select.appendChild(option);
                     });
                 }
             };
-            
-            fillSelect('account-select', accountOptions);
-            fillSelect('category-select', categoryOptions);
-            fillSelect('category-filter', [{value: 'all', text: 'Todas as Categorias'}, ...this.state.categories.map(c => ({value: c.id, text: c.name}))]);
+            fill('account-select', this.state.accounts, 'id', 'name');
+            fill('category-select', this.state.categories, 'id', 'name');
+        },
+        
+        formatCurrency(value) {
+            return (value || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         },
 
         renderTransactions() {
-            const list = document.getElementById('transaction-list');
+            const list = this.elements.transactionList;
             list.innerHTML = '';
-            const filteredTransactions = this.getFilteredTransactions(); // Função de filtro precisa ser ajustada
-
-            if (filteredTransactions.length === 0) {
+            if (this.state.transactions.length === 0) {
                 list.innerHTML = '<p style="text-align:center; color: var(--text-muted-color); padding: 20px;">Nenhuma transação encontrada.</p>';
                 return;
             }
-            
-            filteredTransactions.forEach(t => {
+            this.state.transactions.forEach(t => {
                 const item = document.createElement('li');
-                // Acessando dados aninhados que vieram do Supabase
                 const accountName = t.accounts ? t.accounts.name : 'N/A';
                 const categoryName = t.categories ? t.categories.name : 'N/A';
-
-                item.className = `transaction-item ${t.type}`;
+                item.className = `transaction-item ${t.type} ${t.is_paid ? 'paid' : ''}`;
                 item.innerHTML = `
                     <div class="info">
-                        <span class="description">${t.description}</span>
-                        <div class="details">
-                            <span class="details-tag">${new Date(t.date + 'T00:00:00').toLocaleDateString('pt-BR')}</span>
-                            <span class="details-tag">${categoryName}</span>
-                            <span class="details-tag">${accountName}</span>
+                        <span class="description"><span class="math-inline">\{t\.description\}</span\>
+<div class\="details"\>
+<span class\="details\-tag"\></span>{new Date(t.date + 'T00:00:00').toLocaleDateString('pt-BR')}</span>
+                            <span class="details-tag"><span class="math-inline">\{categoryName\}</span\>
+<span class\="details\-tag"\></span>{accountName}</span>
                             ${t.is_paid ? `<span class="paid-tag">PAGO</span>` : ''}
                         </div>
                     </div>
-                    <div class="amount ${t.type}">${t.type === 'expense' ? '-' : ''}${(t.amount || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</div>
-                    <div class="actions">
-                        ${t.type === 'expense' && !t.is_paid ? `<button class="btn pay-btn" data-id="${t.id}" title="Marcar como Paga">✔️</button>` : ''}
-                        <button class="delete-button" data-id="${t.id}" title="Excluir">🗑️</button>
+                    <div class="amount <span class="math-inline">\{t\.type\}"\></span>{t.type === 'expense' ? '-' : ''}<span class="math-inline">\{this\.formatCurrency\(t\.amount\)\}</div\>
+<div class\="actions"\>
+<button class\="delete\-button" data\-id\="</span>{t.id}" title="Excluir">🗑️</button>
                     </div>`;
                 list.appendChild(item);
             });
         },
         
         renderAccounts() {
-            const list = document.getElementById('accounts-list');
+            const list = this.elements.accountsList;
             list.innerHTML = '';
             this.state.accounts.forEach(acc => {
                 const item = document.createElement('div');
                 item.className = 'list-item';
-                // Cálculo de saldo atual precisaria ser refeito com base nas transações ou em um campo no DB
-                const balanceLabel = acc.type === 'credit_card' ? 'Fatura Atual' : 'Saldo Inicial';
+                const balanceLabel = acc.type === 'credit_card' ? 'Fatura' : 'Saldo';
                 item.innerHTML = `
                     <div class="list-item-header">
                         <div class="main-info">
-                            <strong>${acc.name}</strong> (${acc.type.replace('_', ' ')})
-                            <p style="font-size: 0.9rem; color: var(--text-muted-color);">${balanceLabel}: ${acc.initial_balance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                            <strong><span class="math-inline">\{acc\.name\}</strong\> \(</span>{acc.type})
+                            <p style="font-size: 0.9rem; color: var(--text-muted-color);">${balanceLabel}: ${this.formatCurrency(acc.current_balance)}</p>
                         </div>
                     </div>`;
                 list.appendChild(item);
@@ -638,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         renderCategories() {
-            const list = document.getElementById('categories-list');
+            const list = this.elements.categoriesList;
             list.innerHTML = '';
             this.state.categories.forEach(cat => {
                 const item = document.createElement('div');
@@ -647,34 +523,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 list.appendChild(item);
             });
         },
-        
-        getFilteredTransactions() {
-            // Esta função precisa ser adaptada para filtrar os dados já carregados do estado
-            // Por enquanto, retorna todas as transações
-            return this.state.transactions;
+
+        updateAccountBalances() {
+            this.state.accounts.forEach(acc => {
+                let balance = acc.initial_balance || 0;
+                this.state.transactions.forEach(t => {
+                    if (t.account_id === acc.id) {
+                        if (acc.type === 'credit_card') {
+                            if (t.type === 'expense') balance += t.amount;
+                            if (t.type === 'income') balance -= t.amount;
+                        } else {
+                            if (t.type === 'income') balance += t.amount;
+                            if (t.type === 'expense' && t.is_paid) balance -= t.amount;
+                        }
+                    }
+                });
+                acc.current_balance = balance;
+            });
         },
 
-        // Funções de UI, Gráficos e Logout podem ser mantidas como estão
-        // ... (resto das funções como handleTabClick, toggleTheme, initCharts, etc.)
+        renderSummary() {
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+
+            const monthlyIncome = this.state.transactions
+                .filter(t => new Date(t.date).getMonth() === currentMonth && new Date(t.date).getFullYear() === currentYear && t.type === 'income')
+                .reduce((sum, t) => sum + t.amount, 0);
+
+            const monthlyExpense = this.state.transactions
+                .filter(t => new Date(t.date).getMonth() === currentMonth && new Date(t.date).getFullYear() === currentYear && t.type === 'expense' && t.is_paid)
+                .reduce((sum, t) => sum + t.amount, 0);
+            
+            const netWorth = this.state.accounts.reduce((sum, acc) => acc.type === 'credit_card' ? sum - acc.current_balance : sum + acc.current_balance, 0);
+
+            this.elements.balance.textContent = this.formatCurrency(netWorth);
+            this.elements.balance.className = `amount ${netWorth >= 0 ? 'positive' : 'negative'}`;
+            this.elements.totalIncome.textContent = this.formatCurrency(monthlyIncome);
+            this.elements.totalExpense.textContent = this.formatCurrency(monthlyExpense);
+        },
+
         handleTabClick(e) {
             this.elements.tabButtons.forEach(tab => tab.classList.remove('active'));
             this.elements.tabContents.forEach(content => content.classList.remove('active'));
             const tabButton = e.currentTarget;
             tabButton.classList.add('active');
             document.getElementById(`tab-${tabButton.dataset.tab}`).classList.add('active');
-
             if (this.elements.sidebarNav.classList.contains('visible')) {
                 this.elements.sidebarNav.classList.remove('visible');
                 this.elements.menuOverlay.classList.remove('visible');
             }
         },
-        toggleTheme() { document.body.classList.toggle('light-mode'); this.updateCharts(); },
+        toggleTheme() { document.body.classList.toggle('light-mode'); },
         applySavedTheme() { if (localStorage.getItem('financeTheme') === 'light') document.body.classList.add('light-mode'); },
-        toggleTransactionFormLock() { const hasAccounts = this.state.accounts.length > 0; this.elements.transactionFormBlocker.classList.toggle('hidden', hasAccounts); Array.from(this.elements.transactionForm.elements).forEach(el => el.disabled = !hasAccounts); },
-        handleTransactionTypeChange() { const isExpense = this.elements.transactionTypeSelect.value === 'expense'; this.elements.dueDateGroup.style.display = isExpense ? 'block' : 'none'; this.elements.dueDateInput.required = isExpense; },
-        renderSummary(){/* precisa ser re-implementado com os dados do state */},
-        updateAccountBalances(){/* precisa ser re-implementado */},
-        updateCharts(){/* precisa ser re-implementado */}
+        toggleTransactionFormLock() {
+            const hasAccounts = this.state.accounts.length > 0;
+            this.elements.transactionFormBlocker.classList.toggle('hidden', hasAccounts);
+            Array.from(this.elements.transactionForm.elements).forEach(el => el.disabled = !hasAccounts);
+        },
+        handleTransactionTypeChange() {
+            const isExpense = this.elements.transactionTypeSelect.value === 'expense';
+            this.elements.dueDateGroup.style.display = isExpense ? 'block' : 'none';
+        },
+        initCharts() { /* Lógica dos gráficos removida para simplificar */ }
     };
 
     financeApp.init();
