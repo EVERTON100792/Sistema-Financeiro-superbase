@@ -3,593 +3,548 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Financeiro com Supabase</title>
+    <title>Magrelo Tattoo - Arte na Pele</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
     <style>
+        /* CSS Reset e Estilos Globais */
         :root {
-            --bg-color: #1a1a2e; --primary-color: #16213e; --secondary-color: #0f3460;
-            --accent-color: #e94560; --text-color: #ffffff; --text-muted-color: #a0a0b0;
-            --success-color: #2ecc71; --error-color: #e74c3c; --warning-color: #f1c40f;
-            --card-bg-color: #1e1e3f; --border-radius: 12px; --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            --font-family: 'Poppins', sans-serif;
+            --cor-primaria: #f2c94c; /* Amarelo/Dourado */
+            --cor-fundo: #121212;
+            --cor-fundo-secundaria: #1e1e1e;
+            --cor-texto: #e0e0e0;
+            --cor-titulo: #ffffff;
         }
-        body.light-mode {
-            --bg-color: #f4f7fc; --primary-color: #ffffff; --secondary-color: #eef2f9;
-            --accent-color: #3b82f6; --text-color: #1f2937; --text-muted-color: #6b7280;
-            --card-bg-color: #ffffff; --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-family); }
-        body { background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; overflow-x: hidden; line-height: 1.6; }
-        .container { padding: 20px; max-width: 1400px; margin: 0 auto; animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .card { background-color: var(--card-bg-color); padding: 25px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: background-color 0.3s; position: relative; }
-        h1, h2, h3 { color: var(--text-color); transition: color 0.3s; }
-        h2 { margin-bottom: 20px; border-bottom: 1px solid var(--secondary-color); padding-bottom: 10px; }
-        .btn { padding: 10px 20px; border: none; border-radius: var(--border-radius); cursor: pointer; font-weight: 600; transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-        .btn-primary { background-color: var(--accent-color); color: white; }
-        .btn-secondary { background-color: var(--secondary-color); color: var(--text-color); }
-        .btn-success { background-color: var(--success-color); color: white; }
-        .btn-danger { background-color: var(--error-color); color: white; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted-color); font-weight: 500; }
-        .form-group input, .form-group select { width: 100%; padding: 12px; border-radius: var(--border-radius); border: 1px solid var(--secondary-color); background-color: var(--primary-color); color: var(--text-color); font-size: 0.95rem; transition: all 0.3s; }
-        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 20%, transparent); }
-        .form-group input:disabled, .form-group select:disabled { background-color: var(--secondary-color); cursor: not-allowed; opacity: 0.7; }
-        .form-buttons { display: flex; gap: 10px; }
-        .form-buttons .btn { flex-grow: 1; }
-        #login-container { display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, var(--bg-color) 0%, var(--primary-color) 100%); }
-        .login-box { text-align: center; width: 90%; max-width: 400px; animation: fadeIn 0.5s; }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
-        .header-actions { display: flex; align-items: center; gap: 15px; }
-        #theme-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted-color); transition: transform 0.2s; }
-        #theme-toggle:hover { transform: scale(1.1); }
-        .tab-content { display: none; animation: fadeIn 0.4s; }
-        .tab-content.active { display: block; }
-        .summary-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .summary-card .amount { font-size: 2rem; font-weight: 600; }
-        #balance.positive { color: var(--success-color); }
-        #balance.negative { color: var(--error-color); }
-        #total-income { color: var(--success-color); }
-        #total-expense { color: var(--error-color); }
-        .dashboard-layout { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        @media (min-width: 992px) { .dashboard-layout { grid-template-columns: 380px 1fr; } }
-        #main-overview-chart-container, #evolution-chart-container { min-height: 400px; position: relative; }
-        .filters-and-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; align-items: center; }
-        .filters-and-actions .form-group { margin-bottom: 0; flex-grow: 1; }
-        #transaction-list, #categories-list { list-style: none; max-height: 400px; overflow-y: auto; padding-right: 10px; }
-        .list-item, .category-item, .transaction-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background-color: var(--primary-color); border-radius: var(--border-radius); margin-bottom: 10px; flex-wrap: wrap; gap: 10px; transition: opacity 0.3s, background-color 0.3s; }
-        .transaction-item { border-left: 5px solid; }
-        .transaction-item.income { border-left-color: var(--success-color); }
-        .transaction-item.expense { border-left-color: var(--error-color); }
-        .transaction-item.paid { opacity: 0.7; }
-        .transaction-item .info .description { font-weight: 500; }
-        .transaction-item .info .details { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.8rem; color: var(--text-muted-color); margin-top: 5px; }
-        .transaction-item .info .details .details-tag { background-color: var(--secondary-color); padding: 2px 8px; border-radius: 5px; }
-        .transaction-item .info .details .paid-tag { background-color: var(--success-color); color: white; font-weight: bold; }
-        .transaction-item .amount { font-weight: 600; font-size: 1.1rem; }
-        .transaction-item .amount.income { color: var(--success-color); }
-        .transaction-item .amount.expense { color: var(--error-color); }
-        .list-item, .category-item { flex-direction: column; }
-        .list-item-header { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; }
-        .list-item .main-info { flex-grow: 1; }
-        .actions { display: flex; align-items: center; gap: 8px; position: relative; }
-        .actions button { background: none; border: none; cursor: pointer; color: var(--text-muted-color); padding: 5px; font-size: 1rem; display: inline-flex; align-items: center; justify-content: center; }
-        .actions button:hover { color: var(--accent-color); }
-        .delete-button { background: none; border: none; font-size: 1.2rem; }
-        #transaction-form-blocker { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); color: white; display: flex; justify-content: center; align-items: center; text-align: center; padding: 20px; border-radius: var(--border-radius); z-index: 10; backdrop-filter: blur(5px); transition: opacity 0.3s, visibility 0.3s; }
-        #transaction-form-blocker.hidden { opacity: 0; visibility: hidden; }
-        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--primary-color); }
-        ::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 10px; } ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
-        #menu-toggle { display: none; font-size: 1.5rem; padding: 5px 12px; }
-        .app-layout { display: flex; gap: 20px; align-items: flex-start; }
-        .sidebar-nav { width: 240px; flex-shrink: 0; padding: 15px; display: flex; flex-direction: column; gap: 5px; }
-        .tab-btn { border: none; background-color: transparent; cursor: pointer; transition: all 0.3s; color: var(--text-muted-color); }
-        .sidebar-nav .tab-btn { width: 100%; text-align: left; border-left: 4px solid transparent; padding: 12px 15px; border-radius: var(--border-radius); font-weight: 500; }
-        .sidebar-nav .tab-btn:hover { background-color: var(--secondary-color); color: var(--text-color); }
-        .sidebar-nav .tab-btn.active { border-left-color: var(--accent-color); background-color: var(--primary-color); color: var(--accent-color); font-weight: 600; }
-        main { flex-grow: 1; width: 100%; }
-        @media (max-width: 992px) {
-            #menu-toggle { display: block; }
-            .app-layout { position: relative; }
-            .sidebar-nav { position: fixed; left: 0; top: 0; bottom: 0; height: 100vh; z-index: 1000; background-color: var(--card-bg-color); transform: translateX(-100%); transition: transform 0.3s ease-in-out; border-radius: 0 var(--border-radius) var(--border-radius) 0; box-shadow: 0 0 40px rgba(0,0,0,0.5); }
-            .sidebar-nav.visible { transform: translateX(0); }
+
+        html {
+            scroll-behavior: smooth;
         }
-        #menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; backdrop-filter: blur(2px); }
-        #menu-overlay.visible { opacity: 1; visibility: visible; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--cor-titulo);
+            text-transform: uppercase;
+        }
+
+        section {
+            padding: 100px 20px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        /* Cabeçalho e Navegação */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--cor-primaria);
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--cor-titulo);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--cor-primaria);
+        }
+
+        /* Seção Início (Hero) */
+        #inicio {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('https://images.unsplash.com/photo-1593012382439-BC9d6a3f97f8?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        #inicio h1 {
+            font-size: 5rem;
+            color: var(--cor-primaria);
+        }
+
+        #inicio p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+            padding: 15px 35px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(242, 201, 76, 0.5);
+        }
+
+        /* Seção Portfólio */
+        .portfolio-filtros {
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--cor-primaria);
+            color: var(--cor-primaria);
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .portfolio-item {
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Seção Sobre */
+        #sobre img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--cor-primaria);
+            margin-bottom: 20px;
+        }
+        #sobre p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Seção Orçamento */
+        .calculator-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .calculator-form {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: left;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-family: 'Oswald', sans-serif;
+            color: var(--cor-primaria);
+        }
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--cor-fundo-secundaria);
+            border: 1px solid #444;
+            color: var(--cor-texto);
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        .calculator-result {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background-color: var(--cor-fundo-secundaria);
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculator-result h3 {
+            font-size: 1.5rem;
+        }
+        #price-estimate {
+            font-size: 4rem;
+            font-family: 'Oswald', sans-serif;
+            color: var(--cor-primaria);
+            margin: 10px 0;
+        }
+        .calculator-result p {
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Seção Cuidados */
+        #cuidados ul {
+            list-style: none;
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+        #cuidados li {
+            background-color: var(--cor-fundo-secundaria);
+            margin-bottom: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 3px solid var(--cor-primaria);
+        }
+        #cuidados i {
+            margin-right: 15px;
+            color: var(--cor-primaria);
+        }
+        
+        /* Rodapé e Contato */
+        #contato, footer {
+            background-color: var(--cor-fundo-secundaria);
+            border: none;
+        }
+        .social-icons a {
+            color: var(--cor-texto);
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--cor-primaria);
+            transform: translateY(-5px);
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* Botão WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        /* Modal do Portfólio */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header { flex-direction: column; }
+            nav { margin-top: 10px; }
+            nav a { margin: 0 10px; }
+            #inicio h1 { font-size: 3rem; }
+            #inicio p { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="login-container">
-        <div class="login-box card">
-            <h1>Acesso Seguro</h1>
-            <p style="margin-bottom: 20px; color: var(--text-muted-color);">Para começar, digite seu nome.</p>
-            <div class="form-group">
-                <input type="text" id="username" placeholder="Digite seu nome de usuário" required>
+    <header>
+        <a href="#inicio" class="logo">Magrelo Tattoo</a>
+        <nav>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#orcamento">Orçamento</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <div class="container">
+                <h1>Magrelo Tattoo</h1>
+                <p>Sua história na pele. Arte que dura para sempre.</p>
+                <a href="#orcamento" class="cta-button">Calcular Orçamento</a>
             </div>
-            <button id="login-btn" class="btn btn-primary" style="width: 100%;">Entrar</button>
-        </div>
-    </div>
+        </section>
 
-    <div id="app-container" style="display: none;" class="container">
-        <header>
-            <h1 id="welcome-message">Painel Financeiro</h1>
-            <div class="header-actions">
-                <button id="menu-toggle" class="btn btn-secondary">☰</button>
-                <button id="theme-toggle" title="Alterar Tema">🌙</button>
-                <button id="logout-btn" class="btn btn-secondary">Sair</button>
+        <section id="portfolio">
+            <div class="container">
+                <h2>Meu Trabalho</h2>
+                <div class="portfolio-filtros">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="blackwork">Blackwork</button>
+                    <button class="filter-btn" data-filter="fineline">Fine Line</button>
+                    <button class="filter-btn" data-filter="color">Colorido</button>
+                </div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item" data-category="blackwork"><img src="https://picsum.photos/id/106/500/500" alt="Tattoo Blackwork"></div>
+                    <div class="portfolio-item" data-category="fineline"><img src="https://picsum.photos/id/163/500/500" alt="Tattoo Fine Line"></div>
+                    <div class="portfolio-item" data-category="color"><img src="https://picsum.photos/id/211/500/500" alt="Tattoo Colorida"></div>
+                    <div class="portfolio-item" data-category="fineline"><img src="https://picsum.photos/id/249/500/500" alt="Tattoo Fine Line"></div>
+                    <div class="portfolio-item" data-category="blackwork"><img src="https://picsum.photos/id/188/500/500" alt="Tattoo Blackwork"></div>
+                    <div class="portfolio-item" data-category="color"><img src="https://picsum.photos/id/305/500/500" alt="Tattoo Colorida"></div>
+                </div>
             </div>
-        </header>
+        </section>
+        
+        <section id="sobre">
+            <div class="container">
+                <h2>O Artista</h2>
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop" alt="Foto do tatuador Magrelo">
+                <p>
+                    Olá, eu sou o Magrelo. Desde cedo, o desenho foi minha paixão e a pele se tornou minha tela favorita. Com anos de experiência, me especializo em criar artes únicas que contam a sua história. Meu foco é em blackwork e fine line, mas adoro um desafio colorido. Meu estúdio é um espaço seguro e profissional, onde sua ideia se transforma em arte permanente com a máxima higiene e cuidado. Vamos criar algo incrível juntos?
+                </p>
+            </div>
+        </section>
 
-        <div id="menu-overlay"></div>
-
-        <div class="app-layout">
-            <aside class="sidebar-nav card">
-                <button class="tab-btn active" data-tab="dashboard">Painel</button>
-                <button class="tab-btn" data-tab="accounts">Contas</button>
-                <button class="tab-btn" data-tab="categories">Categorias</button>
-                </aside>
-
-            <main>
-                <div id="tab-dashboard" class="tab-content active">
-                    <section class="summary-section">
-                        <div class="summary-card card">
-                            <h3>Patrimônio Líquido</h3>
-                            <span id="balance" class="amount">R$ 0,00</span>
+        <section id="orcamento">
+            <div class="container">
+                <h2>Calcule sua Tattoo</h2>
+                <p>Tenha uma ideia do valor da sua próxima arte. O preço final será confirmado via WhatsApp.</p>
+                <div class="calculator-wrapper">
+                    <form class="calculator-form" id="tattoo-calculator">
+                        <div class="form-group">
+                            <label for="size">Tamanho:</label>
+                            <select id="size" name="size">
+                                <option value="1">Pequena (até 8cm)</option>
+                                <option value="1.8">Média (até 15cm)</option>
+                                <option value="3">Grande (até 25cm)</option>
+                                <option value="5">Gigante (acima de 25cm)</option>
+                            </select>
                         </div>
-                        <div class="summary-card card">
-                            <h3>Receitas (Mês)</h3>
-                            <span id="total-income" class="amount">R$ 0,00</span>
+                        <div class="form-group">
+                            <label for="style">Estilo:</label>
+                            <select id="style" name="style">
+                                <option value="1">Apenas Traços (Fine Line)</option>
+                                <option value="1.5">Traços e Sombreamento (Blackwork)</option>
+                                <option value="2">Colorida</option>
+                            </select>
                         </div>
-                        <div class="summary-card card">
-                            <h3>Despesas Pagas (Mês)</h3>
-                            <span id="total-expense" class="amount">R$ 0,00</span>
+                        <div class="form-group">
+                            <label for="complexity">Complexidade do Desenho:</label>
+                            <select id="complexity" name="complexity">
+                                <option value="1">Baixa (símbolos, escritas simples)</option>
+                                <option value="1.4">Média (florais, animais simples)</option>
+                                <option value="2">Alta (realismo, retratos, geometria complexa)</option>
+                            </select>
                         </div>
-                    </section>
-                    
-                    <div class="dashboard-layout">
-                        <aside class="card">
-                            <div id="transaction-form-blocker">
-                                <div>
-                                    <h3>Primeiro Passo</h3>
-                                    <p>Cadastre uma conta na aba "Contas" para poder adicionar transações.</p>
-                                </div>
-                            </div>
-                            <h2 id="transaction-form-title">Nova Transação</h2>
-                            <form id="transaction-form">
-                                <div class="form-group">
-                                    <label for="transaction-type">Tipo</label>
-                                    <select id="transaction-type" required>
-                                        <option value="expense">Despesa</option>
-                                        <option value="income">Receita</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Descrição</label>
-                                    <input type="text" id="description" placeholder="Ex: Aluguel, Salário" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="amount">Valor (R$)</label>
-                                    <input type="number" id="amount" step="0.01" placeholder="150.50" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="date">Data da Transação</label>
-                                    <input type="date" id="date" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="account-select">Conta / Cartão</label>
-                                    <select id="account-select" required></select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="category-select">Categoria</label>
-                                    <select id="category-select" required></select>
-                                </div>
-                                <div class="form-group" id="due-date-group">
-                                    <label for="due-date">Data de Vencimento</label>
-                                    <input type="date" id="due-date">
-                                </div>
-                                <div class="form-buttons" id="transaction-form-buttons">
-                                    <button type="submit" class="btn btn-primary">Adicionar Transação</button>
-                                </div>
-                            </form>
-                        </aside>
-                        <section class="card">
-                            <h2>Histórico de Transações</h2>
-                            <ul id="transaction-list"></ul>
-                        </section>
+                    </form>
+                    <div class="calculator-result">
+                        <h3>Estimativa de Preço:</h3>
+                        <div id="price-estimate">R$ 150</div>
+                        <p>Este é um valor aproximado. O preço pode variar com o local do corpo e detalhes finais.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div id="tab-accounts" class="tab-content">
-                    <div class="grid-layout">
-                        <div class="card">
-                            <h2 id="account-form-title">Adicionar Conta/Cartão</h2>
-                            <form id="account-form">
-                                <div class="form-group"> <label for="account-name">Nome da Conta/Cartão</label> <input type="text" id="account-name" required> </div>
-                                <div class="form-group"> <label for="account-type">Tipo</label> <select id="account-type" required> <option value="checking">Conta Corrente</option> <option value="savings">Poupança</option> <option value="credit_card">Cartão de Crédito</option> </select> </div>
-                                <div class="form-group"> <label for="initial-balance" id="initial-balance-label">Saldo Inicial</label> <input type="number" id="initial-balance" step="0.01" value="0" required> </div>
-                                <div class="form-buttons" id="account-form-buttons"> <button type="submit" class="btn btn-primary">Salvar Conta</button> </div>
-                            </form>
-                        </div>
-                        <div class="card">
-                            <h2>Minhas Contas</h2>
-                            <div id="accounts-list"></div>
-                        </div>
-                    </div>
+        <section id="cuidados">
+            <div class="container">
+                <h2>Cuidados Pós-Tattoo</h2>
+                <p>Uma tattoo bem cuidada é uma tattoo bonita para sempre. Siga essas dicas:</p>
+                <ul>
+                    <li><i class="fa-solid fa-hand-sparkles"></i>Lave com sabonete neutro e água fria, 3 vezes ao dia.</li>
+                    <li><i class="fa-solid fa-prescription-bottle-medical"></i>Passe uma fina camada da pomada cicatrizante recomendada.</li>
+                    <li><i class="fa-solid fa-sun"></i>Evite sol, mar, piscina e comidas gordurosas por 30 dias.</li>
+                    <li><i class="fa-solid fa-shirt"></i>Use roupas leves e que não apertem a área tatuada.</li>
+                    <li><i class="fa-solid fa-hand-holding-droplet"></i>Não retire a casca! Deixe ela cair naturalmente.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contato">
+            <div class="container">
+                <h2>Vamos Tatuar?</h2>
+                <p>Me siga nas redes sociais e mande sua ideia no WhatsApp!</p>
+                <div class="social-icons" style="margin: 30px 0;">
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=55SEUNUMEROAQUI" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
+                <p><strong>Endereço:</strong> Rua da Arte, 123 - Centro, Sua Cidade - SP</p>
+            </div>
+        </section>
+    </main>
 
-                <div id="tab-categories" class="tab-content">
-                    <div class="grid-layout">
-                        <div class="card">
-                            <h2 id="category-form-title">Adicionar Categoria</h2>
-                            <form id="category-form">
-                                <div class="form-group"> <label for="category-name">Nome da Categoria</label> <input type="text" id="category-name" required> </div>
-                                <div class="form-buttons" id="category-form-buttons"> <button type="submit" class="btn btn-primary">Adicionar Categoria</button> </div>
-                            </form>
-                        </div>
-                        <div class="card">
-                            <h2>Minhas Categorias</h2>
-                            <div id="categories-list"></div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    // =================================================================
-    // CONFIGURAÇÃO DO SUPABASE
-    // =================================================================
-    const SUPABASE_URL = 'https://wwdggoxhofsltrykrird.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3ZGdnb3hob2ZzbHRyeWtyaXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyNzA0NzUsImV4cCI6MjA2NTg0NjQ3NX0.GICNiOxhauSvT5lgie2rNK4TvqAxRv7wW3E1c4eOdzw';
+    <footer>
+        <p>&copy; 2025 Magrelo Tattoo. Todos os direitos reservados.</p>
+        <p>Desenvolvido por [Seu Nome Aqui]</p>
+    </footer>
     
-    // CORRIGIDO: A chamada agora usa 'supabase' minúsculo, que é o objeto criado pelo script do CDN.
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    <a href="https://api.whatsapp.com/send?phone=55SEUNUMEROAQUI&text=Olá! Vim pelo site e gostaria de fazer um orçamento." target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <div id="portfolio-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
 
-    const loadAllData = async () => {
-        console.log("Buscando dados do Supabase...");
-        try {
-            const { data: transactionsData, error: transactionsError } = await supabase
-                .from('transactions')
-                .select(`*, accounts(name), categories(name)`)
-                .order('date', { ascending: false });
 
-            const { data: accountsData, error: accountsError } = await supabase.from('accounts').select('*');
-            const { data: categoriesData, error: categoriesError } = await supabase.from('categories').select('*');
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
 
-            if (transactionsError) throw transactionsError;
-            if (accountsError) throw accountsError;
-            if (categoriesError) throw categoriesError;
+        // --- FILTRO DO PORTFÓLIO ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-            financeApp.state.transactions = transactionsData || [];
-            financeApp.state.accounts = accountsData || [];
-            financeApp.state.categories = categoriesData || [];
-            
-            console.log("Dados carregados com sucesso!");
-        } catch (error) {
-            console.error("Erro ao carregar dados do Supabase:", error);
-            alert(`Falha ao buscar dados do backend: ${error.message}`);
-        }
-    };
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Ativa o botão clicado
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
 
-    const financeApp = {
-        elements: {},
-        state: { user: null, transactions: [], accounts: [], categories: [] },
+                const filter = button.getAttribute('data-filter');
 
-        async init() {
-            this.cacheDOMElements();
-            this.addEventListeners();
-            this.checkLogin();
-        },
-
-        async initApp() {
-            await loadAllData();
-            this.applySavedTheme();
-            this.elements.welcomeMessage.textContent = `Olá, ${this.state.user}!`;
-            document.getElementById('date').valueAsDate = new Date();
-            this.updateAllRenders();
-        },
-        
-        cacheDOMElements() {
-            const ids = ['login-container', 'app-container', 'login-btn', 'logout-btn', 'username', 'welcome-message', 'theme-toggle', 'initial-balance-label', 'account-type', 'due-date', 'due-date-group', 'transaction-type', 'transaction-form', 'transaction-form-blocker', 'menu-toggle', 'menu-overlay', 'balance', 'total-income', 'total-expense', 'transaction-list', 'account-form', 'accounts-list', 'category-form', 'categories-list'];
-            ids.forEach(id => {
-                const camelCaseId = id.replace(/-([a-z])/g, g => g[1].toUpperCase());
-                this.elements[camelCaseId] = document.getElementById(id);
-            });
-            this.elements.tabButtons = document.querySelectorAll('.tab-btn');
-            this.elements.tabContents = document.querySelectorAll('.tab-content');
-            this.elements.sidebarNav = document.querySelector('.sidebar-nav');
-        },
-
-        addEventListeners() {
-            this.elements.loginBtn.addEventListener('click', () => this.handleLogin());
-            this.elements.logoutBtn.addEventListener('click', () => this.handleLogout());
-            this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
-            this.elements.tabButtons.forEach(tab => tab.addEventListener('click', (e) => this.handleTabClick(e)));
-            this.elements.menuToggle.addEventListener('click', () => {
-                this.elements.sidebarNav.classList.toggle('visible');
-                this.elements.menuOverlay.classList.toggle('visible');
-            });
-            this.elements.menuOverlay.addEventListener('click', () => {
-                this.elements.sidebarNav.classList.remove('visible');
-                this.elements.menuOverlay.classList.remove('visible');
-            });
-            this.elements.transactionForm.addEventListener('submit', (e) => this.handleTransaction(e));
-            this.elements.accountForm.addEventListener('submit', (e) => this.handleAccount(e));
-            this.elements.categoryForm.addEventListener('submit', (e) => this.handleCategorySubmit(e));
-            this.elements.transactionList.addEventListener('click', async (e) => {
-                const deleteButton = e.target.closest('.delete-button');
-                if (deleteButton) await this.deleteTransaction(deleteButton.dataset.id);
-            });
-        },
-        
-        checkLogin() {
-            const user = localStorage.getItem('financeAppUser');
-            if (user) {
-                this.state.user = user;
-                this.elements.loginContainer.style.display = 'none';
-                this.elements.appContainer.style.display = 'block';
-                this.initApp();
-            } else {
-                this.elements.loginContainer.style.display = 'flex';
-                this.elements.appContainer.style.display = 'none';
-            }
-        },
-
-        handleLogout() {
-            if(confirm('Deseja realmente sair?')) {
-                localStorage.removeItem('financeAppUser');
-                window.location.reload();
-            }
-        },
-
-        handleLogin() {
-            const username = this.elements.username.value.trim();
-            if (username) {
-                localStorage.setItem('financeAppUser', username);
-                this.checkLogin();
-            } else {
-                alert('Por favor, digite seu nome.');
-            }
-        },
-
-        async handleTransaction(e) {
-            e.preventDefault();
-            const form = e.target;
-            const newTransaction = {
-                description: form.elements['description'].value,
-                amount: parseFloat(form.elements['amount'].value),
-                date: form.elements['date'].value,
-                account_id: form.elements['account-select'].value,
-                category_id: form.elements['category-select'].value,
-                type: form.elements['transaction-type'].value,
-                is_paid: form.elements['transaction-type'].value === 'income',
-            };
-            const { error } = await supabase.from('transactions').insert([newTransaction]);
-            if (error) {
-                alert(`Falha ao salvar a transação: ${error.message}`);
-            } else {
-                form.reset();
-                await loadAllData();
-                this.updateAllRenders();
-            }
-        },
-
-        async handleAccount(e) {
-            e.preventDefault();
-            const form = e.target;
-            const newAccount = {
-                name: form.elements['account-name'].value,
-                type: form.elements['account-type'].value,
-                initial_balance: parseFloat(form.elements['initial-balance'].value)
-            };
-            const { error } = await supabase.from('accounts').insert([newAccount]);
-            if(error) {
-                alert(`Erro ao salvar conta: ${error.message}`);
-            } else {
-                form.reset();
-                await loadAllData();
-                this.updateAllRenders();
-            }
-        },
-
-        async handleCategorySubmit(e) {
-            e.preventDefault();
-            const form = e.target;
-            const newCategory = { name: form.elements['category-name'].value };
-            const { error } = await supabase.from('categories').insert([newCategory]);
-            if(error) {
-                alert(`Erro ao salvar categoria: ${error.message}`);
-            } else {
-                form.reset();
-                await loadAllData();
-                this.updateAllRenders();
-            }
-        },
-
-        async deleteTransaction(id) {
-            if (confirm('Tem certeza que deseja deletar esta transação?')) {
-                const { error } = await supabase.from('transactions').delete().eq('id', id);
-                if(error) {
-                    alert(`Erro ao deletar: ${error.message}`);
-                } else {
-                    await loadAllData();
-                    this.updateAllRenders();
-                }
-            }
-        },
-
-        updateAllRenders() {
-            this.toggleTransactionFormLock();
-            this.updateAccountBalances(); 
-            this.populateSelectors();
-            this.renderSummary();
-            this.renderTransactions();
-            this.renderAccounts();
-            this.renderCategories();
-        },
-
-        populateSelectors() {
-            const fill = (id, data, valueField, textField) => {
-                const select = document.getElementById(id);
-                if(select) {
-                    select.innerHTML = '<option value="">Selecione...</option>';
-                    data.forEach(item => {
-                        const option = document.createElement('option');
-                        option.value = item[valueField];
-                        option.textContent = item[textField];
-                        select.appendChild(option);
-                    });
-                }
-            };
-            fill('account-select', this.state.accounts, 'id', 'name');
-            fill('category-select', this.state.categories, 'id', 'name');
-        },
-        
-        formatCurrency(value) {
-            return (value || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        },
-
-        renderTransactions() {
-            const list = this.elements.transactionList;
-            list.innerHTML = '';
-            if (this.state.transactions.length === 0) {
-                list.innerHTML = '<p style="text-align:center; color: var(--text-muted-color); padding: 20px;">Nenhuma transação encontrada.</p>';
-                return;
-            }
-            this.state.transactions.forEach(t => {
-                const item = document.createElement('li');
-                const accountName = t.accounts ? t.accounts.name : 'N/A';
-                const categoryName = t.categories ? t.categories.name : 'N/A';
-                item.className = `transaction-item ${t.type} ${t.is_paid ? 'paid' : ''}`;
-                item.innerHTML = `
-                    <div class="info">
-                        <span class="description"><span class="math-inline">\{t\.description\}</span\>
-<div class\="details"\>
-<span class\="details\-tag"\></span>{new Date(t.date + 'T00:00:00').toLocaleDateString('pt-BR')}</span>
-                            <span class="details-tag"><span class="math-inline">\{categoryName\}</span\>
-<span class\="details\-tag"\></span>{accountName}</span>
-                            ${t.is_paid ? `<span class="paid-tag">PAGO</span>` : ''}
-                        </div>
-                    </div>
-                    <div class="amount <span class="math-inline">\{t\.type\}"\></span>{t.type === 'expense' ? '-' : ''}<span class="math-inline">\{this\.formatCurrency\(t\.amount\)\}</div\>
-<div class\="actions"\>
-<button class\="delete\-button" data\-id\="</span>{t.id}" title="Excluir">🗑️</button>
-                    </div>`;
-                list.appendChild(item);
-            });
-        },
-        
-        renderAccounts() {
-            const list = this.elements.accountsList;
-            list.innerHTML = '';
-            this.state.accounts.forEach(acc => {
-                const item = document.createElement('div');
-                item.className = 'list-item';
-                const balanceLabel = acc.type === 'credit_card' ? 'Fatura' : 'Saldo';
-                item.innerHTML = `
-                    <div class="list-item-header">
-                        <div class="main-info">
-                            <strong><span class="math-inline">\{acc\.name\}</strong\> \(</span>{acc.type})
-                            <p style="font-size: 0.9rem; color: var(--text-muted-color);">${balanceLabel}: ${this.formatCurrency(acc.current_balance)}</p>
-                        </div>
-                    </div>`;
-                list.appendChild(item);
-            });
-        },
-
-        renderCategories() {
-            const list = this.elements.categoriesList;
-            list.innerHTML = '';
-            this.state.categories.forEach(cat => {
-                const item = document.createElement('div');
-                item.className = 'category-item list-item';
-                item.innerHTML = `<div class="list-item-header"><div class="main-info"><span>${cat.name}</span></div></div>`;
-                list.appendChild(item);
-            });
-        },
-
-        updateAccountBalances() {
-            this.state.accounts.forEach(acc => {
-                let balance = acc.initial_balance || 0;
-                this.state.transactions.forEach(t => {
-                    if (t.account_id === acc.id) {
-                        if (acc.type === 'credit_card') {
-                            if (t.type === 'expense') balance += t.amount;
-                            if (t.type === 'income') balance -= t.amount;
-                        } else {
-                            if (t.type === 'income') balance += t.amount;
-                            if (t.type === 'expense' && t.is_paid) balance -= t.amount;
-                        }
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
                     }
                 });
-                acc.current_balance = balance;
             });
-        },
+        });
 
-        renderSummary() {
-            const now = new Date();
-            const currentMonth = now.getMonth();
-            const currentYear = now.getFullYear();
+        // --- MODAL DO PORTFÓLIO ---
+        const modal = document.getElementById('portfolio-modal');
+        const modalImg = document.getElementById('modal-img');
+        const closeModal = document.querySelector('.close-modal');
 
-            const monthlyIncome = this.state.transactions
-                .filter(t => new Date(t.date).getMonth() === currentMonth && new Date(t.date).getFullYear() === currentYear && t.type === 'income')
-                .reduce((sum, t) => sum + t.amount, 0);
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalImg.src = item.querySelector('img').src;
+            });
+        });
 
-            const monthlyExpense = this.state.transactions
-                .filter(t => new Date(t.date).getMonth() === currentMonth && new Date(t.date).getFullYear() === currentYear && t.type === 'expense' && t.is_paid)
-                .reduce((sum, t) => sum + t.amount, 0);
-            
-            const netWorth = this.state.accounts.reduce((sum, acc) => acc.type === 'credit_card' ? sum - acc.current_balance : sum + acc.current_balance, 0);
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
 
-            this.elements.balance.textContent = this.formatCurrency(netWorth);
-            this.elements.balance.className = `amount ${netWorth >= 0 ? 'positive' : 'negative'}`;
-            this.elements.totalIncome.textContent = this.formatCurrency(monthlyIncome);
-            this.elements.totalExpense.textContent = this.formatCurrency(monthlyExpense);
-        },
-
-        handleTabClick(e) {
-            this.elements.tabButtons.forEach(tab => tab.classList.remove('active'));
-            this.elements.tabContents.forEach(content => content.classList.remove('active'));
-            const tabButton = e.currentTarget;
-            tabButton.classList.add('active');
-            document.getElementById(`tab-${tabButton.dataset.tab}`).classList.add('active');
-            if (this.elements.sidebarNav.classList.contains('visible')) {
-                this.elements.sidebarNav.classList.remove('visible');
-                this.elements.menuOverlay.classList.remove('visible');
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
             }
-        },
-        toggleTheme() { document.body.classList.toggle('light-mode'); },
-        applySavedTheme() { if (localStorage.getItem('financeTheme') === 'light') document.body.classList.add('light-mode'); },
-        toggleTransactionFormLock() {
-            const hasAccounts = this.state.accounts.length > 0;
-            this.elements.transactionFormBlocker.classList.toggle('hidden', hasAccounts);
-            Array.from(this.elements.transactionForm.elements).forEach(el => el.disabled = !hasAccounts);
-        },
-        handleTransactionTypeChange() {
-            const isExpense = this.elements.transactionTypeSelect.value === 'expense';
-            this.elements.dueDateGroup.style.display = isExpense ? 'block' : 'none';
-        },
-        initCharts() { /* Lógica dos gráficos removida para simplificar */ }
-    };
+        });
 
-    financeApp.init();
-});
-</script>
+        // --- CALCULADORA DE PREÇO ---
+        const calculatorForm = document.getElementById('tattoo-calculator');
+        const priceElement = document.getElementById('price-estimate');
+
+        // PREÇOS BASE E MULTIPLICADORES (AJUSTE AQUI!)
+        const basePrice = 150; // Preço mínimo de qualquer tattoo
+        const sizeMultiplier = { '1': 1, '1.8': 1.8, '3': 3, '5': 5 };
+        const styleMultiplier = { '1': 1, '1.5': 1.5, '2': 2 };
+        const complexityMultiplier = { '1': 1, '1.4': 1.4, '2': 2 };
+        
+        function calculatePrice() {
+            const size = document.getElementById('size').value;
+            const style = document.getElementById('style').value;
+            const complexity = document.getElementById('complexity').value;
+
+            let estimatedPrice = basePrice * sizeMultiplier[size] * styleMultiplier[style] * complexityMultiplier[complexity];
+            
+            // Arredonda para o 0 ou 5 mais próximo para ficar mais bonito
+            estimatedPrice = Math.round(estimatedPrice / 5) * 5;
+
+            priceElement.textContent = `R$ ${estimatedPrice}`;
+        }
+
+        calculatorForm.addEventListener('input', calculatePrice);
+        
+        // Calcula o preço inicial ao carregar a página
+        calculatePrice();
+    });
+    </script>
 </body>
 </html>
