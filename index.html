@@ -3,548 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magrelo Tattoo - Arte na Pele</title>
+    <title>Magrelo Tattoo - Estúdio de Tatuagem</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS Reset e Estilos Globais */
+        /* Estilos Gerais e Variáveis */
         :root {
-            --cor-primaria: #f2c94c; /* Amarelo/Dourado */
-            --cor-fundo: #121212;
-            --cor-fundo-secundaria: #1e1e1e;
-            --cor-texto: #e0e0e0;
-            --cor-titulo: #ffffff;
+            --primary-color: #f0c400; /* Um dourado/amarelo forte para destaque */
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --surface-color: #1e1e1e;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
+            font-family: var(--font-body);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden; /* Previne scroll horizontal */
         }
 
-        h1, h2, h3 {
-            font-family: 'Oswald', sans-serif;
-            color: var(--cor-titulo);
-            text-transform: uppercase;
+        h1, h2 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            font-weight: 700;
         }
 
         section {
-            padding: 100px 20px;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 80px 5%;
             text-align: center;
-        }
-        
-        /* Cabeçalho e Navegação */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background-color: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            color: var(--cor-primaria);
-            text-decoration: none;
+            position: relative;
         }
 
-        nav a {
-            color: var(--cor-titulo);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        section:nth-child(even) {
+            background-color: var(--surface-color);
         }
 
-        nav a:hover {
-            color: var(--cor-primaria);
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
         }
 
-        /* Seção Início (Hero) */
-        #inicio {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('https://images.unsplash.com/photo-1593012382439-BC9d6a3f97f8?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
-        }
-
-        #inicio h1 {
-            font-size: 5rem;
-            color: var(--cor-primaria);
-        }
-
-        #inicio p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+        .section-subtitle {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #a0a0a0;
         }
 
         .cta-button {
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo);
-            padding: 15px 35px;
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 12px 30px;
             text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            font-size: 1.2rem;
+            font-weight: bold;
             border-radius: 5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(242, 201, 76, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 1rem;
         }
 
-        /* Seção Portfólio */
-        .portfolio-filtros {
-            margin-bottom: 40px;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background-color: #fff;
         }
-        .filter-btn {
-            background: none;
-            border: 2px solid var(--cor-primaria);
-            color: var(--cor-primaria);
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            /* !!! IMPORTANTE: Troque a URL da imagem de fundo aqui !!! */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1599238885076-5c6a3a489b6a?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
         }
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo);
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Animação Fade-in Inicial */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out forwards;
         }
         
-        .portfolio-grid {
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Portfolio Section */
+        .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
+            gap: 1.5rem;
         }
-        .portfolio-item {
+
+        .gallery-item {
             overflow: hidden;
             border-radius: 8px;
-            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .portfolio-item img {
+
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            display: block;
+            transition: transform 0.4s ease-out;
         }
-        .portfolio-item:hover img {
+
+        .gallery-item:hover img {
             transform: scale(1.1);
         }
-        
-        /* Seção Sobre */
-        #sobre img {
-            width: 200px;
-            height: 200px;
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .artist-photo {
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid var(--cor-primaria);
-            margin-bottom: 20px;
+            border: 5px solid var(--primary-color);
         }
-        #sobre p {
-            max-width: 800px;
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        /* Pricing Section */
+        .pricing-content {
+            max-width: 700px;
             margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Seção Orçamento */
-        .calculator-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        .calculator-form {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            text-align: left;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            font-family: 'Oswald', sans-serif;
-            color: var(--cor-primaria);
-        }
-        .form-group select {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--cor-fundo-secundaria);
-            border: 1px solid #444;
-            color: var(--cor-texto);
-            font-size: 1rem;
-            border-radius: 5px;
-        }
-        .calculator-result {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
-            background-color: var(--cor-fundo-secundaria);
-            padding: 30px;
+            background-color: var(--background-color);
+            padding: 2rem;
             border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .calculator-result h3 {
-            font-size: 1.5rem;
-        }
-        #price-estimate {
-            font-size: 4rem;
-            font-family: 'Oswald', sans-serif;
-            color: var(--cor-primaria);
-            margin: 10px 0;
-        }
-        .calculator-result p {
-            font-size: 0.9rem;
-            font-style: italic;
         }
 
-        /* Seção Cuidados */
-        #cuidados ul {
-            list-style: none;
-            max-width: 800px;
-            margin: 40px auto 0;
-            text-align: left;
+        /* Contact Section */
+        .contact-info {
+            font-size: 1.1rem;
         }
-        #cuidados li {
-            background-color: var(--cor-fundo-secundaria);
-            margin-bottom: 10px;
-            padding: 20px;
-            border-radius: 5px;
-            border-left: 3px solid var(--cor-primaria);
+        .contact-info p {
+            margin-bottom: 1rem;
         }
-        #cuidados i {
-            margin-right: 15px;
-            color: var(--cor-primaria);
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
         }
-        
-        /* Rodapé e Contato */
-        #contato, footer {
-            background-color: var(--cor-fundo-secundaria);
-            border: none;
+        .contact-info a:hover {
+            color: #fff;
         }
-        .social-icons a {
-            color: var(--cor-texto);
-            font-size: 2rem;
-            margin: 0 15px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .social-icons a:hover {
-            color: var(--cor-primaria);
-            transform: translateY(-5px);
-        }
-        footer {
-            padding: 20px;
-            text-align: center;
-        }
-        
-        /* Botão WhatsApp */
+
+        /* WhatsApp Float Button */
         .whatsapp-float {
             position: fixed;
             width: 60px;
             height: 60px;
-            bottom: 30px;
-            right: 30px;
+            bottom: 40px;
+            right: 40px;
             background-color: #25D366;
             color: #FFF;
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
             z-index: 100;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
         }
         
-        /* Modal do Portfólio */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-        }
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #777;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
         }
 
-        /* Responsividade */
+        /* Responsividade para Telas Menores */
         @media (max-width: 768px) {
-            header { flex-direction: column; }
-            nav { margin-top: 10px; }
-            nav a { margin: 0 10px; }
-            #inicio h1 { font-size: 3rem; }
-            #inicio p { font-size: 1.2rem; }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#inicio" class="logo">Magrelo Tattoo</a>
-        <nav>
-            <a href="#portfolio">Portfólio</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#orcamento">Orçamento</a>
-            <a href="#contato">Contato</a>
-        </nav>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Magrelo Tattoo</h1>
+            <p class="fade-in">Transformando suas ideias em tatuagens únicas e memoráveis.</p>
+            <a href="#contato" class="cta-button fade-in">Agende seu Horário</a>
+        </div>
     </header>
 
     <main>
-        <section id="inicio">
-            <div class="container">
-                <h1>Magrelo Tattoo</h1>
-                <p>Sua história na pele. Arte que dura para sempre.</p>
-                <a href="#orcamento" class="cta-button">Calcular Orçamento</a>
+        <section id="portfolio" class="portfolio">
+            <h2 class="section-title animate-on-scroll">Portfólio</h2>
+            <p class="section-subtitle animate-on-scroll">Conheça alguns dos meus trabalhos.</p>
+            <div class="gallery">
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1555217851-6141535b4a46?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 1"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1617886942423-2de683940155?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 2"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1541457137768-465735114a1c?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 3"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1533230495318-7f0951c36a83?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 4"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1599238885076-5c6a3a489b6a?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem 5"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1628543781339-9580d4f5b259?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 6"></div>
             </div>
         </section>
 
-        <section id="portfolio">
-            <div class="container">
-                <h2>Meu Trabalho</h2>
-                <div class="portfolio-filtros">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="blackwork">Blackwork</button>
-                    <button class="filter-btn" data-filter="fineline">Fine Line</button>
-                    <button class="filter-btn" data-filter="color">Colorido</button>
-                </div>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item" data-category="blackwork"><img src="https://picsum.photos/id/106/500/500" alt="Tattoo Blackwork"></div>
-                    <div class="portfolio-item" data-category="fineline"><img src="https://picsum.photos/id/163/500/500" alt="Tattoo Fine Line"></div>
-                    <div class="portfolio-item" data-category="color"><img src="https://picsum.photos/id/211/500/500" alt="Tattoo Colorida"></div>
-                    <div class="portfolio-item" data-category="fineline"><img src="https://picsum.photos/id/249/500/500" alt="Tattoo Fine Line"></div>
-                    <div class="portfolio-item" data-category="blackwork"><img src="https://picsum.photos/id/188/500/500" alt="Tattoo Blackwork"></div>
-                    <div class="portfolio-item" data-category="color"><img src="https://picsum.photos/id/305/500/500" alt="Tattoo Colorida"></div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="sobre">
-            <div class="container">
-                <h2>O Artista</h2>
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop" alt="Foto do tatuador Magrelo">
-                <p>
-                    Olá, eu sou o Magrelo. Desde cedo, o desenho foi minha paixão e a pele se tornou minha tela favorita. Com anos de experiência, me especializo em criar artes únicas que contam a sua história. Meu foco é em blackwork e fine line, mas adoro um desafio colorido. Meu estúdio é um espaço seguro e profissional, onde sua ideia se transforma em arte permanente com a máxima higiene e cuidado. Vamos criar algo incrível juntos?
-                </p>
-            </div>
-        </section>
-
-        <section id="orcamento">
-            <div class="container">
-                <h2>Calcule sua Tattoo</h2>
-                <p>Tenha uma ideia do valor da sua próxima arte. O preço final será confirmado via WhatsApp.</p>
-                <div class="calculator-wrapper">
-                    <form class="calculator-form" id="tattoo-calculator">
-                        <div class="form-group">
-                            <label for="size">Tamanho:</label>
-                            <select id="size" name="size">
-                                <option value="1">Pequena (até 8cm)</option>
-                                <option value="1.8">Média (até 15cm)</option>
-                                <option value="3">Grande (até 25cm)</option>
-                                <option value="5">Gigante (acima de 25cm)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="style">Estilo:</label>
-                            <select id="style" name="style">
-                                <option value="1">Apenas Traços (Fine Line)</option>
-                                <option value="1.5">Traços e Sombreamento (Blackwork)</option>
-                                <option value="2">Colorida</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="complexity">Complexidade do Desenho:</label>
-                            <select id="complexity" name="complexity">
-                                <option value="1">Baixa (símbolos, escritas simples)</option>
-                                <option value="1.4">Média (florais, animais simples)</option>
-                                <option value="2">Alta (realismo, retratos, geometria complexa)</option>
-                            </select>
-                        </div>
-                    </form>
-                    <div class="calculator-result">
-                        <h3>Estimativa de Preço:</h3>
-                        <div id="price-estimate">R$ 150</div>
-                        <p>Este é um valor aproximado. O preço pode variar com o local do corpo e detalhes finais.</p>
-                    </div>
+        <section id="sobre" class="about">
+            <div class="about-content">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop" alt="Foto do Tatuador Magrelo" class="artist-photo animate-on-scroll">
+                <div class="about-text animate-on-scroll">
+                    <h2 class="section-title">O Artista</h2>
+                    <p>Olá, eu sou o Magrelo. Desde 2018, venho me dedicando à arte da tatuagem, buscando sempre evoluir e entregar o melhor para meus clientes. Sou especialista nos estilos Blackwork, Fineline e Old School. Para mim, cada tatuagem é uma história e uma colaboração entre o artista e o cliente.</p>
                 </div>
             </div>
         </section>
 
-        <section id="cuidados">
-            <div class="container">
-                <h2>Cuidados Pós-Tattoo</h2>
-                <p>Uma tattoo bem cuidada é uma tattoo bonita para sempre. Siga essas dicas:</p>
-                <ul>
-                    <li><i class="fa-solid fa-hand-sparkles"></i>Lave com sabonete neutro e água fria, 3 vezes ao dia.</li>
-                    <li><i class="fa-solid fa-prescription-bottle-medical"></i>Passe uma fina camada da pomada cicatrizante recomendada.</li>
-                    <li><i class="fa-solid fa-sun"></i>Evite sol, mar, piscina e comidas gordurosas por 30 dias.</li>
-                    <li><i class="fa-solid fa-shirt"></i>Use roupas leves e que não apertem a área tatuada.</li>
-                    <li><i class="fa-solid fa-hand-holding-droplet"></i>Não retire a casca! Deixe ela cair naturalmente.</li>
-                </ul>
+        <section id="precos" class="pricing">
+            <h2 class="section-title animate-on-scroll">Preços e Orçamentos</h2>
+            <div class="pricing-content animate-on-scroll">
+                <p>O valor de uma tatuagem é único, assim como a arte. Ele varia de acordo com o <strong>tamanho</strong>, a <strong>complexidade do desenho</strong>, as <strong>cores utilizadas</strong> e o <strong>local do corpo</strong>.</p>
+                <p>O valor inicial para qualquer procedimento é de <strong>R$ 150,00</strong> (taxa de material e sessão mínima).</p>
+                <p>Para obter um orçamento preciso, clique no botão abaixo e me envie sua ideia pelo WhatsApp!</p>
+                <a href="https://api.whatsapp.com/send?phone=5511912345678&text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento." target="_blank" class="cta-button">Pedir Orçamento</a>
             </div>
         </section>
 
-        <section id="contato">
-            <div class="container">
-                <h2>Vamos Tatuar?</h2>
-                <p>Me siga nas redes sociais e mande sua ideia no WhatsApp!</p>
-                <div class="social-icons" style="margin: 30px 0;">
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=55SEUNUMEROAQUI" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-                <p><strong>Endereço:</strong> Rua da Arte, 123 - Centro, Sua Cidade - SP</p>
+        <section id="contato" class="contact">
+            <h2 class="section-title animate-on-scroll">Contato e Localização</h2>
+            <div class="contact-info animate-on-scroll">
+                <p><strong>WhatsApp:</strong> <a href="https://api.whatsapp.com/send?phone=5511912345678&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.">(11) 91234-5678</a></p>
+                <p><strong>Instagram:</strong> <a href="https://instagram.com/magrelotattoo" target="_blank">@magrelotattoo</a></p>
+                <p><strong>Endereço:</strong> Rua da Tinta, 123 - Centro, Rolândia - PR</p>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Magrelo Tattoo. Todos os direitos reservados.</p>
-        <p>Desenvolvido por [Seu Nome Aqui]</p>
-    </footer>
-    
-    <a href="https://api.whatsapp.com/send?phone=55SEUNUMEROAQUI&text=Olá! Vim pelo site e gostaria de fazer um orçamento." target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://api.whatsapp.com/send?phone=5511912345678&text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento." class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#FFF"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 439.6c-38.2 0-73.7-11.8-103.6-32.5L88.4 422.1l-24.1 63.3 64.8-17.1c29.9-18.4 56.2-42.9 76.7-72.3C340.5 350 364 306.3 364 259.9c0-97.2-79.2-176.4-176.4-176.4S111.1 162.7 111.1 259.9c0 48.6 19.8 93.3 52.1 125.8 32.3 32.5 77.1 52.1 125.8 52.1 48.6 0 93.3-19.8 125.8-52.1 32.5-32.3 52.1-77.1 52.1-125.8h.1z"/></svg>
     </a>
-    
-    <div id="portfolio-modal" class="modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modal-img">
-    </div>
 
+    <footer>
+        <p>&copy; 2025 Magrelo Tattoo. Todos os direitos reservados. Site desenvolvido por [Seu Nome ou Sua Marca].</p>
+    </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // --- FILTRO DO PORTFÓLIO ---
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Ativa o botão clicado
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const filter = button.getAttribute('data-filter');
-
-                portfolioItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
                     }
                 });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
             });
         });
-
-        // --- MODAL DO PORTFÓLIO ---
-        const modal = document.getElementById('portfolio-modal');
-        const modalImg = document.getElementById('modal-img');
-        const closeModal = document.querySelector('.close-modal');
-
-        portfolioItems.forEach(item => {
-            item.addEventListener('click', () => {
-                modal.style.display = 'flex';
-                modalImg.src = item.querySelector('img').src;
-            });
-        });
-
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // --- CALCULADORA DE PREÇO ---
-        const calculatorForm = document.getElementById('tattoo-calculator');
-        const priceElement = document.getElementById('price-estimate');
-
-        // PREÇOS BASE E MULTIPLICADORES (AJUSTE AQUI!)
-        const basePrice = 150; // Preço mínimo de qualquer tattoo
-        const sizeMultiplier = { '1': 1, '1.8': 1.8, '3': 3, '5': 5 };
-        const styleMultiplier = { '1': 1, '1.5': 1.5, '2': 2 };
-        const complexityMultiplier = { '1': 1, '1.4': 1.4, '2': 2 };
-        
-        function calculatePrice() {
-            const size = document.getElementById('size').value;
-            const style = document.getElementById('style').value;
-            const complexity = document.getElementById('complexity').value;
-
-            let estimatedPrice = basePrice * sizeMultiplier[size] * styleMultiplier[style] * complexityMultiplier[complexity];
-            
-            // Arredonda para o 0 ou 5 mais próximo para ficar mais bonito
-            estimatedPrice = Math.round(estimatedPrice / 5) * 5;
-
-            priceElement.textContent = `R$ ${estimatedPrice}`;
-        }
-
-        calculatorForm.addEventListener('input', calculatePrice);
-        
-        // Calcula o preço inicial ao carregar a página
-        calculatePrice();
-    });
     </script>
 </body>
 </html>
