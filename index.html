@@ -3,521 +3,1005 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Artista - Tatuador Profissional</title>
+    <title>Magrelo Tattoo - Estúdio de Tatuagem</title>
+    <meta name="description" content="Magrelo Tattoo - Estúdio de tatuagem profissional com designs únicos e artistas experientes. Agende sua sessão hoje mesmo.">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        /* CSS - Estilos Visuais do Site */
-
-        /* --- 1. CONFIGURAÇÕES GERAIS E PALETA --- */
-        :root {
-            --preto-fundo: #121212;
-            --cinza-suporte: #1E1E1E;
-            --texto-principal: #EAEAEA;
-            --texto-secundario: #a0a0a0;
-            
-            /* EDITAR AQUI: Escolha UMA cor de destaque e comente as outras */
-            --cor-destaque: #C0A062; /* Dourado Queimado */
-            /* --cor-destaque: #9F1111; */ /* Vermelho Intenso */
-            /* --cor-destaque: #00FFFF; */ /* Azul Neón */
-            
-            --fonte-titulo: 'Playfair Display', serif;
-            --fonte-corpo: 'Montserrat', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--preto-fundo);
-            color: var(--texto-principal);
-            font-family: var(--fonte-corpo);
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 80px 0;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--fonte-titulo);
-            color: var(--cor-destaque);
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-        }
-
-        p {
-            color: var(--texto-secundario);
-            margin-bottom: 20px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--cor-destaque);
-            color: var(--preto-fundo);
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-        }
-
-        /* --- 2. CABEÇALHO E NAVEGAÇÃO --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 5%;
-            background-color: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-family: var(--fonte-titulo);
-            font-size: 1.8rem;
-            color: var(--texto-principal);
-            text-decoration: none;
-        }
-
-        nav a {
-            color: var(--texto-principal);
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--cor-destaque);
-        }
-
-        /* --- 3. SEÇÃO INICIAL (HERO) --- */
-        #home {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1594499468121-f45e83e3e5c5?q=80&w=1932&auto=format&fit=crop'); /* EDITAR AQUI: Trocar imagem de fundo */
-            background-size: cover;
-            background-position: center;
-        }
-
-        #home .content h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-        }
-        
-        #home .content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--texto-principal);
-        }
-
-        /* --- 4. SEÇÃO SOBRE --- */
-        #sobre {
-            text-align: center;
-            background-color: var(--preto-fundo);
-        }
-
-        #sobre img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--cor-destaque);
-            margin-bottom: 20px;
-        }
-
-        /* --- 5. SEÇÃO PORTFÓLIO --- */
-        #portfolio {
-            text-align: center;
-            background-color: var(--cinza-suporte);
-        }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease, filter 0.4s ease;
-            cursor: pointer;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-            filter: brightness(0.7);
-        }
-
-        /* --- 6. CALCULADORA DE ORÇAMENTO --- */
-        #calculadora {
-            text-align: center;
-            background-color: var(--preto-fundo);
-        }
-
-        .calculator-form {
-            max-width: 600px;
-            margin: 40px auto 0;
-            background-color: var(--cinza-suporte);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid #333;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .form-group select, .form-group input {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--preto-fundo);
-            border: 1px solid #444;
-            border-radius: 5px;
-            color: var(--texto-principal);
-            font-size: 1rem;
-        }
-        
-        #result-area {
-            margin-top: 30px;
-            padding: 20px;
-            background: var(--preto-fundo);
-            border: 1px dashed var(--cor-destaque);
-            border-radius: 5px;
-        }
-        
-        #result-area h3 {
-            margin-bottom: 10px;
-        }
-
-        #estimated-price {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--cor-destaque);
-        }
-
-        .disclaimer {
-            font-size: 0.8rem;
-            color: var(--texto-secundario);
-            margin-top: 15px;
-        }
-
-        /* --- 7. SEÇÃO FAQ (PERGUNTAS) --- */
-        #faq {
-            background-color: var(--cinza-suporte);
-            text-align: center;
-        }
-
-        .faq-item {
-            max-width: 700px;
-            margin: 0 auto 20px;
-            text-align: left;
-            background-color: var(--preto-fundo);
-            border-radius: 5px;
-            border-left: 3px solid var(--cor-destaque);
-        }
-        
-        .faq-question {
-            padding: 15px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-        }
-        
-        .faq-answer p {
-            margin: 0;
-            padding-bottom: 15px;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 200px; /* Altura suficiente para a resposta */
-            padding-top: 10px;
-        }
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-        .faq-question i {
-            transition: transform 0.3s ease;
-        }
-
-        /* --- 8. RODAPÉ --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #0A0A0A;
-        }
-
-        .social-icons a {
-            color: var(--texto-secundario);
-            font-size: 1.8rem;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--cor-destaque);
-        }
-
-        .copyright {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        /* --- 9. BOTÃO WHATSAPP FLUTUANTE --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            color: #FFF;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            text-decoration: none;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            z-index: 100;
-            transition: transform 0.3s ease;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Metal+Mania&family=Butcherman&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header>
-        <a href="#home" class="logo">NOME DO ARTISTA</a>
-        <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#portfolio">Portfólio</a>
-            <a href="#calculadora">Orçamento</a>
-            <a href="#faq">FAQ</a>
-        </nav>
-    </header>
-
-    <section id="home">
-        <div class="content">
-            <h1>Arte que Marca a Pele</h1>
-            <p>Tatuagens exclusivas e personalizadas que contam a sua história.</p>
-            <a href="#portfolio" class="cta-button">Ver Trabalhos</a>
-        </div>
-    </section>
-
-    <section id="sobre" class="container">
-        <img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=1974&auto=format&fit=crop" alt="Foto do Tatuador">
-        <h2>SOBRE O ARTISTA</h2>
-        <p>Insira aqui um texto sobre o tatuador. Fale sobre sua jornada na arte da tatuagem, suas paixões, especialidades e o que o inspira. O objetivo é criar uma conexão com o cliente, mostrando a pessoa por trás da agulha. Seja autêntico e profissional.</p>
-    </section>
-
-    <section id="portfolio" class="container">
-        <h2>PORTFÓLIO</h2>
-        <p>Explore alguns dos meus trabalhos mais recentes. Cada tatuagem é uma colaboração única entre minha visão e a história do cliente.</p>
-        <div class="portfolio-grid">
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1541650899479-de68a735c0a3?w=500&auto=format&fit=crop" alt="Tatuagem 1"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1627854611591-10330623a8a3?w=500&auto=format&fit=crop" alt="Tatuagem 2"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1596796374092-41136c34273c?w=500&auto=format&fit=crop" alt="Tatuagem 3"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1575852504443-345330a85b37?w=500&auto=format&fit=crop" alt="Tatuagem 4"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1617205361099-c852654c63c5?w=500&auto=format&fit=crop" alt="Tatuagem 5"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1521464302861-ce944958f5df?w=500&auto=format&fit=crop" alt="Tatuagem 6"></div>
-        </div>
-    </section>
-
-    <section id="calculadora" class="container">
-        <h2>CALCULADORA DE ORÇAMENTO</h2>
-        <p>Tenha uma estimativa rápida do valor da sua próxima tatuagem. O valor final será confirmado após nossa conversa e análise detalhada da sua ideia.</p>
-        <div class="calculator-form">
-            <div class="form-group">
-                <label for="tattoo-size">Tamanho da Tatuagem:</label>
-                <select id="tattoo-size">
-                    <option value="1">Pequena (até 5cm)</option>
-                    <option value="2">Média (até 15cm)</option>
-                    <option value="4">Grande (até 25cm)</option>
-                    <option value="8">Muito Grande (ex: costas, peito inteiro)</option>
-                </select>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="tattoo-needle">
+                <i class="fas fa-syringe"></i>
             </div>
-            <div class="form-group">
-                <label for="tattoo-complexity">Complexidade do Desenho:</label>
-                <select id="tattoo-complexity">
-                    <option value="1">Apenas traços (Fineline)</option>
-                    <option value="1.5">Traços e Sombreamento leve</option>
-                    <option value="2">Sombreamento denso (Realismo P&B)</option>
-                    <option value="2.5">Colorida</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="body-part">Local do Corpo:</label>
-                <select id="body-part">
-                    <option value="1">Braço / Perna (partes planas)</option>
-                    <option value="1.2">Costas / Peito</option>
-                    <option value="1.5">Mãos / Pés / Pescoço</option>
-                    <option value="1.8">Costelas / Barriga</option>
-                </select>
-            </div>
-            <div id="result-area">
-                <h3>Valor Estimado:</h3>
-                <p id="estimated-price">R$ 0,00</p>
-                <p class="disclaimer">Este é um valor aproximado. Entre em contato para um orçamento preciso.</p>
+            <div class="loading-text">MAGRELO TATTOO</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="faq" class="container">
-        <h2>PERGUNTAS FREQUENTES</h2>
-        <p>Tire aqui suas principais dúvidas sobre o processo.</p>
-        <div class="faq-item">
-            <div class="faq-question">Como funciona o processo de agendamento? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">
-                <p>Primeiro, usamos a calculadora para ter uma ideia. Depois, você me chama no WhatsApp para conversarmos sobre sua ideia. Para confirmar a data, peço um sinal que será abatido do valor total da tattoo no dia da sessão.</p>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">MAGRELO</span>
+                <span class="logo-sub">TATTOO</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Início</a>
+                <a href="#about" class="nav-link">Sobre</a>
+                <a href="#services" class="nav-link">Serviços</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#calculator" class="nav-link">Orçamento</a>
+                <a href="#my-work" class="nav-link">Meus Trabalhos</a>
+                <a href="#studio" class="nav-link">Estúdio</a>
+                <a href="#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
-        <div class="faq-item">
-            <div class="faq-question">Qual a política de sinal/cancelamento? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">
-                <p>O sinal garante a reserva da sua data e o tempo dedicado à criação do seu desenho. Ele não é reembolsável em caso de desistência. Reagendamentos podem ser feitos com até 48h de antecedência sem custo.</p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <video autoplay muted loop class="hero-video" style="display: none;">
+                <source src="#" type="video/mp4">
+            </video>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1565058379802-bbe93b2505a9?w=1280&h=720&fit=crop');"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-main">MAGRELO</span>
+                    <span class="title-sub">TATTOO</span>
+                </h1>
+                <p class="hero-subtitle">Arte que marca para sempre</p>
+                <p class="hero-description">Transformamos suas ideias em arte permanente com técnicas profissionais e designs únicos.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt"></i>
+                        Agendar Sessão
+                    </a>
+                    <a href="#portfolio" class="btn btn-secondary">
+                        <i class="fas fa-images"></i>
+                        Ver Portfolio
+                    </a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Tatuagens</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Anos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfação</span>
+                </div>
             </div>
         </div>
-        <div class="faq-item">
-            <div class="faq-question">Como cuidar da minha tatuagem? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">
-                <p>Você receberá todas as instruções detalhadas no dia da sessão. O cuidado básico envolve manter a área limpa, hidratada com a pomada recomendada e protegida do sol durante o período de cicatrização.</p>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre o Estúdio</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Conheça nossa história e paixão pela arte da tatuagem</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-story">
+                        <h3>Nossa História</h3>
+                        <p>O Magrelo Tattoo nasceu da paixão pela arte e pela expressão pessoal através da tatuagem. Com mais de 5 anos de experiência, nosso estúdio se tornou referência em qualidade, criatividade e profissionalismo.</p>
+                        <p>Especializamos-nos em diversos estilos, desde o tradicional old school até o realismo contemporâneo, sempre priorizando a segurança, higiene e satisfação de nossos clientes.</p>
+                    </div>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Segurança</h4>
+                            <p>Equipamentos esterilizados e materiais descartáveis</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-palette"></i>
+                            <h4>Criatividade</h4>
+                            <p>Designs únicos e personalizados para cada cliente</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-award"></i>
+                            <h4>Qualidade</h4>
+                            <p>Técnicas profissionais e resultados excepcionais</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-images">
+                    <div class="image-grid">
+                        <div class="image-item main-image">
+                            <img src="https://pixabay.com/get/ge9ddb7103c0d42efb176bdb2a2c24693d603e9e697d537d50ff183f4162f6de484200e0af9fb78144ae9050635b73daf1317cee93e0fa227667a93aed6238cb1_1280.jpg" alt="Interior do estúdio Magrelo Tattoo">
+                            <div class="image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="image-item">
+                            <img src="https://pixabay.com/get/g36cc31717c4a6eaf5c3b4325aaa385e2ea11117c11601c42de5c22bf7b24f3cf5ccf97b35546646795a15949e72b870128bc8fb3666d9f89ac37d22a2de02d81_1280.jpg" alt="Equipamentos profissionais">
+                            <div class="image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="image-item">
+                            <img src="https://pixabay.com/get/gcdff537127da825c653e8ffa5a7d4be74fc4ece5d3ebec3b9cf341f22d9aee46c11bda396f25dbd87aa5d4c1627b911cbff06cfab53d4ac3dada6004c7927b70_1280.jpg" alt="Ambiente do estúdio">
+                            <div class="image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="copyright">&copy; 2025 . Todos os direitos reservados.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Oferecemos uma ampla gama de estilos e técnicas de tatuagem</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3>Traditional</h3>
+                    <p>Estilo clássico old school com linhas marcantes e cores vibrantes</p>
+                    <div class="service-price">A partir de R$ 200</div>
+                    <ul class="service-features">
+                        <li>Designs clássicos</li>
+                        <li>Cores sólidas</li>
+                        <li>Traços marcantes</li>
+                    </ul>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Realismo</h3>
+                    <p>Tatuagens hiper-realistas com técnicas avançadas de sombreamento</p>
+                    <div class="service-price">A partir de R$ 400</div>
+                    <ul class="service-features">
+                        <li>Detalhamento extremo</li>
+                        <li>Sombreamentos precisos</li>
+                        <li>Efeitos 3D</li>
+                    </ul>
+                    <div class="featured-badge">Mais Popular</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Minimalista</h3>
+                    <p>Designs simples e elegantes com linhas finas e conceitos modernos</p>
+                    <div class="service-price">A partir de R$ 150</div>
+                    <ul class="service-features">
+                        <li>Linhas finas</li>
+                        <li>Conceitos simples</li>
+                        <li>Estética moderna</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Geométrico</h3>
+                    <p>Padrões geométricos complexos e mandalas detalhadas</p>
+                    <div class="service-price">A partir de R$ 250</div>
+                    <ul class="service-features">
+                        <li>Padrões complexos</li>
+                        <li>Precisão matemática</li>
+                        <li>Simetria perfeita</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Aquarela</h3>
+                    <p>Efeito de tinta aquarelada com cores fluidas e orgânicas</p>
+                    <div class="service-price">A partir de R$ 300</div>
+                    <ul class="service-features">
+                        <li>Cores fluidas</li>
+                        <li>Efeitos orgânicos</li>
+                        <li>Texturas únicas</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <h3>Lettering</h3>
+                    <p>Tipografias personalizadas e caligrafia artística</p>
+                    <div class="service-price">A partir de R$ 180</div>
+                    <ul class="service-features">
+                        <li>Fontes personalizadas</li>
+                        <li>Caligrafia artística</li>
+                        <li>Composições únicas</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-info">
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>Duração</h4>
+                    <p>1h a 8h por sessão</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-first-aid"></i>
+                    <h4>Cuidados</h4>
+                    <p>Orientações completas pós-tatuagem</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-redo"></i>
+                    <h4>Retoque</h4>
+                    <p>Retoque gratuito em 30 dias</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h4>Desenho</h4>
+                    <p>Personalização e criação exclusiva</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Portfolio</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Veja alguns de nossos trabalhos mais recentes</p>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="traditional">Traditional</button>
+                <button class="filter-btn" data-filter="realistic">Realismo</button>
+                <button class="filter-btn" data-filter="minimal">Minimalista</button>
+                <button class="filter-btn" data-filter="geometric">Geométrico</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="traditional">
+                    <img src="https://pixabay.com/get/g78ee7273354b6e5c5daca4e3d6a3a638658989233f3bfcc31bcbd644dd81b186d4ebe92bd44b559c61962322d9bc28b23fbcea2e7d6c90b63583d9420bfe2f3a_1280.jpg" alt="Tatuagem tradicional">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Skull Traditional</h4>
+                            <p>Old School</p>
+                            <div class="portfolio-actions">
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="portfolio-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="realistic">
+                    <img src="https://pixabay.com/get/g45d3061bce6f073d62ba3791ad24ece691d60cc0a53ef90de52f7540dc9820b88f20209b28650e63a7d1aac637cdcee7d2467fbda22cec609df3d590becae9cd_1280.jpg" alt="Tatuagem realista">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Retrato Realista</h4>
+                            <p>Realismo</p>
+                            <div class="portfolio-actions">
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="portfolio-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="geometric">
+                    <img src="https://pixabay.com/get/ga1375237a53296d59b51d72fe9a2ec0987698e10abbeaface3e05e7786967daa5812236a24707459da0745782777ad56de2c49558202d1b1095455261a98dbcc_1280.jpg" alt="Tatuagem geométrica">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Mandala Geométrica</h4>
+                            <p>Geométrico</p>
+                            <div class="portfolio-actions">
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="portfolio-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="traditional">
+                    <img src="https://pixabay.com/get/gf059bc7bdbecc90b102335d0cc947336a2d795e9f4576f08f48d7ce445bb007bf6ab3215506ed1f244f98cc9b3796640de13137260561ea357588a44bfe11c41_1280.jpg" alt="Tatuagem tradicional">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Rosa Traditional</h4>
+                            <p>Old School</p>
+                            <div class="portfolio-actions">
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="portfolio-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="minimal">
+                    <img src="https://pixabay.com/get/g9661610c0a3b050f7c42f8b55a2691379842f9fb04a564f3a35b8cb8e74e93bc8918b1d0ea21f8e6ec5c80d8ab13b8f8567dc28383fb7aebb65d7a5dabc27754_1280.jpg" alt="Tatuagem minimalista">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Line Art</h4>
+                            <p>Minimalista</p>
+                            <div class="portfolio-actions">
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="portfolio-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="realistic">
+                    <img src="https://pixabay.com/get/gd60852d675d3cd184d103179ccf99cd0522a7e3d51d09812d96a329899f9372ee54c58dabc4ae16195c137d86aba4ba5419bda56a907ec99416111d399ae5b9e_1280.jpg" alt="Tatuagem realista">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Animal Realista</h4>
+                            <p>Realismo</p>
+                            <div class="portfolio-actions">
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="portfolio-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-cta">
+                <p>Gostou do que viu? Vamos criar algo único para você!</p>
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-calendar-alt"></i>
+                    Agendar Consulta
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Budget Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Calculadora de Orçamento</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Descubra o valor estimado da sua tatuagem</p>
+            </div>
+            <div class="calculator-content">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="tattoo-style">Estilo da Tatuagem</label>
+                        <select id="tattoo-style" name="tattoo-style">
+                            <option value="">Selecione o estilo</option>
+                            <option value="traditional" data-multiplier="1.0">Traditional (R$ 200/h)</option>
+                            <option value="realistic" data-multiplier="2.0">Realismo (R$ 400/h)</option>
+                            <option value="minimal" data-multiplier="0.75">Minimalista (R$ 150/h)</option>
+                            <option value="geometric" data-multiplier="1.25">Geométrico (R$ 250/h)</option>
+                            <option value="watercolor" data-multiplier="1.5">Aquarela (R$ 300/h)</option>
+                            <option value="lettering" data-multiplier="0.9">Lettering (R$ 180/h)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tattoo-size">Tamanho da Tatuagem</label>
+                        <select id="tattoo-size" name="tattoo-size">
+                            <option value="">Selecione o tamanho</option>
+                            <option value="small" data-hours="1-2">Pequena (até 5cm) - 1-2h</option>
+                            <option value="medium" data-hours="2-4">Média (5-15cm) - 2-4h</option>
+                            <option value="large" data-hours="4-6">Grande (15-25cm) - 4-6h</option>
+                            <option value="xlarge" data-hours="6-8">Extra Grande (+25cm) - 6-8h</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="complexity">Complexidade</label>
+                        <select id="complexity" name="complexity">
+                            <option value="">Selecione a complexidade</option>
+                            <option value="simple" data-multiplier="1.0">Simples</option>
+                            <option value="medium" data-multiplier="1.3">Média</option>
+                            <option value="complex" data-multiplier="1.6">Complexa</option>
+                            <option value="very-complex" data-multiplier="2.0">Muito Complexa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="body-area">Área do Corpo</label>
+                        <select id="body-area" name="body-area">
+                            <option value="">Selecione a área</option>
+                            <option value="arm" data-multiplier="1.0">Braço</option>
+                            <option value="leg" data-multiplier="1.0">Perna</option>
+                            <option value="back" data-multiplier="1.2">Costas</option>
+                            <option value="chest" data-multiplier="1.2">Peito</option>
+                            <option value="hand" data-multiplier="1.5">Mão/Dedos</option>
+                            <option value="neck" data-multiplier="1.5">Pescoço</option>
+                            <option value="face" data-multiplier="2.0">Rosto</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="colors">Cores</label>
+                        <select id="colors" name="colors">
+                            <option value="">Selecione</option>
+                            <option value="black" data-multiplier="1.0">Apenas Preto</option>
+                            <option value="few-colors" data-multiplier="1.2">Poucas Cores (2-3)</option>
+                            <option value="many-colors" data-multiplier="1.5">Muitas Cores (4+)</option>
+                            <option value="full-color" data-multiplier="1.8">Colorida Completa</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" id="calculate-budget" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i>
+                        Calcular Orçamento
+                    </button>
+                </div>
+                
+                <div class="calculator-result" id="calculator-result" style="display: none;">
+                    <div class="result-card">
+                        <h3>Estimativa de Orçamento</h3>
+                        <div class="price-range">
+                            <span class="price-min" id="price-min">R$ 0</span>
+                            <span class="price-separator">-</span>
+                            <span class="price-max" id="price-max">R$ 0</span>
+                        </div>
+                        <div class="result-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Tempo estimado:</span>
+                                <span class="detail-value" id="time-estimate">0h</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Valor por hora:</span>
+                                <span class="detail-value" id="hourly-rate">R$ 0</span>
+                            </div>
+                        </div>
+                        <div class="result-note">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Este é um orçamento estimado. O valor final pode variar após avaliação presencial.</p>
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                            <i class="fas fa-calendar-alt"></i>
+                            Agendar Consulta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Work Section -->
+    <section id="my-work" class="my-work">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meus Trabalhos</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Veja algumas das minhas criações mais recentes</p>
+            </div>
+            <div class="work-gallery">
+                <div class="work-item" data-category="realistic">
+                    <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=400&h=400&fit=crop" alt="Tatuagem realista - Retrato">
+                    <div class="work-overlay">
+                        <div class="work-info">
+                            <h4>Retrato Realista</h4>
+                            <p>Cliente: Maria S. | Tempo: 6h</p>
+                            <div class="work-details">
+                                <span class="work-style">Realismo</span>
+                                <span class="work-size">Grande</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item" data-category="traditional">
+                    <img src="https://images.unsplash.com/photo-1590246814883-57c511e56e82?w=400&h=400&fit=crop" alt="Tatuagem traditional - Caveira">
+                    <div class="work-overlay">
+                        <div class="work-info">
+                            <h4>Caveira Traditional</h4>
+                            <p>Cliente: João P. | Tempo: 4h</p>
+                            <div class="work-details">
+                                <span class="work-style">Traditional</span>
+                                <span class="work-size">Média</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item" data-category="geometric">
+                    <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2505a9?w=400&h=400&fit=crop" alt="Tatuagem geométrica - Mandala">
+                    <div class="work-overlay">
+                        <div class="work-info">
+                            <h4>Mandala Geométrica</h4>
+                            <p>Cliente: Ana L. | Tempo: 5h</p>
+                            <div class="work-details">
+                                <span class="work-style">Geométrico</span>
+                                <span class="work-size">Grande</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item" data-category="minimal">
+                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=400&fit=crop" alt="Tatuagem minimalista - Flor">
+                    <div class="work-overlay">
+                        <div class="work-info">
+                            <h4>Flor Minimalista</h4>
+                            <p>Cliente: Paula R. | Tempo: 2h</p>
+                            <div class="work-details">
+                                <span class="work-style">Minimalista</span>
+                                <span class="work-size">Pequena</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item" data-category="watercolor">
+                    <img src="https://images.unsplash.com/photo-1590246814883-57c511e56e82?w=400&h=400&fit=crop&sat=-100" alt="Tatuagem aquarela - Borboleta">
+                    <div class="work-overlay">
+                        <div class="work-info">
+                            <h4>Borboleta Aquarela</h4>
+                            <p>Cliente: Carla M. | Tempo: 4h</p>
+                            <div class="work-details">
+                                <span class="work-style">Aquarela</span>
+                                <span class="work-size">Média</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item" data-category="lettering">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop" alt="Tatuagem lettering - Frase">
+                    <div class="work-overlay">
+                        <div class="work-info">
+                            <h4>Lettering Personalizado</h4>
+                            <p>Cliente: Roberto K. | Tempo: 3h</p>
+                            <div class="work-details">
+                                <span class="work-style">Lettering</span>
+                                <span class="work-size">Média</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Section -->
+    <section id="studio" class="studio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nosso Estúdio</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Conheça nosso espaço equipado e higienizado</p>
+            </div>
+            <div class="studio-gallery">
+                <div class="studio-main">
+                    <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&h=600&fit=crop" alt="Interior principal do estúdio Magrelo Tattoo">
+                    <div class="studio-overlay">
+                        <h3>Sala Principal</h3>
+                        <p>Ambiente amplo e confortável para suas sessões</p>
+                    </div>
+                </div>
+                
+                <div class="studio-grid">
+                    <div class="studio-item">
+                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=400&fit=crop" alt="Equipamentos profissionais">
+                        <div class="studio-overlay">
+                            <h4>Equipamentos</h4>
+                            <p>Máquinas profissionais de última geração</p>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-item">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop" alt="Área de higienização">
+                        <div class="studio-overlay">
+                            <h4>Higienização</h4>
+                            <p>Área dedicada à esterilização</p>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-item">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=400&h=400&fit=crop&sat=-50" alt="Sala de espera">
+                        <div class="studio-overlay">
+                            <h4>Recepção</h4>
+                            <p>Ambiente acolhedor para receber clientes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-item">
+                        <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2505a9?w=400&h=400&fit=crop&sat=-30" alt="Desenhos e referências">
+                        <div class="studio-overlay">
+                            <h4>Área Criativa</h4>
+                            <p>Espaço para desenvolvimento de designs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="studio-features">
+                <div class="feature-card">
+                    <i class="fas fa-shield-virus"></i>
+                    <h4>100% Higienizado</h4>
+                    <p>Seguimos todos os protocolos de segurança e higiene</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-air-freshener"></i>
+                    <h4>Ambiente Climatizado</h4>
+                    <p>Ar-condicionado e ventilação para seu conforto</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-music"></i>
+                    <h4>Som Ambiente</h4>
+                    <p>Música relaxante durante suas sessões</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-parking"></i>
+                    <h4>Estacionamento</h4>
+                    <p>Vaga disponível em frente ao estúdio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nosso Processo</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Do conceito à execução, garantimos qualidade em cada etapa</p>
+            </div>
+            <div class="process-steps">
+                <div class="step-item">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Consulta</h3>
+                        <p>Conversamos sobre sua ideia, estilo desejado e definimos o projeto</p>
+                        <div class="step-features">
+                            <span>Gratuita</span>
+                            <span>30-45min</span>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://pixabay.com/get/ge1060a527bd1e8e691b95dfc7dc0454a592355be181fd00e0160c3086737fbfaf7e7bc771c22025a26cd97bceeabe11b7c8c8d0cbe4e86355e47295a4ef206df_1280.jpg" alt="Consulta">
+                    </div>
+                </div>
+                <div class="step-item reverse">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Desenho</h3>
+                        <p>Criamos o desenho personalizado baseado em suas preferências</p>
+                        <div class="step-features">
+                            <span>Personalizado</span>
+                            <span>2-7 dias</span>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://pixabay.com/get/g406f81e3f085c1cfe472bfd50f6fe5db071e5071b256ce1f1bf4846a582e6c142909a29088df0b7dbe7fb6715cda6f3b95c8fd6256d45c7d5815d874bac856cb_1280.jpg" alt="Desenho">
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Aprovação</h3>
+                        <p>Revisamos juntos o desenho e fazemos ajustes necessários</p>
+                        <div class="step-features">
+                            <span>Revisões incluídas</span>
+                            <span>Até 3 alterações</span>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://pixabay.com/get/gdf4e5e15f3dca1a540e985d07eeb48a7602aa1d1878502ec6d562fdb63b8393058ae2c50b569225c2bdc57e6f570eb622c40e795014a66ada11b25b7abcb12bf_1280.jpg" alt="Aprovação">
+                    </div>
+                </div>
+                <div class="step-item reverse">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Execução</h3>
+                        <p>Realizamos a tatuagem com total segurança e profissionalismo</p>
+                        <div class="step-features">
+                            <span>Material esterilizado</span>
+                            <span>Ambiente seguro</span>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://pixabay.com/get/g01927ad29257a1dac301e572d89a33f5b0f9e5e4408d36b2d7a1399c1c2dc25eb8b145440eafee4e75f3302af8b52dae2726ddc1510b654834e491708014ddad_1280.jpg" alt="Execução">
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3>Cuidados</h3>
+                        <p>Orientação completa para cicatrização e manutenção da tatuagem</p>
+                        <div class="step-features">
+                            <span>Manual de cuidados</span>
+                            <span>Suporte pós-tatuagem</span>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://pixabay.com/get/gd7c3925a5a2fe2d639f2c50c63872e92241e102791e238e705448c3ee960f6cb2abb67e960f62540d1076d20c74877df2808941c7c96c0a95d290748e9429905_1280.jpg" alt="Cuidados">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contato</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Entre em contato e agende sua sessão</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Localização</h4>
+                            <p>Rua dos Artistas, 123<br>Centro, São Paulo - SP<br>CEP: 01234-567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telefone</h4>
+                            <p>(11) 99999-9999</p>
+                            <small>WhatsApp disponível</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>contato@magrelotattoo.com</p>
+                            <small>Resposta em até 24h</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horário</h4>
+                            <p>Segunda à Sexta: 10h às 20h<br>Sábado: 9h às 18h<br>Domingo: Fechado</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <h4>Siga-nos</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nome *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefone *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="service">Serviço</label>
+                                <select id="service" name="service">
+                                    <option value="">Selecione um serviço</option>
+                                    <option value="traditional">Traditional</option>
+                                    <option value="realistic">Realismo</option>
+                                    <option value="minimal">Minimalista</option>
+                                    <option value="geometric">Geométrico</option>
+                                    <option value="watercolor">Aquarela</option>
+                                    <option value="lettering">Lettering</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Orçamento</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Selecione uma faixa</option>
+                                    <option value="150-300">R$ 150 - R$ 300</option>
+                                    <option value="300-500">R$ 300 - R$ 500</option>
+                                    <option value="500-800">R$ 500 - R$ 800</option>
+                                    <option value="800+">R$ 800+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Descreva sua ideia *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Conte-nos sobre sua ideia de tatuagem, tamanho desejado, localização no corpo, estilo preferido..."></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span class="checkmark"></span>
+                                Concordo com os <a href="#" class="terms-link">termos e condições</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p>Mapa interativo em breve</p>
+                    <small>Rua dos Artistas, 123 - Centro, São Paulo - SP</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-text">MAGRELO</span>
+                        <span class="logo-sub">TATTOO</span>
+                    </div>
+                    <p class="footer-description">Transformando ideias em arte permanente com paixão, técnica e criatividade.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Traditional</a></li>
+                        <li><a href="#services">Realismo</a></li>
+                        <li><a href="#services">Minimalista</a></li>
+                        <li><a href="#services">Geométrico</a></li>
+                        <li><a href="#services">Aquarela</a></li>
+                        <li><a href="#services">Lettering</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Rua dos Artistas, 123<br>Centro, São Paulo - SP</p>
+                        <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                        <p><i class="fas fa-envelope"></i> contato@magrelotattoo.com</p>
+                        <p><i class="fas fa-clock"></i> Seg-Sex: 10h-20h | Sáb: 9h-18h</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2024 Magrelo Tattoo. Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <a href="https://wa.me/5543999998888?text=Olá! Vim pelo site e gostaria de fazer um orçamento." class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <script>
-    // JAVASCRIPT - Funcionalidades do Site
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-image" src="" alt="">
+            <div class="lightbox-info">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-category"></p>
+            </div>
+            <div class="lightbox-nav">
+                <button id="lightbox-prev" class="lightbox-nav-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="lightbox-next" class="lightbox-nav-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // --- LÓGICA DA CALCULADORA DE ORÇAMENTO ---
-        const sizeSelect = document.getElementById('tattoo-size');
-        const complexitySelect = document.getElementById('tattoo-complexity');
-        const partSelect = document.getElementById('body-part');
-        const priceDisplay = document.getElementById('estimated-price');
-        
-        // EDITAR AQUI: Este é o valor base. Ajuste conforme o preço mínimo do artista.
-        const baseRate = 150; // Valor de partida ou taxa de material
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-        function calculatePrice() {
-            const sizeFactor = parseFloat(sizeSelect.value);
-            const complexityFactor = parseFloat(complexitySelect.value);
-            const partFactor = parseFloat(partSelect.value);
-
-            if (isNaN(sizeFactor) || isNaN(complexityFactor) || isNaN(partFactor)) {
-                priceDisplay.textContent = 'R$ 0,00';
-                return;
-            }
-
-            const estimatedPrice = baseRate * sizeFactor * complexityFactor * partFactor;
-            
-            // Formata o preço para o formato de moeda brasileira.
-            priceDisplay.textContent = estimatedPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        }
-        
-        // Adiciona os "escutadores" de eventos para recalcular quando algo mudar
-        sizeSelect.addEventListener('change', calculatePrice);
-        complexitySelect.addEventListener('change', calculatePrice);
-        partSelect.addEventListener('change', calculatePrice);
-        
-        // Calcula o preço inicial ao carregar a página
-        calculatePrice();
-
-
-        // --- LÓGICA DO FAQ (ACORDEÃO) ---
-        const faqItems = document.querySelectorAll('.faq-item');
-
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Fecha todos os outros itens abertos
-                faqItems.forEach(otherItem => {
-                    otherItem.classList.remove('active');
-                });
-                
-                // Se o item clicado não estava ativo, abre ele
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-    });
-
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
