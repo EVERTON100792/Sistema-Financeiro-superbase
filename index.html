@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magrelo Tattoo - Arte na Pele</title>
+    <title>Nome do Artista - Estúdio de Tatuagem</title>
+    <meta name="description" content="Site profissional de [Nome do Artista], especialista em tatuagens de [Estilo 1] e [Estilo 2] em [Sua Cidade].">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* CSS Reset e Estilos Globais */
+        /* RESET E CONFIGURAÇÕES GERAIS */
         * {
             margin: 0;
             padding: 0;
@@ -23,160 +24,150 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #0a0a0a;
-            color: #f0f0f0;
-            overflow-x: hidden;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
-            color: #FFD700; /* Dourado */
-        }
-
-        /* Animação de Fade-in */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            background-color: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 0 20px;
         }
 
+        h1, h2, h3, .logo {
+            font-family: 'Teko', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #d4af37; /* Cor dourada/mostarda */
+            color: #121212;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #f0c43e;
+        }
+
+        /* HEADER */
+        .header {
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: #FFD700;
+            font-size: 2rem;
             text-decoration: none;
         }
 
-        .nav-links {
+        .menu ul {
             list-style: none;
             display: flex;
-            gap: 25px;
         }
 
-        .nav-links a {
-            color: #f0f0f0;
+        .menu ul li {
+            margin-left: 30px;
+        }
+
+        .menu a {
+            color: #e0e0e0;
             text-decoration: none;
             font-size: 1.1rem;
-            font-weight: 700;
-            transition: color 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-bottom 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #FFD700;
+        .menu a:hover {
+            color: #d4af37;
+            border-bottom: 2px solid #d4af37;
         }
 
-        /* Seção Hero (Principal) */
-        #hero {
+        /* SEÇÃO INÍCIO (HERO) */
+        .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1594499894399-56bce4358229?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
-            /* SUBSTITUA A URL acima pela melhor foto do seu amigo tatuando ou uma tatuagem dele */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('imagens/hero-background.jpg') no-repeat center center/cover;
+            /* Troque 'hero-background.jpg' por uma imagem de fundo impactante */
         }
 
         .hero-content h1 {
-            font-size: 6rem;
-            line-height: 1;
+            font-size: 5rem;
             margin-bottom: 10px;
         }
 
         .hero-content p {
             font-size: 1.5rem;
             margin-bottom: 30px;
-            color: #ccc;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-button {
-            display: inline-block;
-            background-color: #FFD700;
-            color: #0a0a0a;
-            padding: 15px 35px;
-            text-decoration: none;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            border: 2px solid #FFD700;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        /* SEÇÃO PORTFÓLIO */
+        .portfolio {
+            background-color: #1a1a1a;
         }
-
-        .cta-button:hover {
-            background-color: transparent;
-            color: #FFD700;
-            transform: scale(1.05);
-        }
-
-        /* Seções Padrão */
-        section {
-            padding: 100px 0;
+        .portfolio h2 {
             text-align: center;
+            font-size: 3rem;
+            margin-bottom: 40px;
         }
 
-        section h2 {
-            font-size: 4rem;
-            margin-bottom: 50px;
-            position: relative;
+        .portfolio-filter {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        /* Linha decorativa abaixo dos títulos */
-        section h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: #FFD700;
-            margin: 15px auto 0;
-            border-radius: 2px;
+        .filter-btn {
+            background: none;
+            border: 1px solid #555;
+            color: #e0e0e0;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        /* Seção Portfólio */
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #d4af37;
+            color: #121212;
+            border-color: #d4af37;
+        }
+
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
         }
 
         .portfolio-item img {
@@ -184,350 +175,269 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s ease, filter 0.4s ease;
+            transition: transform 0.4s, opacity 0.4s;
         }
 
         .portfolio-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.5);
+            transform: scale(1.05);
+            opacity: 0.8;
         }
 
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        /* SEÇÃO SOBRE */
+        .sobre .container {
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: rgba(0,0,0,0.6);
-            color: #fff;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            text-align: center;
-            padding: 20px;
+            gap: 50px;
         }
 
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
+        .artist-photo {
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #d4af37;
         }
 
-        .portfolio-overlay h3 {
-            font-size: 2rem;
-            color: #FFD700;
-            margin-bottom: 10px;
+        .sobre-texto h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .sobre-texto h3 {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        .sobre-texto p {
+            margin-bottom: 15px;
         }
 
-        /* Seção Preços */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            text-align: left;
-        }
 
-        .pricing-card {
+        /* SEÇÃO CONTATO */
+        .contato {
             background-color: #1a1a1a;
+        }
+        .contato h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .contato > .container > p {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        .contato-wrapper {
+            display: flex;
+            gap: 50px;
+            background-color: #222;
             padding: 40px;
             border-radius: 10px;
-            border: 1px solid #333;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .contato-info {
+            flex-basis: 40%;
+        }
+        .contato-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+        .contato-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            flex-basis: 60%;
             display: flex;
             flex-direction: column;
         }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #FFD700;
-        }
 
-        .pricing-card h3 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .pricing-card .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #f0f0f0;
-            margin-bottom: 20px;
-        }
-        
-        .pricing-card .price span {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #aaa;
-        }
-
-        .pricing-card p {
-            color: #ccc;
-            margin-bottom: 30px;
-            flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
-        }
-        
-        .pricing-card .cta-button-small {
-            display: block;
-            text-align: center;
-            background-color: transparent;
-            color: #FFD700;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            border: 2px solid #FFD700;
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #333;
+            border: 1px solid #555;
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #e0e0e0;
+            font-size: 1rem;
         }
 
-        .pricing-card .cta-button-small:hover {
-            background-color: #FFD700;
-            color: #0a0a0a;
+        .contact-form textarea {
+            resize: vertical;
         }
 
-
-        /* Seção Contato */
-        #contato p {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #ccc;
-        }
-        
-        .social-links {
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            margin: 0 15px;
-            transition: transform 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            transform: scale(1.1);
-        }
-        
-        .social-links svg {
-             width: 40px;
-             height: 40px;
-        }
-        
-        /* Footer */
-        footer {
+        /* FOOTER */
+        .footer {
+            background-color: #000;
             text-align: center;
-            padding: 40px 20px;
-            background-color: #111;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 30px 0;
+            margin-top: -1px;
         }
-        
-        footer p {
-            color: #aaa;
-        }
-        
-        footer a {
-            color: #FFD700;
-            text-decoration: none;
+        .footer p {
+            color: #777;
         }
 
-        /* Responsividade para Celulares */
+        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Em um site real, aqui entraria um menu hamburguer */
-            }
-
-            .logo {
-                font-size: 2rem;
-            }
-
-            #hero {
-                padding: 0 20px;
-            }
-
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-
-            section h2 {
-                font-size: 2.8rem;
-            }
-
-            .portfolio-grid, .pricing-grid {
-                grid-template-columns: 1fr;
-            }
+            .header .container { flex-direction: column; }
+            .menu ul { margin-top: 15px; }
+            .hero-content h1 { font-size: 3rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .sobre .container { flex-direction: column; }
+            .artist-photo { width: 250px; height: 250px; margin-bottom: 30px; }
+            .contato-wrapper { flex-direction: column; }
         }
-
     </style>
-</head>
+    </head>
 <body>
 
-    <header>
-        <nav class="container">
-            <a href="#hero" class="logo">Magrelo Tattoo</a>
-            <ul class="nav-links">
-                <li><a href="#portfolio">Portfólio</a></li>
-                <li><a href="#precos">Preços</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
+    <header class="header">
+        <div class="container">
+            <a href="#inicio" class="logo">NOME DO ARTISTA</a>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section id="hero">
-            <div class="hero-content fade-in">
-                <h1>Arte que Marca</h1>
-                <p>Transformando ideias em tatuagens únicas e memoráveis</p>
-                <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." target="_blank" class="cta-button">Agendar Orçamento</a>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>Arte que Marca a Pele</h1>
+                <p>Criações únicas e personalizadas, transformando suas ideias em tatuagens inesquecíveis.</p>
+                <a href="#portfolio" class="btn">Conheça meu trabalho</a>
             </div>
         </section>
 
-        <section id="portfolio" class="container">
-            <div class="fade-in">
-                <h2>Meus Trabalhos</h2>
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <h2>Portfólio</h2>
+                <div class="portfolio-filter">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="fineline">Fineline</button>
+                    <button class="filter-btn" data-filter="blackwork">Blackwork</button>
+                    <button class="filter-btn" data-filter="colorido">Colorido</button>
+                </div>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1541690037323-e189838e3a3e?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 1">
-                        <div class="portfolio-overlay">
-                            <div>
-                                <h3>Leão Realista</h3>
-                                <p>Black and Grey</p>
-                            </div>
-                        </div>
+                    <div class="portfolio-item" data-category="fineline">
+                        <img src="imagens/tattoo1.jpg" alt="Descrição da Tatuagem 1">
                     </div>
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1621873495934-441251c22b12?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 2">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Dragão Oriental</h3>
-                                <p>Colorido</p>
-                            </div>
-                        </div>
+                    <div class="portfolio-item" data-category="blackwork">
+                        <img src="imagens/tattoo2.jpg" alt="Descrição da Tatuagem 2">
                     </div>
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1616445339675-348c6f6a73e5?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 3">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Floral Delicado</h3>
-                                <p>Fineline</p>
-                            </div>
-                        </div>
+                    <div class="portfolio-item" data-category="colorido">
+                        <img src="imagens/tattoo3.jpg" alt="Descrição da Tatuagem 3">
                     </div>
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1608359463273-9a4059515865?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 4">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Serpente</h3>
-                                <p>Blackwork</p>
-                            </div>
-                        </div>
+                    <div class="portfolio-item" data-category="fineline">
+                        <img src="imagens/tattoo4.jpg" alt="Descrição da Tatuagem 4">
                     </div>
-                     <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1581439299468-b863b14da29f?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 5">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Medusa</h3>
-                                <p>Mitologia Grega</p>
-                            </div>
-                        </div>
+                    <div class="portfolio-item" data-category="blackwork">
+                        <img src="imagens/tattoo5.jpg" alt="Descrição da Tatuagem 5">
                     </div>
-                     <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1632832387121-a5349195b4e7?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 6">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Carpa</h3>
-                                <p>Neo Traditional</p>
-                            </div>
-                        </div>
+                     <div class="portfolio-item" data-category="colorido">
+                        <img src="imagens/tattoo6.jpg" alt="Descrição da Tatuagem 6">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="precos" class="container">
-            <div class="fade-in">
-                <h2>Orçamentos</h2>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Tattoos Pequenas</h3>
-                        <div class="price"><span>A partir de</span> R$ 150</div>
-                        <p>Ideal para símbolos, palavras ou artes minimalistas. O valor varia com a complexidade e local do corpo.</p>
-                        <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Gostaria%20de%20or%C3%A7ar%20uma%20tattoo%20pequena." target="_blank" class="cta-button-small">Consultar</a>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Tattoos Médias</h3>
-                        <div class="price"><span>A partir de</span> R$ 400</div>
-                        <p>Perfeito para projetos mais detalhados que ocupam uma área maior, como antebraço ou panturrilha.</p>
-                        <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Gostaria%20de%20or%C3%A7ar%20uma%20tattoo%20m%C3%A9dia." target="_blank" class="cta-button-small">Consultar</a>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Projetos Grandes</h3>
-                        <div class="price"><span>A partir de</span> R$ 900</div>
-                        <p>Para fechamentos de braço, costas ou pernas. O valor é definido por sessão ou pelo projeto completo.</p>
-                        <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Tenho%20um%20projeto%20grande%20para%20or%C3%A7ar." target="_blank" class="cta-button-small">Consultar</a>
-                    </div>
+        <section id="sobre" class="sobre">
+            <div class="container">
+                <img src="imagens/artista.jpg" alt="Foto do Artista" class="artist-photo">
+                <div class="sobre-texto">
+                    <h2>Sobre Mim</h2>
+                    <h3>Prazer, [Nome do Artista]</h3>
+                    <p>Desde [ano], venho me dedicando à arte da tatuagem, uma paixão que me move todos os dias. Meu estúdio é um espaço seguro e criativo, onde cada cliente recebe atenção total para desenvolvermos juntos um projeto exclusivo.</p>
+                    <p>Sou especialista nos estilos [Estilo 1], [Estilo 2] e [Estilo 3], sempre buscando evoluir minhas técnicas e utilizando os melhores materiais do mercado para garantir não só uma arte incrível, mas também uma cicatrização perfeita. Para mim, tatuagem é mais que um desenho, é uma experiência.</p>
                 </div>
             </div>
         </section>
 
-        <section id="contato" class="container">
-            <div class="fade-in">
-                <h2>Vamos Criar Juntos?</h2>
-                <p>
-                    Siga meu trabalho nas redes sociais para ver os últimos projetos e mande sua ideia pelo WhatsApp. 
-                    Estou pronto para transformar sua visão em uma tatuagem incrível.
-                </p>
-                <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." target="_blank" class="cta-button">Chama no WhatsApp</a>
-                <div class="social-links">
-                     <a href="https://instagram.com/seu_usuario_aqui" target="_blank" title="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                     </a>
-                     <a href="mailto:seuemail@exemplo.com" target="_blank" title="Email">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                     </a>
+        <section id="contato" class="contato">
+            <div class="container">
+                <h2>Agendamento e Orçamento</h2>
+                <p>Para agendar sua sessão ou pedir um orçamento, preencha o formulário abaixo ou me chame diretamente no WhatsApp. Por favor, seja o mais detalhado possível na sua ideia!</p>
+                
+                <div class="contato-wrapper">
+                    <div class="contato-info">
+                        <h3>Informações</h3>
+                        <p><strong>WhatsApp:</strong> (XX) XXXXX-XXXX</p>
+                        <p><strong>Email:</strong> email@doartista.com</p>
+                        <p><strong>Endereço:</strong> Rua das Agulhas, 123 - Bairro - Cidade/UF</p>
+                        <p><strong>Horário:</strong> Seg à Sex, das 10h às 19h</p>
+                    </div>
+
+                    <form action="#" method="POST" class="contact-form">
+                        <input type="text" name="nome" placeholder="Seu nome" required>
+                        <input type="email" name="email" placeholder="Seu email" required>
+                        <textarea name="ideia" rows="5" placeholder="Descreva sua ideia, local do corpo e tamanho aproximado." required></textarea>
+                        <button type="submit" class="btn">Enviar Pedido de Orçamento</button>
+                    </form>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <footer>
-        <p>&copy; 2024 Magrelo Tattoo. Todos os direitos reservados.</p>
-        <p>Desenvolvido com ❤️ por <a href="[SEU LINKEDIN OU GITHUB AQUI]" target="_blank">Seu Nome</a></p>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 - Nome do Artista. Todos os direitos reservados.</p>
+            <p>Desenvolvido com ❤️</p>
+        </div>
     </footer>
-
+    
     <script>
-        // Script para animação de fade-in ao rolar
-        const faders = document.querySelectorAll('.fade-in');
+        document.addEventListener('DOMContentLoaded', function() {
+    
+            // Filtro do Portfólio
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-        const appearOptions = {
-            threshold: 0.2, // O elemento se torna visível quando 20% dele está na tela
-            rootMargin: "0px 0px -50px 0px" // Começa a animação um pouco antes de entrar totalmente na viewport
-        };
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove a classe 'active' de todos os botões
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Adiciona a classe 'active' ao botão clicado
+                    button.classList.add('active');
 
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
+                    const filter = button.getAttribute('data-filter');
+
+                    portfolioItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        
+                        // Esconde todos os itens para começar
+                        item.style.display = 'none';
+                        
+                        if (filter === 'all' || filter === category) {
+                            // Mostra o item se corresponder ao filtro ou se o filtro for 'todos'
+                            item.style.display = 'block';
+                        }
+                    });
+                });
             });
-        }, appearOptions);
 
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
+            // Efeito de rolagem suave para links do menu
+            const menuLinks = document.querySelectorAll('.menu a[href^="#"]');
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
         });
     </script>
-</body>
+    </body>
 </html>
