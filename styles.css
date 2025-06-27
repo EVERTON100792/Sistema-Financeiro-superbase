@@ -1992,3 +1992,28 @@ section[id] {
         --border-gray: #ffffff;
     }
 }
+/* Estilos para a Lista de Cuidados na Seção de Processo */
+.care-list {
+    list-style: none; /* Remove os marcadores padrão */
+    padding-left: 0;
+    margin-top: 15px;
+    text-align: left;
+    color: var(--text-gray);
+}
+
+.care-list li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.care-list li::before {
+    content: '\f058'; /* Ícone de check do Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--accent-gold);
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
