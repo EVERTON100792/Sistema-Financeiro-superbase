@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estúdio de Tatuagem - A Arte na Sua Pele</title>
-    
+    <title>Magrelo Tattoo - Sua História, Nossa Arte.</title>
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <style>
         /* CSS Reset e Configurações Globais */
@@ -21,12 +24,14 @@
             --gray-color: #888;
         }
 
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
+
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -35,17 +40,20 @@
             line-height: 1.6;
         }
 
+
         h1, h2, h3 {
             font-family: 'Bebas Neue', sans-serif;
             color: white;
             letter-spacing: 1.5px;
         }
 
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
+
 
         section {
             padding: 6rem 2rem;
@@ -54,11 +62,13 @@
             transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        
+
+
         section.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
 
         /* Header e Navegação */
         .header {
@@ -76,22 +86,28 @@
             transition: background 0.3s;
         }
 
+
         .header.scrolled {
              background: rgba(18, 18, 18, 1);
         }
-        
+
+
         .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            color: var(--primary-color);
             text-decoration: none;
         }
+
+
+        .logo img {
+            max-height: 60px; /* Ajuste o tamanho da logo aqui */
+        }
+
 
         .nav-links {
             list-style: none;
             display: flex;
             gap: 1.5rem;
         }
+
 
         .nav-links a {
             color: white;
@@ -100,15 +116,16 @@
             transition: color 0.3s;
         }
 
+
         .nav-links a:hover {
             color: var(--primary-color);
         }
 
+
         .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+            display: none !important; /* Garante que o toggle não apareça */
         }
+
 
         /* Seção Hero */
         #hero {
@@ -118,20 +135,23 @@
             justify-content: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/1600x900/?tattoo-artist') no-repeat center center/cover;
-            padding-top: 80px; /* Espaço para o header */
+            padding-top: 60px; /* Ajuste para a altura do header fixo */
         }
-        
+
+
         .hero-content h1 {
             font-size: 5rem;
             line-height: 1.1;
             margin-bottom: 1rem;
         }
 
+
         .hero-content .subtitle {
             font-size: 1.5rem;
             font-weight: 300;
             margin-bottom: 2rem;
         }
+
 
         .btn {
             display: inline-block;
@@ -144,10 +164,12 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
+
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
+
 
         /* Títulos de Seção */
         .section-title {
@@ -156,6 +178,7 @@
             font-size: 3rem;
             position: relative;
         }
+
 
         .section-title::after {
             content: '';
@@ -168,27 +191,32 @@
             background: var(--primary-color);
         }
 
+
         /* Sobre */
         #sobre .container {
             display: flex;
             align-items: center;
             gap: 3rem;
         }
-        
+
+
         .about-image {
             flex: 1;
             max-width: 400px;
         }
-        
+
+
         .about-image img {
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
 
+
         .about-text {
             flex: 1.2;
         }
+
 
         /* Portfólio */
         .portfolio-grid {
@@ -197,11 +225,13 @@
             gap: 1rem;
         }
 
+
         .portfolio-item {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
         }
+
 
         .portfolio-item img {
             width: 100%;
@@ -210,10 +240,12 @@
             display: block;
             transition: transform 0.4s ease;
         }
-        
+
+
         .portfolio-item:hover img {
             transform: scale(1.1);
         }
+
 
         .portfolio-overlay {
             position: absolute;
@@ -229,14 +261,17 @@
             transition: opacity 0.4s ease;
         }
 
+
         .portfolio-item:hover .portfolio-overlay {
             opacity: 1;
         }
-        
+
+
         .portfolio-overlay h3 {
             color: var(--primary-color);
             font-size: 1.5rem;
         }
+
 
         /* Artistas */
         .artists-grid {
@@ -245,6 +280,7 @@
             gap: 2rem;
         }
 
+
         .artist-card {
             background-color: var(--secondary-dark-color);
             padding: 2rem;
@@ -252,12 +288,14 @@
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
+
         .artist-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
-        
+
+
         .artist-card img {
             width: 150px;
             height: 150px;
@@ -266,28 +304,33 @@
             border: 4px solid var(--primary-color);
             margin-bottom: 1.5rem;
         }
-        
+
+
         .artist-card h3 {
             font-size: 2rem;
             color: var(--primary-color);
         }
-        
+
+
         .artist-card p.specialty {
             font-weight: 600;
             color: var(--text-color);
             margin-bottom: 1rem;
         }
-        
+
+
         .artist-socials a {
             color: var(--gray-color);
             margin: 0 0.5rem;
             font-size: 1.5rem;
             transition: color 0.3s;
         }
-        
+
+
         .artist-socials a:hover {
             color: var(--primary-color);
         }
+
 
         /* Depoimentos */
         .testimonials-grid {
@@ -296,6 +339,7 @@
             gap: 2rem;
         }
 
+
         .testimonial-card {
             background: var(--secondary-dark-color);
             padding: 2rem;
@@ -303,17 +347,20 @@
             border-left: 5px solid var(--primary-color);
         }
 
+
         .testimonial-card p {
             font-style: italic;
             margin-bottom: 1rem;
         }
+
 
         .testimonial-card .author {
             font-weight: 700;
             text-align: right;
             color: var(--primary-color);
         }
-        
+
+
         /* FAQ */
         .faq-accordion .faq-item {
             background: var(--secondary-dark-color);
@@ -321,6 +368,7 @@
             border-radius: 5px;
             overflow: hidden;
         }
+
 
         .faq-question {
             width: 100%;
@@ -336,53 +384,37 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
+
         .faq-question i {
             transition: transform 0.3s;
         }
-        
+
+
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
         }
+
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
         }
-        
+
+
         .faq-answer p {
             padding: 0 1.5rem 1.5rem;
             color: var(--gray-color);
         }
 
+
         /* Contato */
-        #contato .container {
-            text-align: center;
-        }
-        
-        #contato p {
-            max-width: 600px;
-            margin: 0 auto 3rem;
+        #contato {
+            display: none; /* Oculta a seção de contato anterior */
         }
 
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .contact-info div {
-            font-size: 1.1rem;
-        }
 
-        .contact-info i {
-            color: var(--primary-color);
-            margin-right: 0.5rem;
-        }
-        
         /* Footer */
         .footer {
             background: var(--secondary-dark-color);
@@ -390,22 +422,27 @@
             padding: 3rem 2rem;
         }
 
+
         .footer-socials a {
             color: var(--gray-color);
             margin: 0 1rem;
             font-size: 1.8rem;
             transition: color 0.3s;
+            text-decoration: none;
         }
-        
+
+
         .footer-socials a:hover {
             color: var(--primary-color);
         }
-        
+
+
         .footer p {
             margin-top: 1.5rem;
             color: var(--gray-color);
             font-size: 0.9rem;
         }
+
 
         /* Botão Flutuante WhatsApp */
         .whatsapp-float {
@@ -426,61 +463,43 @@
             z-index: 999;
             animation: pulse 2s infinite;
         }
-        
+
+
         @keyframes pulse {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
+
         /* Responsividade */
         @media (max-width: 768px) {
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: var(--secondary-dark-color);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: right 0.5s ease-in-out;
-            }
-            .nav-links.active {
-                right: 0;
-            }
-            .menu-toggle {
-                display: block;
-                z-index: 1001; /* Ficar acima da nav */
-            }
-            .menu-toggle.active i:before {
-                content: '\f00d'; /* Ícone de X (fechar) */
-            }
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
-            #sobre .container {
-                flex-direction: column;
+                gap: 1rem; /* Reduz o espaçamento em telas menores se necessário */
             }
         }
+
 
     </style>
 </head>
 <body>
 
-    <a href="https://api.whatsapp.com/send?phone=5543999998888&text=Olá!%20Gostaria%20de%20agendar%20um%20horário." class="whatsapp-float" target="_blank">
+
+    <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO_DE_WHATSAPP&text=Olá!%20Gostaria%20de%20agendar%20um%20horário." class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-    
+
+
     <header class="header">
-        <a href="#hero" class="logo">ArteNaPele</a>
+        <a href="#hero" class="logo">
+            <img src="magrelo-tattoo-logo.png" alt="Logo Magrelo Tattoo">
+        </a>
         <nav>
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#portfolio">Portfólio</a></li>
                 <li><a href="#artistas">Artistas</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
         </nav>
         <div class="menu-toggle">
@@ -488,14 +507,16 @@
         </div>
     </header>
 
+
     <main>
         <section id="hero">
             <div class="hero-content">
                 <h1>Sua História, Nossa Arte.</h1>
                 <p class="subtitle">Transformamos suas ideias em tatuagens inesquecíveis.</p>
-                <a href="#contato" class="btn">Agende Seu Horário</a>
+                <a href="#footer" class="btn">Entre em Contato</a>
             </div>
         </section>
+
 
         <section id="sobre">
             <div class="container">
@@ -504,11 +525,12 @@
                 </div>
                 <div class="about-text">
                     <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Nosso Estúdio</h2>
-                    <p>Bem-vindo ao ArteNaPele, um espaço onde a criatividade encontra a técnica. Nosso estúdio foi fundado com a paixão por contar histórias através da arte corporal. Usamos apenas os melhores materiais, seguimos os mais rigorosos padrões de higiene e contamos com artistas talentosos prontos para criar uma obra de arte única para você.</p>
+                    <p>Bem-vindo ao Magrelo Tattoo, um espaço onde a criatividade encontra a técnica. Nosso estúdio foi fundado com a paixão por contar histórias através da arte corporal. Usamos apenas os melhores materiais, seguimos os mais rigorosos padrões de higiene e contamos com artistas talentosos prontos para criar uma obra de arte única para você.</p>
                     <p style="margin-top: 1rem;">Acreditamos que cada tatuagem é uma jornada pessoal, e estamos aqui para guiá-lo em cada passo do processo, desde a concepção da ideia até os cuidados finais.</p>
                 </div>
             </div>
         </section>
+
 
         <section id="portfolio">
             <div class="container">
@@ -541,6 +563,7 @@
                 </div>
             </div>
         </section>
+
 
         <section id="artistas">
             <div class="container">
@@ -579,7 +602,8 @@
                 </div>
             </div>
         </section>
-        
+
+
         <section id="depoimentos">
             <div class="container">
                 <h2 class="section-title">O que nossos clientes dizem</h2>
@@ -599,6 +623,7 @@
                 </div>
             </div>
         </section>
+
 
         <section id="faq">
             <div class="container">
@@ -643,32 +668,18 @@
                 </div>
             </div>
         </section>
-
-        <section id="contato">
-            <div class="container">
-                <h2 class="section-title">Entre em Contato</h2>
-                <p>Pronto para criar sua próxima tatuagem? Fale conosco! A melhor forma de agilizar seu orçamento é nos enviar sua ideia, imagens de referência, tamanho e local do corpo desejado.</p>
-                 <div class="contact-info">
-                    <div><i class="fas fa-map-marker-alt"></i> Rua da Arte, 123 - Centro</div>
-                    <div><i class="fas fa-phone"></i> (43) 9999-8888</div>
-                    <div><i class="fas fa-envelope"></i> contato@artenapele.com</div>
-                </div>
-                <a href="https://api.whatsapp.com/send?phone=5543999998888&text=Olá!%20Gostaria%20de%20agendar%20um%20horário." class="btn" target="_blank">
-                   <i class="fab fa-whatsapp"></i> Agendar pelo WhatsApp
-                </a>
-            </div>
-        </section>
     </main>
-    
-    <footer class="footer">
+
+
+    <footer class="footer" id="footer">
         <div class="footer-socials">
-            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-        </div>
-        <p>&copy; 2025 Estúdio ArteNaPele. Todos os direitos reservados.</p>
-        <p>Desenvolvido com ❤️</p>
+            <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO_DE_WHATSAPP" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/SEU_INSTAGRAM/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        <p>&copy; 2025 Magrelo Tattoo. Todos os direitos reservados.</p>
+        <p>Siga-nos nas redes sociais!</p>
     </footer>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -682,30 +693,18 @@
                 }
             });
 
-            // Mobile Menu
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-            });
-            // Fecha o menu ao clicar em um link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                });
-            });
 
             // FAQ Accordion
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
                 const answer = item.querySelector('.faq-answer');
-                
+
+
                 question.addEventListener('click', () => {
                     const isActive = item.classList.contains('active');
-                    
+
+
                     // Fecha todos os outros
                     faqItems.forEach(otherItem => {
                         otherItem.classList.remove('active');
@@ -713,16 +712,19 @@
                         otherItem.querySelector('.faq-answer').style.padding = "0 1.5rem";
                     });
 
+
                     // Abre ou fecha o clicado
                     if (!isActive) {
                         item.classList.add('active');
                         answer.style.maxHeight = answer.scrollHeight + 'px';
                         answer.style.padding = "0 1.5rem 1.5rem";
 
+
                     }
                 });
             });
-            
+
+
             // Animação de Scroll (Fade-in)
             const sections = document.querySelectorAll('section');
             const observer = new IntersectionObserver((entries) => {
@@ -735,11 +737,13 @@
                 threshold: 0.1
             });
 
+
             sections.forEach(section => {
                 observer.observe(section);
             });
         });
     </script>
+
 
 </body>
 </html>
