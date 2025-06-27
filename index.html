@@ -3,530 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magrelo Tattoo - Arte na Pele</title>
+    <title>Magrelo Tattoo - Estúdio de Tatuagem</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS Reset e Estilos Globais */
+        /* Estilos Gerais e Variáveis */
+        :root {
+            --primary-color: #f0c400; /* Um dourado/amarelo forte para destaque */
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --surface-color: #1e1e1e;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #0a0a0a;
-            color: #f0f0f0;
-            overflow-x: hidden;
+            font-family: var(--font-body);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden; /* Previne scroll horizontal */
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
-            color: #FFD700; /* Dourado */
-        }
-
-        /* Animação de Fade-in */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            background-color: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: #FFD700;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            color: #f0f0f0;
-            text-decoration: none;
-            font-size: 1.1rem;
+        h1, h2 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
             font-weight: 700;
-            transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: #FFD700;
-        }
-
-        /* Seção Hero (Principal) */
-        #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        section {
+            padding: 80px 5%;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1594499894399-56bce4358229?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
-            /* SUBSTITUA A URL acima pela melhor foto do seu amigo tatuando ou uma tatuagem dele */
+            position: relative;
         }
 
-        .hero-content h1 {
-            font-size: 6rem;
-            line-height: 1;
-            margin-bottom: 10px;
+        section:nth-child(even) {
+            background-color: var(--surface-color);
         }
 
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #ccc;
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #a0a0a0;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: #FFD700;
-            color: #0a0a0a;
-            padding: 15px 35px;
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 12px 30px;
             text-decoration: none;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            border: 2px solid #FFD700;
+            font-weight: bold;
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 1rem;
         }
 
         .cta-button:hover {
-            background-color: transparent;
-            color: #FFD700;
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            background-color: #fff;
         }
 
-        /* Seções Padrão */
-        section {
-            padding: 100px 0;
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            /* !!! IMPORTANTE: Troque a URL da imagem de fundo aqui !!! */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1599238885076-5c6a3a489b6a?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            color: white;
         }
 
-        section h2 {
-            font-size: 4rem;
-            margin-bottom: 50px;
-            position: relative;
+        .hero-content {
+            max-width: 800px;
         }
 
-        /* Linha decorativa abaixo dos títulos */
-        section h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: #FFD700;
-            margin: 15px auto 0;
-            border-radius: 2px;
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
         }
 
-        /* Seção Portfólio */
-        .portfolio-grid {
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Animação Fade-in Inicial */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Portfolio Section */
+        .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 1.5rem;
         }
 
-        .portfolio-item {
-            position: relative;
+        .gallery-item {
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .portfolio-item img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s ease, filter 0.4s ease;
+            transition: transform 0.4s ease-out;
         }
 
-        .portfolio-item:hover img {
+        .gallery-item:hover img {
             transform: scale(1.1);
-            filter: brightness(0.5);
         }
 
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        /* About Section */
+        .about-content {
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: rgba(0,0,0,0.6);
-            color: #fff;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 2rem;
-            color: #FFD700;
-            margin-bottom: 10px;
-        }
-
-        /* Seção Preços */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
             text-align: left;
         }
 
-        .pricing-card {
-            background-color: #1a1a1a;
-            padding: 40px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #FFD700;
+        .artist-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
         }
 
-        .pricing-card h3 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .pricing-card .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #f0f0f0;
-            margin-bottom: 20px;
-        }
-        
-        .pricing-card .price span {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #aaa;
-        }
-
-        .pricing-card p {
-            color: #ccc;
-            margin-bottom: 30px;
-            flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
-        }
-        
-        .pricing-card .cta-button-small {
-            display: block;
-            text-align: center;
-            background-color: transparent;
-            color: #FFD700;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            border: 2px solid #FFD700;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .pricing-card .cta-button-small:hover {
-            background-color: #FFD700;
-            color: #0a0a0a;
-        }
-
-
-        /* Seção Contato */
-        #contato p {
+        .about-text {
             max-width: 600px;
-            margin: 0 auto 40px;
+        }
+
+        /* Pricing Section */
+        .pricing-content {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--background-color);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        /* Contact Section */
+        .contact-info {
             font-size: 1.1rem;
-            line-height: 1.6;
-            color: #ccc;
         }
-        
-        .social-links {
-            margin-top: 30px;
+        .contact-info p {
+            margin-bottom: 1rem;
         }
-        
-        .social-links a {
-            display: inline-block;
-            margin: 0 15px;
-            transition: transform 0.3s ease;
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
         }
-        
-        .social-links a:hover {
+        .contact-info a:hover {
+            color: #fff;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
             transform: scale(1.1);
         }
-        
-        .social-links svg {
-             width: 40px;
-             height: 40px;
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
         }
         
         /* Footer */
         footer {
+            background-color: #000;
+            color: #777;
+            padding: 20px;
             text-align: center;
-            padding: 40px 20px;
-            background-color: #111;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        
-        footer p {
-            color: #aaa;
-        }
-        
-        footer a {
-            color: #FFD700;
-            text-decoration: none;
+            font-size: 0.9rem;
         }
 
-        /* Responsividade para Celulares */
+        /* Responsividade para Telas Menores */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Em um site real, aqui entraria um menu hamburguer */
+            .hero h1 {
+                font-size: 3rem;
             }
-
-            .logo {
-                font-size: 2rem;
+            .hero p {
+                font-size: 1.1rem;
             }
-
-            #hero {
-                padding: 0 20px;
+            .section-title {
+                font-size: 2.2rem;
             }
-
-            .hero-content h1 {
-                font-size: 3.5rem;
+            .about-content {
+                flex-direction: column;
             }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-
-            section h2 {
-                font-size: 2.8rem;
-            }
-
-            .portfolio-grid, .pricing-grid {
-                grid-template-columns: 1fr;
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
             }
         }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <nav class="container">
-            <a href="#hero" class="logo">Magrelo Tattoo</a>
-            <ul class="nav-links">
-                <li><a href="#portfolio">Portfólio</a></li>
-                <li><a href="#precos">Preços</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Magrelo Tattoo</h1>
+            <p class="fade-in">Transformando suas ideias em tatuagens únicas e memoráveis.</p>
+            <a href="#contato" class="cta-button fade-in">Agende seu Horário</a>
+        </div>
     </header>
 
     <main>
-        <section id="hero">
-            <div class="hero-content fade-in">
-                <h1>Arte que Marca</h1>
-                <p>Transformando ideias em tatuagens únicas e memoráveis</p>
-                <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." target="_blank" class="cta-button">Agendar Orçamento</a>
+        <section id="portfolio" class="portfolio">
+            <h2 class="section-title animate-on-scroll">Portfólio</h2>
+            <p class="section-subtitle animate-on-scroll">Conheça alguns dos meus trabalhos.</p>
+            <div class="gallery">
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1555217851-6141535b4a46?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 1"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1617886942423-2de683940155?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 2"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1541457137768-465735114a1c?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 3"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1533230495318-7f0951c36a83?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 4"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1599238885076-5c6a3a489b6a?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem 5"></div>
+                <div class="gallery-item animate-on-scroll"><img src="https://images.unsplash.com/photo-1628543781339-9580d4f5b259?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem 6"></div>
             </div>
         </section>
 
-        <section id="portfolio" class="container">
-            <div class="fade-in">
-                <h2>Meus Trabalhos</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1541690037323-e189838e3a3e?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 1">
-                        <div class="portfolio-overlay">
-                            <div>
-                                <h3>Leão Realista</h3>
-                                <p>Black and Grey</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1621873495934-441251c22b12?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 2">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Dragão Oriental</h3>
-                                <p>Colorido</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1616445339675-348c6f6a73e5?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 3">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Floral Delicado</h3>
-                                <p>Fineline</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1608359463273-9a4059515865?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 4">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Serpente</h3>
-                                <p>Blackwork</p>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1581439299468-b863b14da29f?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 5">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Medusa</h3>
-                                <p>Mitologia Grega</p>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1632832387121-a5349195b4e7?q=80&w=1887&auto=format&fit=crop" alt="Tatuagem 6">
-                        <div class="portfolio-overlay">
-                             <div>
-                                <h3>Carpa</h3>
-                                <p>Neo Traditional</p>
-                            </div>
-                        </div>
-                    </div>
+        <section id="sobre" class="about">
+            <div class="about-content">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop" alt="Foto do Tatuador Magrelo" class="artist-photo animate-on-scroll">
+                <div class="about-text animate-on-scroll">
+                    <h2 class="section-title">O Artista</h2>
+                    <p>Olá, eu sou o Magrelo. Desde 2018, venho me dedicando à arte da tatuagem, buscando sempre evoluir e entregar o melhor para meus clientes. Sou especialista nos estilos Blackwork, Fineline e Old School. Para mim, cada tatuagem é uma história e uma colaboração entre o artista e o cliente.</p>
                 </div>
             </div>
         </section>
 
-        <section id="precos" class="container">
-            <div class="fade-in">
-                <h2>Orçamentos</h2>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Tattoos Pequenas</h3>
-                        <div class="price"><span>A partir de</span> R$ 150</div>
-                        <p>Ideal para símbolos, palavras ou artes minimalistas. O valor varia com a complexidade e local do corpo.</p>
-                        <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Gostaria%20de%20or%C3%A7ar%20uma%20tattoo%20pequena." target="_blank" class="cta-button-small">Consultar</a>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Tattoos Médias</h3>
-                        <div class="price"><span>A partir de</span> R$ 400</div>
-                        <p>Perfeito para projetos mais detalhados que ocupam uma área maior, como antebraço ou panturrilha.</p>
-                        <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Gostaria%20de%20or%C3%A7ar%20uma%20tattoo%20m%C3%A9dia." target="_blank" class="cta-button-small">Consultar</a>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Projetos Grandes</h3>
-                        <div class="price"><span>A partir de</span> R$ 900</div>
-                        <p>Para fechamentos de braço, costas ou pernas. O valor é definido por sessão ou pelo projeto completo.</p>
-                        <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Tenho%20um%20projeto%20grande%20para%20or%C3%A7ar." target="_blank" class="cta-button-small">Consultar</a>
-                    </div>
-                </div>
+        <section id="precos" class="pricing">
+            <h2 class="section-title animate-on-scroll">Preços e Orçamentos</h2>
+            <div class="pricing-content animate-on-scroll">
+                <p>O valor de uma tatuagem é único, assim como a arte. Ele varia de acordo com o <strong>tamanho</strong>, a <strong>complexidade do desenho</strong>, as <strong>cores utilizadas</strong> e o <strong>local do corpo</strong>.</p>
+                <p>O valor inicial para qualquer procedimento é de <strong>R$ 150,00</strong> (taxa de material e sessão mínima).</p>
+                <p>Para obter um orçamento preciso, clique no botão abaixo e me envie sua ideia pelo WhatsApp!</p>
+                <a href="https://api.whatsapp.com/send?phone=5511912345678&text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento." target="_blank" class="cta-button">Pedir Orçamento</a>
             </div>
         </section>
 
-        <section id="contato" class="container">
-            <div class="fade-in">
-                <h2>Vamos Criar Juntos?</h2>
-                <p>
-                    Siga meu trabalho nas redes sociais para ver os últimos projetos e mande sua ideia pelo WhatsApp. 
-                    Estou pronto para transformar sua visão em uma tatuagem incrível.
-                </p>
-                <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." target="_blank" class="cta-button">Chama no WhatsApp</a>
-                <div class="social-links">
-                     <a href="https://instagram.com/seu_usuario_aqui" target="_blank" title="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                     </a>
-                     <a href="mailto:seuemail@exemplo.com" target="_blank" title="Email">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                     </a>
-                </div>
+        <section id="contato" class="contact">
+            <h2 class="section-title animate-on-scroll">Contato e Localização</h2>
+            <div class="contact-info animate-on-scroll">
+                <p><strong>WhatsApp:</strong> <a href="https://api.whatsapp.com/send?phone=5511912345678&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.">(11) 91234-5678</a></p>
+                <p><strong>Instagram:</strong> <a href="https://instagram.com/magrelotattoo" target="_blank">@magrelotattoo</a></p>
+                <p><strong>Endereço:</strong> Rua da Tinta, 123 - Centro, Rolândia - PR</p>
             </div>
         </section>
-
     </main>
 
+    <a href="https://api.whatsapp.com/send?phone=5511912345678&text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento." class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#FFF"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 439.6c-38.2 0-73.7-11.8-103.6-32.5L88.4 422.1l-24.1 63.3 64.8-17.1c29.9-18.4 56.2-42.9 76.7-72.3C340.5 350 364 306.3 364 259.9c0-97.2-79.2-176.4-176.4-176.4S111.1 162.7 111.1 259.9c0 48.6 19.8 93.3 52.1 125.8 32.3 32.5 77.1 52.1 125.8 52.1 48.6 0 93.3-19.8 125.8-52.1 32.5-32.3 52.1-77.1 52.1-125.8h.1z"/></svg>
+    </a>
+
     <footer>
-        <p>&copy; 2024 Magrelo Tattoo. Todos os direitos reservados.</p>
-        <p>Desenvolvido com ❤️ por <a href="[SEU LINKEDIN OU GITHUB AQUI]" target="_blank">Seu Nome</a></p>
+        <p>&copy; 2025 Magrelo Tattoo. Todos os direitos reservados. Site desenvolvido por [Seu Nome ou Sua Marca].</p>
     </footer>
 
     <script>
-        // Script para animação de fade-in ao rolar
-        const faders = document.querySelectorAll('.fade-in');
-
-        const appearOptions = {
-            threshold: 0.2, // O elemento se torna visível quando 20% dele está na tela
-            rootMargin: "0px 0px -50px 0px" // Começa a animação um pouco antes de entrar totalmente na viewport
-        };
-
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1
             });
-        }, appearOptions);
 
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
