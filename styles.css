@@ -43,7 +43,7 @@
     --z-navbar: 1000;
     --z-lightbox: 9999;
     --z-back-to-top: 999;
-    --z-whatsapp-btn: 998; /* Z-index para o botão do WhatsApp */
+    --z-whatsapp-btn: 998;
 }
 
 html {
@@ -637,6 +637,7 @@ section[id] {
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .service-card::before {
@@ -660,12 +661,12 @@ section[id] {
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
 }
 
-/* Alterado de .featured para .selected */
+/* CORREÇÃO APLICADA: Regra de '.featured' renomeada para '.selected' e aprimorada */
 .service-card.selected {
     border-color: var(--accent-gold);
     background: linear-gradient(135deg, var(--primary-black) 0%, rgba(212, 175, 55, 0.05) 100%);
-    transform: translateY(-10px); /* Adicionado para manter o efeito de elevação */
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1); /* Adicionado para manter a sombra */
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
 }
 
 .featured-badge {
@@ -713,6 +714,7 @@ section[id] {
 .service-features {
     list-style: none;
     margin-bottom: 30px;
+    padding-left: 0;
 }
 
 .service-features li {
@@ -979,23 +981,6 @@ section[id] {
     margin-bottom: 20px;
 }
 
-.step-features {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.step-features span {
-    background: var(--dark-gray);
-    color: var(--accent-gold);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
 .step-image {
     width: 300px;
     height: 200px;
@@ -1012,6 +997,31 @@ section[id] {
 
 .step-item:hover .step-image img {
     transform: scale(1.1);
+}
+
+.care-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+    text-align: left;
+    color: var(--text-gray);
+}
+
+.care-list li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.care-list li::before {
+    content: '\f058';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--accent-gold);
+    position: absolute;
+    left: 0;
+    top: 2px;
 }
 
 /* Calculator Section */
@@ -1387,10 +1397,10 @@ section[id] {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 40px;
 }
 
 .footer-logo {
@@ -1398,7 +1408,7 @@ section[id] {
     font-size: 1.5rem;
     color: var(--accent-gold);
     margin-bottom: 20px;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     line-height: 1;
 }
@@ -1412,6 +1422,7 @@ section[id] {
 .footer-social {
     display: flex;
     gap: 15px;
+    justify-content: center;
 }
 
 .social-link {
@@ -1434,51 +1445,6 @@ section[id] {
     color: var(--primary-black);
     border-color: var(--accent-gold);
     transform: translateY(-3px);
-}
-
-.footer-section h4 {
-    color: var(--text-white);
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 1.1rem;
-}
-
-.footer-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.footer-links a {
-    color: var(--text-gray);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-}
-
-.footer-links a:hover {
-    color: var(--accent-gold);
-}
-
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.footer-contact p {
-    color: var(--text-gray);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    line-height: 1.6;
-}
-
-.footer-contact i {
-    color: var(--accent-gold);
-    margin-top: 3px;
-    flex-shrink: 0;
 }
 
 .footer-bottom {
@@ -1609,7 +1575,7 @@ section[id] {
 /* Back to Top */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 100px;
     right: 30px;
     width: 50px;
     height: 50px;
@@ -1637,7 +1603,7 @@ section[id] {
     transform: translateY(-3px);
 }
 
-/* --- NOVO: Botão Flutuante do WhatsApp --- */
+/* Floating WhatsApp Button */
 .floating-whatsapp-btn {
     position: fixed;
     bottom: 30px;
@@ -1662,11 +1628,6 @@ section[id] {
     background-color: #128C7E;
 }
 
-/* Ajusta o botão "Back to Top" para não sobrepor o do WhatsApp */
-.back-to-top {
-    bottom: 100px; /* Sobe o botão para dar espaço */
-}
-
 /* =============================================== */
 /* =========== DESIGN RESPONSIVO ================= */
 /* =============================================== */
@@ -1689,11 +1650,6 @@ section[id] {
         margin-top: 20px;
     }
     
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-    }
-
     .calculator-content,
     .studio-gallery {
         grid-template-columns: 1fr;
@@ -1753,7 +1709,8 @@ section[id] {
         font-size: 2.5rem;
     }
     
-    .services-grid {
+    .services-grid,
+    .work-gallery {
         grid-template-columns: 1fr;
     }
     
@@ -1802,10 +1759,6 @@ section[id] {
     .step-content {
         order: 2;
     }
-    
-    .step-features {
-       justify-content: center;
-    }
 
     .step-image {
         order: 3;
@@ -1815,30 +1768,6 @@ section[id] {
     }
     
     /* Footer */
-    /* Localize esta regra no seu CSS */
-.footer-content {
-    /* O código antigo era um grid com 4 colunas. O novo será assim: */
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding-bottom: 40px;
-}
-
-    .footer-logo {
-    font-family: var(--font-tattoo);
-    font-size: 1.5rem;
-    color: var(--accent-gold);
-    margin-bottom: 20px;
-    display: inline-flex; /* Alterado para inline-flex para centralizar */
-    flex-direction: column;
-    line-height: 1;
-}
-    .footer-social {
-    display: flex;
-    gap: 15px;
-    justify-content: center; /* Adicione esta linha */
-} */
-    
     .footer-bottom {
         flex-direction: column;
         gap: 15px;
@@ -1961,65 +1890,4 @@ section[id] {
 *:focus {
     outline: 2px solid var(--accent-gold);
     outline-offset: 2px;
-}
-
-/* Print Styles */
-@media print {
-    * {
-        background: white !important;
-        color: black !important;
-    }
-    
-    .navbar,
-    .back-to-top,
-    .lightbox,
-    .floating-whatsapp-btn {
-        display: none !important;
-    }
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    html {
-        scroll-behavior: auto;
-    }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-    :root {
-        --text-gray: #ffffff;
-        --border-gray: #ffffff;
-    }
-}
-/* Estilos para a Lista de Cuidados na Seção de Processo */
-.care-list {
-    list-style: none; /* Remove os marcadores padrão */
-    padding-left: 0;
-    margin-top: 15px;
-    text-align: left;
-    color: var(--text-gray);
-}
-
-.care-list li {
-    padding-left: 25px;
-    position: relative;
-    margin-bottom: 10px;
-    line-height: 1.5;
-}
-
-.care-list li::before {
-    content: '\f058'; /* Ícone de check do Font Awesome */
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    color: var(--accent-gold);
-    position: absolute;
-    left: 0;
-    top: 2px;
 }
