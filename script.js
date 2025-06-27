@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeBudgetCalculator();
     initializeSocialMedia();
-    initializeServiceCardSelection(); // <-- ADICIONE ESTA LINHA AQUI
+    initializeServiceCardSelection(); // <-- CORREÇÃO: Chamada da nova função
     
     // Update filtered images initially
     updateFilteredImages();
@@ -520,25 +520,27 @@ function removeNotification(notification) {
 
 // Social Media Links
 function initializeSocialMedia() {
-    // A correção principal foi feita diretamente no HTML com `target="_blank"`.
-    // Esta função pode ser usada para futuras manipulações se necessário.
     document.querySelectorAll('.social-link').forEach(link => {
-        link.setAttribute('rel', 'noopener noreferrer'); // Boa prática de segurança
+        link.setAttribute('rel', 'noopener noreferrer');
     });
-   // ======================================================================
-// NOVA FUNÇÃO: Seleção de Cards de Serviço
-// ======================================================================
+}
+
+// CORREÇÃO: Nova função para seleção dos cards de serviço
 function initializeServiceCardSelection() {
     const serviceCards = document.querySelectorAll('.service-card');
 
     serviceCards.forEach(card => {
         card.addEventListener('click', () => {
             // 1. Remove a classe 'selected' de todos os cards
-            serviceCards.forEach(c => c.classList.remove('selected'));
+            serviceCards.forEach(c => {
+                c.classList.remove('selected');
+                // Garante que o efeito de "levantar" seja removido se não for hover
+                c.style.transform = ''; 
+                c.style.boxShadow = '';
+            });
 
             // 2. Adiciona a classe 'selected' apenas ao card que foi clicado
             card.classList.add('selected');
         });
     });
-} 
 }
