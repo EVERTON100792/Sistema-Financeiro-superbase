@@ -118,22 +118,24 @@ function handleNavbarScroll() {
     updateActiveNavLink();
 }
 
+// FUNÇÃO NOVA E CORRIGIDA
 function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
-    const scrollPos = window.scrollY + 150;
-    
+    let currentSectionId = '';
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPos = window.scrollY + (window.innerHeight / 2); // Usa o meio da tela como referência
+
+    // Itera sobre as seções para encontrar a última que está na tela
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
+        if (section.offsetTop <= scrollPos) {
+            currentSectionId = section.getAttribute('id');
+        }
+    });
+
+    // Atualiza os links de navegação com base na seção encontrada
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
         }
     });
 }
