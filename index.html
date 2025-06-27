@@ -3,645 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estúdio de Tatuagem | Arte na Pele</title>
-
+    <title>Magrelo Tattoo</title>
     <style>
-        /* --- RESET E CONFIGURAÇÕES GLOBAIS --- */
-        :root {
-            --cor-primaria: #663399; /* Roxo escuro */
-            --cor-primaria-clara: #8a2be2; /* Violeta */
-            --cor-secundaria: #00ced1; /* Turquesa */
-            --cor-fundo: #121212;
-            --cor-fundo-secundaria: #1e1e1e;
-            --cor-texto: #e0e0e0;
-            --cor-texto-secundario: #a0a0a0;
-            --cor-borda: #333;
-        }
-
-        * {
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
+            background-color: #111;
+            color: #eee;
         }
 
-        body {
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        section {
-            padding: 60px 20px;
-            border-bottom: 1px solid var(--cor-borda);
-        }
-
-        h1, h2, h3 {
-            color: var(--cor-primaria-clara);
-            margin-bottom: 20px;
-        }
-
-        /* --- NAVEGAÇÃO DESKTOP --- */
         header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background-color: rgba(18, 18, 18, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--cor-borda);
-            display: none; /* Oculto por padrão, visível em telas maiores */
-        }
-
-        nav {
+            background-color: #222;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
-            font-size: 1.5em;
+            font-size: 28px;
             font-weight: bold;
-            color: var(--cor-primaria-clara);
-            text-decoration: none;
+            color: #ff8c00; /* Laranja vibrante */
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .nav-links {
+        nav ul {
             list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
         }
 
-        .nav-links li {
-            margin-left: 25px;
+        nav li {
+            margin-left: 30px;
         }
 
-        .nav-links a {
-            color: var(--cor-texto);
+        nav a {
             text-decoration: none;
-            font-size: 1em;
+            color: #eee;
+            font-size: 1.1em;
             transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--cor-primaria-clara);
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #ff8c00;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
         }
 
-        /* --- SIDEBAR TOP (MOBILE) --- */
-        .sidebar-top {
-            position: fixed;
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ff8c00;
+        }
+
+        .hero {
+            background-image: url('https://via.placeholder.com/1500x700/333/555?text=Sua+Imagem+de+Fundo+Aqui'); /* Imagem de placeholder, substitua pela sua */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 150px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro para melhor legibilidade */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            color: #ff8c00;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #ff8c00;
+            color: #fff;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .button:hover {
+            background-color: #e07a00;
+            transform: translateY(-3px);
+        }
+
+        #orcamento {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #1a1a1a;
+        }
+
+        #orcamento h2 {
+            font-size: 3em;
+            color: #ff8c00;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .budget-calculator {
+            background-color: #2c2c2c;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .budget-calculator label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        .budget-calculator input,
+        .budget-calculator select,
+        .budget-calculator textarea {
+            width: calc(100% - 20px); /* 100% menos o padding */
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #555;
+            background-color: #3a3a3a;
+            color: #eee;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+        }
+
+        .budget-calculator input:focus,
+        .budget-calculator select:focus,
+        .budget-calculator textarea:focus {
+            border-color: #ff8c00;
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+        }
+
+        .budget-calculator button {
+            background-color: #ff8c00;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: block; /* Ocupa a largura total */
             width: 100%;
-            background-color: var(--cor-fundo-secundaria);
-            color: var(--cor-texto);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .budget-calculator button:hover {
+            background-color: #e07a00;
+            transform: translateY(-3px);
+        }
+
+        #resultado_orcamento {
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff8c00;
+            background-color: #3a3a3a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366; /* Cor verde do WhatsApp */
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             z-index: 1000;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            border-bottom: 1px solid var(--cor-borda);
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .sidebar-logo {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: var(--cor-primaria-clara);
-            text-decoration: none;
-        }
-
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: var(--cor-texto);
-            font-size: 1.8em;
-            cursor: pointer;
-            display: block;
-        }
-
-        .mobile-nav {
-            position: fixed;
-            top: 52px; /* Altura do sidebar-top */
-            left: 0;
-            width: 100%;
-            background-color: var(--cor-fundo-secundaria);
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.3s ease-out;
-            z-index: 999;
-        }
-
-        .mobile-nav.open {
-            max-height: 300px;
-        }
-
-        .mobile-nav ul {
-            list-style: none;
-        }
-
-        .mobile-nav li {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--cor-borda);
-            text-align: center;
-        }
-
-        .mobile-nav li a {
-            color: var(--cor-texto);
-            text-decoration: none;
-            font-size: 1.1em;
-            display: block;
-            transition: color 0.3s ease;
-        }
-        .mobile-nav li:last-child {
-            border-bottom: none;
-        }
-
-        .mobile-nav li a:hover {
-            color: var(--cor-primaria-clara);
-        }
-        
-        main {
-            padding-top: 52px; /* Empurra o conteúdo para baixo do sidebar */
-        }
-
-        @media (min-width: 769px) {
-            .sidebar-top { display: none; }
-            header { display: block; }
-            main { padding-top: 60px; } /* Altura do header desktop */
-        }
-        
-        /* --- SEÇÃO HOME (INÍCIO) --- */
-        #home {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1599219332142-141689443555?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200) no-repeat center center/cover;
-            padding: 60px 20px;
-        }
-        
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            margin-bottom: 10px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--cor-texto-secundario);
-        }
-
-        .cta-button {
-            background-color: var(--cor-secundaria);
-            color: #121212;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #00ffff;
-            color: var(--cor-fundo);
-        }
-        
-        /* --- PORTFÓLIO --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .portfolio-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .portfolio-item img:hover {
+        .whatsapp-button:hover {
+            background-color: #128c7e;
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        /* --- MODAL DO PORTFÓLIO --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            margin: auto; display: block;
-            max-width: 80%; max-height: 80%;
-        }
-        .close-modal {
-            position: absolute; top: 25px; right: 35px;
-            color: #f1f1f1; font-size: 40px; font-weight: bold;
-            transition: 0.3s; cursor: pointer;
-        }
-        
-        /* --- SOBRE E ESTÚDIO --- */
-        .content-flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: center;
-        }
-        .content-flex img {
-            flex: 1 1 300px;
-            max-width: 100%;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-        .content-flex div {
-            flex: 1 1 300px;
-        }
-        
-        /* --- CALCULADORA --- */
-        .calculator-container {
-            background-color: var(--cor-fundo-secundaria);
-            padding: 30px;
-            border-radius: 8px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-        @media (min-width: 769px) {
-            .calculator-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        .calculator-form .form-group {
-            margin-bottom: 20px;
-        }
-        .calculator-form label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--cor-texto-secundario);
-        }
-        .calculator-form input[type="range"],
-        .calculator-form select {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--cor-fundo);
-            border: 1px solid var(--cor-borda);
-            color: var(--cor-texto);
-            border-radius: 5px;
-        }
-        .calculator-result {
-            text-align: center;
-            align-self: center;
-            background-color: var(--cor-fundo);
-            padding: 40px 20px;
-            border-radius: 8px;
-        }
-        .calculator-result p {
-            font-size: 1.1em;
-            color: var(--cor-texto-secundario);
-        }
-        .final-price {
-            font-size: clamp(2.5rem, 10vw, 3.5rem);
-            font-weight: bold;
-            color: var(--cor-secundaria);
-            margin: 10px 0;
-        }
-        .disclaimer {
-            font-size: 0.8em;
-            font-style: italic;
-            color: #888;
+        .whatsapp-button img {
+            height: 24px;
+            margin-right: 10px;
         }
 
-        /* --- FAQ --- */
-        .faq-item {
-            background-color: var(--cor-fundo-secundaria);
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-        .faq-question {
-            width: 100%; background: none; border: none;
-            text-align: left; padding: 20px; font-size: 1.1em;
-            color: var(--cor-texto); cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .faq-question::after {
-            content: '+'; font-size: 1.5em;
-            color: var(--cor-secundaria);
-            transition: transform 0.3s ease;
-        }
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-        .faq-answer {
-            max-height: 0; overflow: hidden;
-            padding: 0 20px;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-        .faq-answer p {
-            padding-bottom: 20px;
-            color: var(--cor-texto-secundario);
-        }
-
-        /* --- RODAPÉ --- */
         footer {
-            background-color: var(--cor-fundo-secundaria);
+            background-color: #222;
+            color: #eee;
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px;
+            margin-top: 50px; /* Adiciona um espaço do conteúdo */
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
         }
-        .social-links a {
-            color: var(--cor-texto);
-            font-size: 1.8em;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
-        .social-links a:hover {
-            color: var(--cor-primaria-clara);
-        }
-        footer p {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: var(--cor-texto-secundario);
+
+        /* Estilos Responsivos */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav li {
+                margin: 5px 15px;
+            }
+
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            #orcamento h2 {
+                font-size: 2.2em;
+            }
+
+            .budget-calculator {
+                padding: 25px;
+            }
+
+            .budget-calculator input,
+            .budget-calculator select,
+            .budget-calculator textarea {
+                width: 100%;
+            }
+
+            .whatsapp-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+            .whatsapp-button img {
+                height: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="sidebar-top">
-        <a href="#home" class="sidebar-logo">ArteNaPele</a>
-        <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
-    </div>
-
-    <nav class="mobile-nav">
-        <ul>
-            <li><a href="#portfolio">Portfólio</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#calculadora">Orçamento</a></li>
-            <li><a href="#faq">FAQ</a></li>
-        </ul>
-    </nav>
-
     <header>
+        <div class="logo">Magrelo Tattoo</div>
         <nav>
-            <a href="#home" class="logo">ArteNaPele</a>
-            <ul class="nav-links">
-                <li><a href="#portfolio">Portfólio</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#calculadora">Orçamento</a></li>
-                <li><a href="#faq">FAQ</a></li>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Portfólio</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section id="home">
-            <div class="hero-content">
-                <h1>Arte que Marca a Pele</h1>
-                <p>Estúdio especializado em criar tatuagens únicas e cheias de significado.</p>
-                <a href="#calculadora" class="cta-button">Calcular Orçamento</a>
-            </div>
-        </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Magrelo Tattoo</h1>
+            <p>Sua Arte na Pele. Única e Exclusiva.</p>
+            <a href="#orcamento" class="button">Obtenha seu Orçamento Inteligente</a>
+        </div>
+    </section>
 
-        <div class="container">
-            <section id="portfolio">
-                <h2>Meus Trabalhos</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1617865293817-2334f0d3a778?q=80&w=400&auto=format&fit=crop" alt="Tatuagem de tigre"></div>
-                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1555696958-c5664b8d1421?q=80&w=400&auto=format&fit=crop" alt="Tatuagem de leão"></div>
-                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1541590209968-3878b2c8651f?q=80&w=400&auto=format&fit=crop" alt="Tatuagem de flor"></div>
-                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1621817730302-3f175a2d71d3?q=80&w=400&auto=format&fit=crop" alt="Tatuagem de dragão"></div>
-                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1595353457102-51c363a03357?q=80&w=400&auto=format&fit=crop" alt="Tatuagem de lobo"></div>
-                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1533501901358-eebb69197312?q=80&w=400&auto=format&fit=crop" alt="Tatuagem de cobra"></div>
-                </div>
-            </section>
-        </div>
-        
-        <div id="imageModal" class="modal">
-            <span class="close-modal">&times;</span>
-            <img class="modal-content" id="modalImage">
-        </div>
+    <section id="orcamento">
+        <h2>Calculadora de Orçamento Inteligente</h2>
+        <div class="budget-calculator">
+            <form>
+                <label for="tamanho">Tamanho da Tatuagem:</label>
+                <select id="tamanho">
+                    <option value="minimo">Mini (até 5cm)</option>
+                    <option value="pequena">Pequena (5cm - 10cm)</option>
+                    <option value="media">Média (10cm - 20cm)</option>
+                    <option value="grande">Grande (20cm - 30cm)</option>
+                    <option value="extragrande">Extra Grande (acima de 30cm ou fechamento)</option>
+                </select>
 
-        <div class="container">
-            <section id="sobre">
-                <div class="content-flex">
-                    <img src="https://images.unsplash.com/photo-1613919904940-5936785a2103?q=80&w=400&auto=format&fit=crop" alt="Artista tatuador no estúdio">
-                    <div>
-                        <h2>Sobre o Artista</h2>
-                        <p>Olá! Sou [Nome do Artista], um apaixonado por arte e tatuagem com mais de [X] anos de experiência. Minha jornada começou com o desenho e evoluiu para a arte de marcar a pele, onde encontrei minha verdadeira vocação.</p>
-                        <p>Meu foco é criar designs exclusivos que capturem a essência e a história de cada cliente. Acredito que cada tatuagem é uma colaboração, e meu objetivo é transformar sua visão em uma obra de arte duradoura. Minhas especialidades são os estilos [Estilo 1] e [Estilo 2].</p>
-                    </div>
-                </div>
-            </section>
-        </div>
+                <label for="detalhes">Nível de Detalhe:</label>
+                <select id="detalhes">
+                    <option value="simples">Traço simples / Escrita</option>
+                    <option value="medio">Sombreamento / Poucos detalhes</option>
+                    <option value="complexo">Realismo / Muitos detalhes / Pontilhismo</option>
+                </select>
 
-        <div class="container">
-            <section id="estudio">
-                 <div class="content-flex">
-                    <div>
-                        <h2>O Estúdio & Higiene</h2>
-                        <p>Sua segurança e conforto são minha prioridade máxima. Meu estúdio segue rigorosamente todas as normas de higiene e segurança recomendadas pela ANVISA.</p>
-                        <ul>
-                            <li>Materiais 100% descartáveis (agulhas, biqueiras, luvas).</li>
-                            <li>Ambiente profissional, limpo e esterilizado.</li>
-                            <li>Uso dos melhores pigmentos do mercado, todos certificados.</li>
-                            <li>Processo transparente para que você se sinta seguro do início ao fim.</li>
-                        </ul>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1594385966649-b0769b764265?q=80&w=400&auto=format&fit=crop" alt="Bancada de tatuagem limpa e organizada">
-                </div>
-            </section>
-        </div>
+                <label for="local">Local do Corpo (informe a área, ex: Braço, Costas, Perna, etc.):</label>
+                <input type="text" id="local" placeholder="Ex: Antebraço, Panturrilha, Costela...">
 
-        <div class="container">
-            <section id="calculadora">
-                <h2>Calculadora de Orçamento</h2>
-                <div class="calculator-container">
-                    <div class="calculator-form">
-                        <div class="form-group">
-                            <label for="size">Tamanho (em cm): <span id="sizeValue">10 cm</span></label>
-                            <input type="range" id="size" min="5" max="30" value="10">
-                        </div>
-                        <div class="form-group">
-                            <label for="style">Estilo / Complexidade</label>
-                            <select id="style">
-                                <option value="1.0">Fine Line / Escrita</option>
-                                <option value="1.2">Blackwork / Tribal</option>
-                                <option value="1.5">Old School / Tradicional</option>
-                                <option value="1.9">Realismo / Sombreamento Complexo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="color">Cores</label>
-                            <select id="color">
-                                <option value="1.0">Apenas Preto e Cinza</option>
-                                <option value="1.4">Colorido</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="bodypart">Local do Corpo</label>
-                            <select id="bodypart">
-                                <option value="1.0">Fácil (Braço, Perna, Coxa)</option>
-                                <option value="1.15">Médio (Costas, Peito, Ombro)</option>
-                                <option value="1.3">Difícil (Mãos, Pescoço, Costelas)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="calculator-result">
-                        <p>Valor Estimado</p>
-                        <div id="priceResult" class="final-price">R$ 470</div>
-                        <p class="disclaimer">*Este é um valor aproximado. O preço final será confirmado após consulta e avaliação do design final.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
+                <label for="cor">Cores:</label>
+                <select id="cor">
+                    <option value="preto_branco">Preto e Branco</option>
+                    <option value="uma_cor">Uma cor (além do preto)</option>
+                    <option value="varias_cores">Várias cores</option>
+                </select>
 
-        <div class="container">
-            <section id="faq">
-                <h2>Perguntas Frequentes</h2>
-                <div class="faq-item">
-                    <button class="faq-question">Qual o valor mínimo de uma tatuagem?</button>
-                    <div class="faq-answer">
-                        <p>Nosso valor mínimo é de R$ 200. Este valor cobre os custos de materiais descartáveis de alta qualidade, esterilização e o tempo inicial de preparação, mesmo para tatuagens pequenas.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Como devo cuidar da minha tatuagem nova?</button>
-                    <div class="faq-answer">
-                        <p>Após a sessão, você receberá instruções detalhadas. Basicamente, consiste em manter a área limpa, lavando com sabonete neutro, e hidratada com a pomada recomendada. Evite sol, piscina e mar durante o período de cicatrização (cerca de 30 dias).</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Preciso pagar um sinal para agendar?</button>
-                    <div class="faq-answer">
-                        <p>Sim. Para garantir a reserva da sua data e o tempo dedicado à criação do seu desenho, é necessário o pagamento de um sinal. Este valor é abatido do total da tatuagem no dia da sessão.</p>
-                    </div>
-                </div>
-                 <div class="faq-item">
-                    <button class="faq-question">Posso tatuar por cima de uma cicatriz?</button>
-                    <div class="faq-answer">
-                        <p>Sim, na maioria dos casos é possível fazer uma cobertura de cicatriz. No entanto, é essencial uma avaliação pessoalmente para analisar a textura e a idade da cicatriz, e assim discutir as melhores opções de design para cobri-la efetivamente.</p>
-                    </div>
-                </div>
-            </section>
+                <label for="observacoes">Observações Adicionais (descreva sua ideia de tatuagem, estilo, referência):</label>
+                <textarea id="observacoes" rows="6" placeholder="Ex: Quero um leão realista no ombro esquerdo. Tenho uma referência de foto."></textarea>
+
+                <button type="button" onclick="calcularOrcamento()">Calcular Orçamento Aproximado</button>
+                <div id="resultado_orcamento"></div>
+            </form>
         </div>
-    </main>
-    
+    </section>
+
+    <a href="https://wa.me/SEU_NUMERO_DE_TELEFONE?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20uma%20tatuagem." class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Fale Conosco
+    </a>
+
     <footer>
-        <div class="container">
-            <h2>Entre em Contato</h2>
-            <p>Vamos transformar sua ideia em arte. Me siga nas redes sociais e envie sua ideia pelo WhatsApp!</p>
-            <div class="social-links">
-                <a href="#" target="_blank" title="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.413 48.413 0 0 1 12 2.163zm0 1.441c-3.149 0-3.51.01-4.74.068-2.819.128-4.108 1.411-4.239 4.239-.057 1.229-.067 1.583-.067 4.71s.01 3.481.067 4.71c.131 2.828 1.42 4.111 4.239 4.239 1.23.057 1.591.068 4.74.068 3.149 0 3.51-.01 4.74-.068 2.819-.129 4.108-1.411 4.239-4.239.057-1.229.067-1.583.067-4.71s-.01-3.481-.067-4.71c-.131-2.828-1.42-4.111-4.239-4.239-1.23-.057-1.591-.068-4.74-.068zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm6.5-7.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"/></svg>
-                </a>
-                <a href="#" target="_blank" title="WhatsApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.755 4.512 2.324 6.262l-1.096 4.011 4.105-1.072z"/></svg>
-                </a>
-            </div>
-            <p>© 2025 [Nome do Estúdio]. Todos os direitos reservados.</p>
-        </div>
+        &copy; 2023 Magrelo Tattoo - Todos os direitos reservados.
     </footer>
 
-
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        
-        // --- LÓGICA DO MENU MOBILE (SIDEBAR) ---
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileNav = document.querySelector('.mobile-nav');
-        menuToggle.addEventListener('click', function() {
-            mobileNav.classList.toggle('open');
-        });
-        // Fecha o menu ao clicar em um link
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-            });
-        });
+        function calcularOrcamento() {
+            const tamanho = document.getElementById("tamanho").value;
+            const detalhes = document.getElementById("detalhes").value;
+            const local = document.getElementById("local").value;
+            const cor = document.getElementById("cor").value;
+            const observacoes = document.getElementById("observacoes").value;
 
-        // --- LÓGICA DO MODAL DO PORTFÓLIO ---
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        const closeModal = document.querySelector('.close-modal');
-        document.querySelectorAll('.portfolio-item img').forEach(img => {
-            img.onclick = function () {
-                modal.style.display = "flex";
-                modalImg.src = this.src;
-            }
-        });
-        closeModal.onclick = function () {
-            modal.style.display = "none";
-        }
-        modal.onclick = function(event) {
-            if (event.target === modal) {
-                 modal.style.display = "none";
-            }
-        }
+            let valorBase = 0;
 
-        // --- LÓGICA DO FAQ (ACCORDION) ---
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(otherItem => {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.faq-answer').style.maxHeight = 0;
-                });
-                if (!isActive) {
-                    item.classList.add('active');
-                    answer.style.maxHeight = answer.scrollHeight + "px";
+            // Lógica de cálculo baseada no tamanho
+            switch (tamanho) {
+                case "minimo": valorBase += 150; break;
+                case "pequena": valorBase += 300; break;
+                case "media": valorBase += 600; break;
+                case "grande": valorBase += 1000; break;
+                case "extragrande": valorBase += 1800; break; // A partir de
+            }
+
+            // Lógica de cálculo baseada no nível de detalhe
+            switch (detalhes) {
+                case "simples": valorBase += 0; break; // Já incluso no tamanho
+                case "medio": valorBase += 150; break;
+                case "complexo": valorBase += 400; break;
+            }
+
+            // Lógica de cálculo baseada nas cores
+            switch (cor) {
+                case "preto_branco": valorBase += 0; break;
+                case "uma_cor": valorBase += 80; break;
+                case "varias_cores": valorBase += 200; break;
+            }
+
+            // Ajustes baseados em palavras-chave nas observações (exemplo de "inteligência")
+            if (observacoes.toLowerCase().includes("cobertura") || observacoes.toLowerCase().includes("cover up")) {
+                valorBase *= 1.3; // Aumenta 30% para cover-up
+            }
+            if (observacoes.toLowerCase().includes("realismo")) {
+                valorBase *= 1.2; // Aumenta 20% para realismo
+            }
+            if (observacoes.toLowerCase().includes("duas sessoes") || observacoes.toLowerCase().includes("varias sessoes")) {
+                valorBase *= 1.8; // Indica um projeto maior
+            }
+            if (observacoes.length > 200) { // Mais texto pode indicar complexidade
+                valorBase *= 1.05;
+            }
+
+            // Simples ajuste baseado no local (pode ser mais complexo)
+            const locaisDificeis = ["costela", "mão", "pé", "pescoço", "rosto", "cabeça"];
+            locaisDificeis.forEach(loc => {
+                if (local.toLowerCase().includes(loc)) {
+                    valorBase *= 1.15; // Aumenta 15% para locais mais difíceis
                 }
             });
-        });
 
-        // --- LÓGICA DA CALCULADORA DE ORÇAMENTO INTELIGENTE ---
-        const sizeInput = document.getElementById('size');
-        const sizeValueDisplay = document.getElementById('sizeValue');
-        const styleInput = document.getElementById('style');
-        const colorInput = document.getElementById('color');
-        const bodypartInput = document.getElementById('bodypart');
-        const priceResultDisplay = document.getElementById('priceResult');
 
-        const BASE_PRICE = 150; 
-        const PRICE_PER_CM = 25;
+            const orcamentoMin = valorBase * 0.9; // Faixa de variação
+            const orcamentoMax = valorBase * 1.1;
 
-        function calculatePrice() {
-            const size = parseFloat(sizeInput.value);
-            const styleMultiplier = parseFloat(styleInput.value);
-            const colorMultiplier = parseFloat(colorInput.value);
-            const bodypartMultiplier = parseFloat(bodypartInput.value);
-            
-            let sizeCost = size * PRICE_PER_CM;
-            let finalPrice = (BASE_PRICE + sizeCost) * styleMultiplier * colorMultiplier * bodypartMultiplier;
-            finalPrice = Math.ceil(finalPrice / 10) * 10;
-            
-            sizeValueDisplay.textContent = `${size} cm`;
-            priceResultDisplay.textContent = `R$ ${finalPrice}`;
+            let resultadoTexto = `Orçamento Aproximado: R$ ${orcamentoMin.toFixed(2)} - R$ ${orcamentoMax.toFixed(2)}`;
+            resultadoTexto += `<br><br>Este é um orçamento inicial. O valor final pode variar após uma consulta detalhada com o tatuador.`;
+            resultadoTexto += `<br>Entre em contato pelo WhatsApp para agendar sua consulta!`;
+
+            document.getElementById("resultado_orcamento").innerHTML = resultadoTexto;
         }
-
-        [sizeInput, styleInput, colorInput, bodypartInput].forEach(input => {
-            input.addEventListener('input', calculatePrice);
-        });
-
-        calculatePrice(); // Calcula o preço inicial ao carregar a página
-    });
     </script>
 
 </body>
