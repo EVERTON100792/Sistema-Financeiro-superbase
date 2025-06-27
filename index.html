@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estúdio de Tatuagem - O Artista Sombrio</title>
-    
+    <title>Magrelo Tattoo - Arte na Pele com Estilo</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        /* CSS - ESTILIZAÇÃO COMPLETA */
+        /* CSS - ESTILIZAÇÃO COMPLETA (ATUALIZADA) */
 
         /* 1. VARIÁVEIS DE COR E FONTES */
         :root {
@@ -21,8 +21,10 @@
             --cor-texto-principal: #e0e0e0;
             --cor-texto-secundario: #a0a0a0;
             --cor-destaque: #d4af37; /* Dourado */
+            --cor-whatsapp: #25d366;
             --fonte-titulos: 'Playfair Display', serif;
             --fonte-corpo: 'Roboto', sans-serif;
+            --fonte-logo: 'Shadows Into Light', cursive;
         }
 
         /* 2. ESTILOS GERAIS E RESET */
@@ -84,8 +86,8 @@
         }
 
         .logo {
-            font-family: var(--fonte-titulos);
-            font-size: 1.8rem;
+            font-family: var(--fonte-logo);
+            font-size: 2.2rem;
             color: var(--cor-destaque);
             text-decoration: none;
         }
@@ -107,7 +109,7 @@
             transition: color 0.3s;
             position: relative;
         }
-        
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -123,12 +125,11 @@
         .nav-links a:hover, .nav-links a.active {
             color: var(--cor-destaque);
         }
-        
+
         .nav-links a:hover::after {
             width: 100%;
         }
-        
-        /* Menu Hamburger para Mobile */
+
         .hamburger {
             display: none;
             cursor: pointer;
@@ -143,11 +144,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* TROQUE A IMAGEM DE FUNDO AQUI */
             background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), url('https://picsum.photos/1920/1080?grayscale&blur=2') no-repeat center center/cover;
             padding: 0 5%;
         }
-        
+
         .hero-content {
             max-width: 800px;
         }
@@ -156,6 +156,8 @@
             font-size: 4rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            font-family: var(--fonte-logo);
+            color: var(--cor-destaque);
         }
 
         .hero p {
@@ -216,7 +218,7 @@
         .portfolio-item:hover img {
             transform: scale(1.1);
         }
-        
+
         .portfolio-overlay {
             position: absolute;
             top: 0;
@@ -232,7 +234,7 @@
             transition: opacity 0.4s;
             font-size: 2rem;
         }
-        
+
         .portfolio-item:hover .portfolio-overlay {
             opacity: 1;
         }
@@ -250,7 +252,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
             max-width: 90%;
             max-height: 90%;
@@ -274,7 +276,7 @@
             font-weight: bold;
             cursor: pointer;
         }
-        
+
         .close-modal:hover {
             color: var(--cor-destaque);
         }
@@ -285,7 +287,7 @@
             align-items: center;
             gap: 50px;
         }
-        
+
         .sobre-img {
             flex: 1;
             max-width: 400px;
@@ -294,11 +296,10 @@
         .sobre-img img {
             width: 100%;
             border-radius: 5px;
-            /* Efeito P&B na foto do artista */
             filter: grayscale(1);
             transition: filter 0.3s;
         }
-        
+
         .sobre-img img:hover {
             filter: grayscale(0);
         }
@@ -306,101 +307,188 @@
         .sobre-texto {
             flex: 1;
         }
-        
+
         .sobre-texto h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-        
+
         .sobre-texto p {
             color: var(--cor-texto-secundario);
             margin-bottom: 15px;
         }
 
-        /* 8. SEÇÃO CONTATO */
-        #contato {
-            background-color: var(--cor-fundo-secundaria);
+        /* 8. SEÇÃO PROMOÇÕES */
+        #promocoes {
+            background-color: var(--cor-fundo);
         }
-
-        #contato h2 {
+        #promocoes h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 50px;
         }
-        
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
+
+        .promocao-card {
+            background-color: var(--cor-fundo-secundaria);
+            padding: 30px;
+            border-radius: 5px;
             margin-bottom: 20px;
+            border-left: 4px solid var(--cor-destaque);
+            transition: transform 0.3s;
         }
-        
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background-color: #222;
-            border: 1px solid #444;
-            border-radius: 5px;
+        .promocao-card:hover {
+            transform: translateY(-5px);
+        }
+        .promocao-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             color: var(--cor-texto-principal);
-            font-family: var(--fonte-corpo);
         }
-        
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--cor-destaque);
-        }
-        
-        .btn-submit {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            background-color: var(--cor-destaque);
-            color: var(--cor-fundo);
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        
-        .btn-submit:hover {
-            background-color: #c09b2d;
+        .promocao-card p {
+            color: var(--cor-texto-secundario);
+            margin-bottom: 15px;
         }
 
-        /* 9. RODAPÉ */
+        /* 9. SEÇÃO ORÇAMENTO */
+        #orcamento {
+            background-color: var(--cor-fundo-secundaria);
+            text-align: center;
+        }
+        #orcamento h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        .orcamento-container {
+            display: flex;
+            gap: 40px;
+            text-align: left;
+        }
+        .tipos-tatuagem, .orcamento-info {
+            flex: 1;
+        }
+        .tipos-tatuagem h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .tipos-tatuagem ul {
+            list-style: none;
+        }
+        .tipos-tatuagem li {
+            margin-bottom: 10px;
+            color: var(--cor-texto-secundario);
+        }
+        .tipos-tatuagem li i {
+            color: var(--cor-destaque);
+            margin-right: 10px;
+        }
+        .orcamento-info p {
+            font-size: 1.1rem;
+            color: var(--cor-texto-secundario);
+            margin-bottom: 30px;
+        }
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 40px;
+            background-color: var(--cor-whatsapp);
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.1rem;
+        }
+        .btn-whatsapp:hover {
+            background-color: #128c7e;
+            transform: translateY(-3px);
+        }
+
+        /* 10. BOTÃO WHATSAPP FLUTUANTE */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        .whatsapp-float a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--cor-whatsapp);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 2rem;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .whatsapp-float a:hover {
+            transform: scale(1.1);
+        }
+
+        /* 11. SEÇÃO CUIDADOS */
+        #cuidados {
+            background-color: var(--cor-fundo);
+        }
+        #cuidados h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+        .cuidados-lista {
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+        }
+        .cuidados-lista li {
+            background-color: var(--cor-fundo-secundaria);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .cuidados-lista i {
+            font-size: 1.5rem;
+            color: var(--cor-destaque);
+            margin-top: 5px;
+        }
+        .cuidados-lista p {
+            color: var(--cor-texto-secundario);
+        }
+
+        /* 12. RODAPÉ */
         .footer {
             background-color: #000;
             padding: 40px 5%;
             text-align: center;
         }
-        
         .social-links a {
             color: var(--cor-texto-secundario);
             font-size: 1.8rem;
             margin: 0 15px;
+            display: inline-block;
             transition: color 0.3s, transform 0.3s;
         }
-        
         .social-links a:hover {
             color: var(--cor-destaque);
             transform: translateY(-5px);
         }
-        
         .footer p {
             margin-top: 20px;
             color: #666;
             font-size: 0.9rem;
         }
 
-        /* 10. MEDIA QUERIES (RESPONSIVIDADE) */
+        /* 13. MEDIA QUERIES (RESPONSIVIDADE) */
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: -100%; /* Começa escondido */
+                right: -100%;
                 width: 70%;
                 height: 100vh;
                 background-color: var(--cor-fundo-secundaria);
@@ -409,28 +497,22 @@
                 align-items: center;
                 transition: right 0.5s ease-in-out;
             }
-
             .nav-links.active {
                 right: 0;
             }
-            
             .nav-links li {
                 margin: 20px 0;
             }
-            
             .hamburger {
                 display: block;
-                z-index: 1001; /* Fica acima do menu */
+                z-index: 1001;
             }
-            
             .hero h1 {
                 font-size: 2.8rem;
             }
-            
-            #sobre .container {
+            #sobre .container, .orcamento-container {
                 flex-direction: column;
             }
-
             .sobre-img {
                 max-width: 100%;
             }
@@ -440,13 +522,15 @@
 <body>
 
     <header class="header">
-        <a href="#" class="logo">SEU NOME</a>
+        <a href="#inicio" class="logo">Magrelo Tattoo</a>
         <nav>
             <ul class="nav-links">
                 <li><a href="#inicio" class="active">Início</a></li>
                 <li><a href="#portfolio">Portfólio</a></li>
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#promocoes">Promoções</a></li>
+                <li><a href="#orcamento">Orçamento</a></li>
+                <li><a href="#cuidados">Cuidados</a></li>
             </ul>
         </nav>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
@@ -454,8 +538,8 @@
 
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1>Sua Pele, Nossa Tela</h1>
-            <p>Criando arte permanente com paixão, precisão e um estilo único. Transforme suas ideias em uma obra-prima inesquecível.</p>
+            <h1>Magrelo Tattoo</h1>
+            <p>Sua pele, nossa tela. Arte que transforma e marca para sempre.</p>
             <a href="#portfolio" class="btn-cta">Ver Meus Trabalhos</a>
         </div>
     </section>
@@ -464,30 +548,12 @@
         <div class="container">
             <h2>Portfólio</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://picsum.photos/400/400?random=1&grayscale" alt="Tatuagem 1">
-                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://picsum.photos/400/400?random=2&grayscale" alt="Tatuagem 2">
-                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://picsum.photos/400/400?random=3&grayscale" alt="Tatuagem 3">
-                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://picsum.photos/400/400?random=4&grayscale" alt="Tatuagem 4">
-                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://picsum.photos/400/400?random=5&grayscale" alt="Tatuagem 5">
-                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://picsum.photos/400/400?random=6&grayscale" alt="Tatuagem 6">
-                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
-                </div>
+                <div class="portfolio-item"><img src="https://picsum.photos/400/400?random=1&grayscale" alt="Tatuagem 1"><div class="portfolio-overlay"><i class="fas fa-expand"></i></div></div>
+                <div class="portfolio-item"><img src="https://picsum.photos/400/400?random=2&grayscale" alt="Tatuagem 2"><div class="portfolio-overlay"><i class="fas fa-expand"></i></div></div>
+                <div class="portfolio-item"><img src="https://picsum.photos/400/400?random=3&grayscale" alt="Tatuagem 3"><div class="portfolio-overlay"><i class="fas fa-expand"></i></div></div>
+                <div class="portfolio-item"><img src="https://picsum.photos/400/400?random=4&grayscale" alt="Tatuagem 4"><div class="portfolio-overlay"><i class="fas fa-expand"></i></div></div>
+                <div class="portfolio-item"><img src="https://picsum.photos/400/400?random=5&grayscale" alt="Tatuagem 5"><div class="portfolio-overlay"><i class="fas fa-expand"></i></div></div>
+                <div class="portfolio-item"><img src="https://picsum.photos/400/400?random=6&grayscale" alt="Tatuagem 6"><div class="portfolio-overlay"><i class="fas fa-expand"></i></div></div>
             </div>
         </div>
     </section>
@@ -502,49 +568,82 @@
     <section id="sobre" class="section">
         <div class="container">
             <div class="sobre-img">
-                <img src="https://picsum.photos/400/500?random=10" alt="Foto do Tatuador">
+                <img src="https://picsum.photos/400/500?random=10" alt="Foto do Tatuador Magrelo">
             </div>
             <div class="sobre-texto">
                 <h2>Sobre o Artista</h2>
-                <p>Desde cedo, a arte tem sido minha maior paixão. Encontrei na tatuagem a forma perfeita de expressar criatividade e conectar-me com as histórias das pessoas. Meu trabalho é focado em linhas finas (fine line) e blackwork, buscando sempre um resultado elegante e atemporal.</p>
-                <p>Cada tatuagem é um projeto único, desenvolvido em colaboração com o cliente para garantir que a arte na pele seja um reflexo fiel de sua personalidade e de suas ideias. A biossegurança e o uso de materiais de alta qualidade são prioridades absolutas no meu estúdio.</p>
+                <p>Com anos de experiência no mundo da tatuagem, Magrelo encontrou na arte de marcar a pele uma forma de expressar sua criatividade e paixão. Especializado em estilos como Fine Line, Blackwork e Realismo, cada tatuagem é uma obra única, criada com atenção aos detalhes e em colaboração com o cliente.</p>
+                <p>O compromisso de Magrelo vai além da arte: a segurança e a higiene são prioridades em cada sessão, utilizando materiais descartáveis e seguindo rigorosos protocolos de biossegurança para garantir uma experiência segura e confortável para todos.</p>
             </div>
         </div>
     </section>
 
-    <section id="contato" class="section">
+    <section id="promocoes" class="section">
         <div class="container">
-            <h2>Faça seu Orçamento</h2>
-            <form action="#" class="contact-form">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Seu Nome" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Seu Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" rows="5" placeholder="Descreva sua ideia de tatuagem..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Enviar Mensagem</button>
-            </form>
+            <h2>Promoções Especiais</h2>
+            <div class="promocao-card">
+                <h3>Flash Tattoos a partir de R$150</h3>
+                <p>Confira nossa seleção de desenhos exclusivos prontos para tatuar com um preço especial. Perfeito para sua primeira tattoo ou para adicionar à coleção!</p>
+            </div>
+            <div class="promocao-card">
+                <h3>Traga um Amigo!</h3>
+                <p>Fechando uma tatuagem acima de R$300, seu amigo ganha 10% de desconto na primeira tattoo dele. Promoção válida para agendamentos no mesmo mês.</p>
+            </div>
+            <p style="text-align: center; color: var(--cor-texto-secundario); margin-top: 30px;">Fique de olho no Instagram para mais novidades e flashes!</p>
+        </div>
+    </section>
+
+    <section id="orcamento" class="section">
+        <div class="container orcamento-container">
+            <div class="tipos-tatuagem">
+                <h3>Estilos que Domino</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i>Fine Line: Traços finos e delicados.</li>
+                    <li><i class="fas fa-check"></i>Blackwork: Tatuagens com predominância do preto.</li>
+                    <li><i class="fas fa-check"></i>Realismo P&B: Reprodução fiel de fotos.</li>
+                    <li><i class="fas fa-check"></i>Old School/Tradicional: Estilo clássico.</li>
+                    <li><i class="fas fa-check"></i>Geométrico: Formas e padrões precisos.</li>
+                </ul>
+            </div>
+            <div class="orcamento-info">
+                <h3>Orçamento Inteligente</h3>
+                <p>Para um orçamento preciso e personalizado, entre em contato diretamente pelo WhatsApp. Envie sua ideia, o tamanho desejado (em cm) e a área do corpo. Quanto mais detalhes você fornecer, melhor!</p>
+                <a href="https://wa.me/5543000000000" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Orçamento no WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="cuidados" class="section">
+        <div class="container">
+            <h2>Cuidados Pós-Tatuagem</h2>
+            <ul class="cuidados-lista">
+                <li><i class="fas fa-shield-alt"></i><div><h3>Proteção Inicial</h3><p>Mantenha o plástico filme por algumas horas, conforme orientação. Ele protege contra bactérias.</p></div></li>
+                <li><i class="fas fa-soap"></i><div><h3>Higiene é Essencial</h3><p>Lave a tatuagem suavemente com água morna e sabão neutro. Seque com papel toalha, sem esfregar.</p></div></li>
+                <li><i class="fas fa-hand-holding-medical"></i><div><h3>Hidratação na Medida</h3><p>Aplique uma fina camada de pomada cicatrizante recomendada, 2 a 3 vezes ao dia.</p></div></li>
+                <li><i class="fas fa-sun"></i><div><h3>Fuja do Sol</h3><p>Evite exposição solar direta por pelo menos 30 dias. Sol é o maior inimigo de uma tattoo nova.</p></div></li>
+                <li><i class="fas fa-swimmer"></i><div><h3>Sem Mergulhos</h3><p>Evite piscinas, mar e saunas durante a cicatrização para prevenir infecções.</p></div></li>
+            </ul>
         </div>
     </section>
 
     <footer class="footer">
         <div class="social-links">
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5543000000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
-        <p>&copy; 2025 Nome do Estúdio. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Magrelo Tattoo. Todos os direitos reservados.</p>
     </footer>
 
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5543000000000" target="_blank" aria-label="Fale conosco no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
     <script>
-        // JAVASCRIPT - INTERATIVIDADE
-
         document.addEventListener('DOMContentLoaded', function() {
-
-            // 1. ANIMAÇÃO DE SCROLL (Fade-in)
+            // ANIMAÇÃO DE SCROLL (Fade-in)
             const sections = document.querySelectorAll('.section');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -552,30 +651,18 @@
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.1
-            });
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
 
-            // 2. MENU HAMBURGER (MOBILE)
+            // MENU HAMBURGER (MOBILE)
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
             hamburger.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
-                // Alterna o ícone entre menu e 'X'
                 const icon = hamburger.querySelector('i');
-                if (icon.classList.contains('fa-bars')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
             });
-            
-            // Fecha o menu ao clicar em um link
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (navLinks.classList.contains('active')) {
@@ -587,36 +674,29 @@
                 });
             });
 
-            // 3. MODAL DO PORTFÓLIO
+            // MODAL DO PORTFÓLIO
             const modal = document.querySelector('.modal');
             const modalImg = document.getElementById('modal-img');
             const portfolioItems = document.querySelectorAll('.portfolio-item');
             const closeModalBtn = document.querySelector('.close-modal');
-
-            portfolioItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const imgSrc = item.querySelector('img').src;
-                    modalImg.src = imgSrc;
-                    modal.style.display = 'flex'; // Usar flex para centralizar
-                });
-            });
-            
+            const openModal = (src) => {
+                modalImg.src = src;
+                modal.style.display = 'flex';
+            };
             const closeModal = () => {
                 modal.style.display = 'none';
-            }
-
+            };
+            portfolioItems.forEach(item => {
+                item.addEventListener('click', () => openModal(item.querySelector('img').src));
+            });
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                // Fecha o modal se clicar fora da imagem
-                if (e.target === modal) {
-                    closeModal();
-                }
+                if (e.target === modal) closeModal();
             });
 
-            // 4. ATIVAR LINK DO MENU CONFORME A ROLAGEM
+            // ATIVAR LINK DO MENU CONFORME A ROLAGEM
             const navLinksA = document.querySelectorAll('.nav-links a');
             const allSections = document.querySelectorAll('section');
-
             window.addEventListener('scroll', () => {
                 let current = '';
                 allSections.forEach(section => {
@@ -632,7 +712,6 @@
                     }
                 });
             });
-
         });
     </script>
 </body>
