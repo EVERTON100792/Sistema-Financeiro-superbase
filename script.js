@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeBudgetCalculator();
     initializeSocialMedia();
+    initializeServiceCardSelection(); // <-- ADICIONE ESTA LINHA AQUI
     
     // Update filtered images initially
     updateFilteredImages();
