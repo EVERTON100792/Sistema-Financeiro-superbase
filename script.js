@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeLightbox();
     initializeAnimations();
     initializeBudgetCalculator();
+    initializeSocialMedia(); // <-- NOVO: Inicializa os botões de redes sociais
     
     // Update filtered images initially
     updateFilteredImages();
@@ -48,6 +49,13 @@ function hideLoadingScreen() {
         loadingScreen.style.display = 'none';
         isLoading = false;
         document.body.style.overflow = 'visible';
+        
+        // CORREÇÃO: Mover a chamada do efeito de digitação para cá
+        // para garantir que ele inicie apenas após a tela de carregamento sumir.
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        if (heroSubtitle) {
+            typeWriter(heroSubtitle, heroSubtitle.textContent, 100);
+        }
     }, 500);
 }
 
@@ -177,16 +185,18 @@ function initializeScrollEffects() {
         rootMargin: '0px 0px -50px 0px'
     };
     
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target); // Unobserve after animation
             }
         });
     }, observerOptions);
     
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.service-card, .portfolio-item, .step-item, .value-item, .info-card');
+    // CORREÇÃO: Removido '.service-card' desta lista para evitar conflito com o outro observer.
+    const animateElements = document.querySelectorAll('.portfolio-item, .step-item, .value-item, .info-card');
     animateElements.forEach(el => observer.observe(el));
 }
 
@@ -263,6 +273,7 @@ function updateFilteredImages(filter = 'all') {
 
 // Contact Form
 function initializeContactForm() {
+    if (!contactForm) return;
     contactForm.addEventListener('submit', handleFormSubmit);
     
     // Form validation
@@ -274,7 +285,9 @@ function initializeContactForm() {
     
     // Phone number formatting
     const phoneInput = document.getElementById('phone');
-    phoneInput.addEventListener('input', formatPhoneNumber);
+    if (phoneInput) {
+        phoneInput.addEventListener('input', formatPhoneNumber);
+    }
 }
 
 function handleFormSubmit(e) {
@@ -429,7 +442,9 @@ Aguardo retorno. Obrigado!
     `.trim();
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/5511999999999?text=${encodedMessage}`;
+    // CORREÇÃO: Substitua o número abaixo pelo seu número de WhatsApp com o código do país.
+    const whatsappNumber = '5511999999999'; // Ex: 5511987654321
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
     // Open WhatsApp in new tab after a delay
     setTimeout(() => {
@@ -539,43 +554,35 @@ function updateLightboxContent() {
 function initializeAnimations() {
     // Counter animation for stats
     const statsNumbers = document.querySelectorAll('.stat-number');
-    const statsObserver = new IntersectionObserver((entries) => {
+    const statsObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 animateCounter(entry.target);
-                statsObserver.unobserve(entry.target);
+                observer.unobserve(entry.target);
             }
         });
     });
     
     statsNumbers.forEach(num => statsObserver.observe(num));
     
-    // Typing effect for hero subtitle
-    const heroSubtitle = document.querySelector('.hero-subtitle');
-    if (heroSubtitle && !isLoading) {
-        setTimeout(() => {
-            typeWriter(heroSubtitle, heroSubtitle.textContent, 100);
-        }, 1000);
-    }
-    
     // Stagger animation for service cards
     const serviceCards = document.querySelectorAll('.service-card');
-    const servicesObserver = new IntersectionObserver((entries) => {
+    const servicesObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                }, index * 100);
-                servicesObserver.unobserve(entry.target);
+                }, index * 150); // Aumentei o delay para um efeito mais visível
+                observer.unobserve(entry.target);
             }
         });
-    });
+    }, { threshold: 0.1 });
     
     serviceCards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
-        card.style.transition = 'all 0.6s ease';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         servicesObserver.observe(card);
     });
 }
@@ -583,18 +590,22 @@ function initializeAnimations() {
 function animateCounter(element) {
     const target = parseInt(element.textContent.replace(/\D/g, ''));
     const duration = 2000;
-    const increment = target / (duration / 50);
-    let current = 0;
+    if (isNaN(target)) return;
+    
+    let start = 0;
+    const stepTime = 20;
+    const steps = duration / stepTime;
+    const increment = target / steps;
     
     const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = element.textContent.replace(/\d+/, target);
+        start += increment;
+        if (start >= target) {
+            element.textContent = element.textContent.replace(/[\d,]+/, target.toLocaleString());
             clearInterval(timer);
         } else {
-            element.textContent = element.textContent.replace(/\d+/, Math.floor(current));
+            element.textContent = element.textContent.replace(/[\d,]+/, Math.floor(start).toLocaleString());
         }
-    }, 50);
+    }, stepTime);
 }
 
 function typeWriter(element, text, speed) {
@@ -615,8 +626,6 @@ function typeWriter(element, text, speed) {
 // Budget Calculator
 function initializeBudgetCalculator() {
     const calculateBtn = document.getElementById('calculate-budget');
-    const calculatorResult = document.getElementById('calculator-result');
-    
     if (calculateBtn) {
         calculateBtn.addEventListener('click', calculateBudget);
     }
@@ -664,114 +673,99 @@ function calculateBudget() {
     // Show result with animation
     resultDiv.style.display = 'block';
     setTimeout(() => {
-        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 100);
     
-    showNotification('Orçamento calculado com sucesso!', 'success');
+    showNotification('Orçamento estimado com sucesso!', 'success');
 }
 
 function getBasePrice(style) {
     const basePrices = {
-        'traditional': 200,
-        'realistic': 400,
-        'minimal': 150,
-        'geometric': 250,
-        'watercolor': 300,
-        'lettering': 180
+        'traditional': 200, 'realistic': 400, 'minimal': 150,
+        'geometric': 250, 'watercolor': 300, 'lettering': 180
     };
     return basePrices[style] || 200;
 }
 
 function getTimeRange(size) {
     const timeRanges = {
-        'small': { min: 1, max: 2 },
-        'medium': { min: 2, max: 4 },
-        'large': { min: 4, max: 6 },
-        'xlarge': { min: 6, max: 8 }
+        'small': { min: 1, max: 2 }, 'medium': { min: 2, max: 4 },
+        'large': { min: 4, max: 6 }, 'xlarge': { min: 6, max: 8 }
     };
     return timeRanges[size] || { min: 1, max: 2 };
 }
 
 // Notification System
 function showNotification(message, type = 'info') {
-    // Remove existing notifications
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notif => notif.remove());
     
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    const iconClass = type === 'success' ? 'fa-check-circle' : (type === 'error' || type === 'warning' ? 'fa-exclamation-circle' : 'fa-info-circle');
     notification.innerHTML = `
         <div class="notification-content">
-            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+            <i class="fas ${iconClass}"></i>
             <span>${message}</span>
-            <button class="notification-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    `;
+            <button class="notification-close"><i class="fas fa-times"></i></button>
+        </div>`;
     
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        z-index: 10001;
-        background: ${type === 'success' ? 'var(--accent-gold)' : type === 'error' ? 'var(--accent-red)' : 'var(--secondary-black)'};
-        color: ${type === 'success' ? 'var(--primary-black)' : 'var(--text-white)'};
-        padding: 15px 20px;
-        border-radius: var(--border-radius);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 400px;
-        border: 1px solid ${type === 'success' ? 'var(--accent-gold)' : type === 'error' ? 'var(--accent-red)' : 'var(--border-gray)'};
-    `;
-    
-    const content = notification.querySelector('.notification-content');
-    content.style.cssText = `
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    `;
-    
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.style.cssText = `
-        background: none;
-        border: none;
-        color: inherit;
-        cursor: pointer;
-        padding: 0;
-        margin-left: auto;
-    `;
-    
-    // Add to page
     document.body.appendChild(notification);
     
-    // Show notification
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
+        notification.classList.add('show');
     }, 100);
     
-    // Auto remove after 5 seconds
     const autoRemove = setTimeout(() => {
         removeNotification(notification);
     }, 5000);
     
-    // Manual close
-    closeBtn.addEventListener('click', () => {
+    notification.querySelector('.notification-close').addEventListener('click', () => {
         clearTimeout(autoRemove);
         removeNotification(notification);
     });
 }
 
 function removeNotification(notification) {
-    notification.style.transform = 'translateX(100%)';
+    notification.classList.remove('show');
     setTimeout(() => {
         if (notification.parentNode) {
             notification.remove();
         }
     }, 300);
+}
+
+// ======================================================================
+// NOVO: Funcionalidade para Botões de Redes Sociais
+// ======================================================================
+function initializeSocialMedia() {
+    // --- ATENÇÃO: SUBSTITUA OS LINKS '#' PELOS SEUS LINKS REAIS ---
+    const socialLinks = {
+        instagram: 'https://instagram.com/seu_usuario',
+        facebook: 'https://facebook.com/sua_pagina',
+        whatsapp: 'https://wa.me/5511999999999' // Use o mesmo número da função sendWhatsAppMessage
+    };
+
+    // Supondo que seus botões no HTML tenham estes IDs
+    const instagramBtn = document.getElementById('social-instagram');
+    const facebookBtn = document.getElementById('social-facebook');
+    const whatsappBtn = document.getElementById('social-whatsapp');
+
+    if (instagramBtn) {
+        instagramBtn.href = socialLinks.instagram;
+    }
+    if (facebookBtn) {
+        facebookBtn.href = socialLinks.facebook;
+    }
+    if (whatsappBtn) {
+        whatsappBtn.href = socialLinks.whatsapp;
+    }
+
+    // Adiciona evento para abrir em nova aba, caso não esteja no HTML
+    document.querySelectorAll('.social-link').forEach(link => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer'); // Boa prática de segurança
+    });
 }
 
 // Utility Functions
@@ -803,28 +797,21 @@ function throttle(func, limit) {
 // Error Handling
 window.addEventListener('error', (e) => {
     console.error('JavaScript Error:', e.error);
-    // You could send error reports to a logging service here
+    showNotification('Ocorreu um erro inesperado no site.', 'error');
 });
 
 // Performance Monitoring
 window.addEventListener('load', () => {
-    // Performance metrics
-    const loadTime = performance.now();
-    console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
-    
-    // Report Core Web Vitals
-    if ('web-vital' in window) {
-        // Implementation would depend on web-vitals library
-    }
+    const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+    console.log(`Page loaded in ${loadTime}ms`);
 });
 
 // Service Worker Registration (for PWA capabilities)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        // Uncomment when you have a service worker file
         // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('SW registered'))
-        //     .catch(error => console.log('SW registration failed'));
+        //     .then(registration => console.log('Service Worker registrado com sucesso.'))
+        //     .catch(error => console.log('Falha no registro do Service Worker:', error));
     });
 }
 
