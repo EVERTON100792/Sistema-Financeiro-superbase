@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magrelo Tattoo - Sua História na Pele</title>
+    <title>Estúdio de Tatuagem - O Artista Sombrio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Style+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        /* CSS Reset e Configurações Globais */
+        /* CSS - ESTILIZAÇÃO COMPLETA */
+
+        /* 1. VARIÁVEIS DE COR E FONTES */
+        :root {
+            --cor-fundo: #0a0a0a;
+            --cor-fundo-secundaria: #141414;
+            --cor-texto-principal: #e0e0e0;
+            --cor-texto-secundario: #a0a0a0;
+            --cor-destaque: #d4af37; /* Dourado */
+            --fonte-titulos: 'Playfair Display', serif;
+            --fonte-corpo: 'Roboto', sans-serif;
+        }
+
+        /* 2. ESTILOS GERAIS E RESET */
         * {
             margin: 0;
             padding: 0;
@@ -24,493 +37,603 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.7;
-        }
-
-        /* Variáveis de Cor */
-        :root {
-            --primary-color: #c9a435;
-            --dark-bg: #0a0a0a;
-            --light-bg: #1a1a1a;
-            --text-color: #e0e0e0;
-            --dark-text: #121212;
-        }
-
-        /* Estilos Gerais de Seção */
-        section {
-            padding: 120px 5%;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-principal);
+            font-family: var(--fonte-corpo);
+            line-height: 1.6;
             overflow-x: hidden;
-            border-bottom: 1px solid #222;
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            text-align: center;
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        h1, h2, h3 {
+            font-family: var(--fonte-titulos);
+            color: var(--cor-destaque);
+            font-weight: 700;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        p {
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 20px;
-        }
-
-        /* Efeito de Animação de Scroll */
-        .fade-in {
+        section {
+            padding: 100px 5%;
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .fade-in.visible {
+        section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- CABEÇALHO E NAV --- */
-        header {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 3. CABEÇALHO E NAVEGAÇÃO */
+        .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             padding: 20px 5%;
-            background-color: rgba(10, 10, 10, 0.85);
+            background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-bottom: 1px solid #222;
-            transition: top 0.3s;
+            transition: background 0.3s;
         }
 
         .logo {
-            font-family: 'Style Script', cursive;
-            font-size: 2.8rem;
-            color: var(--primary-color);
+            font-family: var(--fonte-titulos);
+            font-size: 1.8rem;
+            color: var(--cor-destaque);
             text-decoration: none;
-            line-height: 1;
         }
 
-        .nav-links { list-style: none; display: flex; }
-        .nav-links li { margin-left: 30px; }
-        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: bold; transition: color 0.3s ease; position: relative; padding-bottom: 5px; }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--primary-color); transition: width 0.3s ease; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--text-color); cursor: pointer; background: none; border: none; }
-
-        /* --- SEÇÃO INÍCIO --- */
-        #inicio { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1593432333979-383348911b37?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover; background-attachment: fixed; }
-        .hero-content h1 { font-family: 'Style Script', cursive; font-size: clamp(5rem, 12vw, 9rem); margin-bottom: 0; color: var(--primary-color); line-height: 1; }
-        .hero-content p { font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 40px; color: #ccc; }
-        .cta-button { display: inline-block; padding: 15px 40px; background-color: var(--primary-color); color: var(--dark-text); text-decoration: none; font-size: 1.2rem; font-weight: bold; border-radius: 50px; transition: transform 0.3s ease, background-color 0.3s ease; border: 2px solid var(--primary-color); }
-        .cta-button:hover { background-color: transparent; color: var(--primary-color); transform: scale(1.05); }
-        
-        /* --- SEÇÃO PORTFÓLIO --- */
-        .portfolio-filters { text-align: center; margin-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-        .filter-btn { background-color: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 12px 25px; cursor: pointer; border-radius: 50px; transition: background-color 0.3s, color 0.3s; font-weight: bold; }
-        .filter-btn:hover, .filter-btn.active { background-color: var(--primary-color); color: var(--dark-text); }
-        .portfolio-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .gallery-item { overflow: hidden; border-radius: 8px; cursor: pointer; position: relative; aspect-ratio: 1 / 1; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease; }
-        .gallery-item:hover img { transform: scale(1.1); filter: brightness(0.7); }
-
-        /* --- MODAL (LIGHTBOX) --- */
-        .modal { display: none; position: fixed; z-index: 2000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); animation: fadeInModal 0.5s; }
-        @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
-        .modal-content { margin: auto; display: block; width: auto; max-width: 90%; max-height: 90vh; }
-        .close-modal { position: absolute; top: 20px; right: 40px; color: #f1f1f1; font-size: 45px; font-weight: bold; transition: 0.3s; cursor: pointer; }
-        .close-modal:hover { color: var(--primary-color); }
-
-        /* --- SEÇÃO SOBRE --- */
-        .sobre-content { display: flex; align-items: center; gap: 50px; }
-        .sobre-img { flex-basis: 40%; max-width: 400px; }
-        .sobre-img img { width: 100%; border-radius: 50%; border: 8px solid var(--primary-color); box-shadow: 0 0 25px rgba(201, 164, 53, 0.3); }
-        .sobre-text { flex-basis: 60%; }
-        .sobre-text h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: white; margin-bottom: 10px; }
-        .sobre-text h4 { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 20px; font-style: italic; }
-        
-        /* --- SEÇÃO O ESTÚDIO --- */
-        #estudio { padding-top: 0; padding-bottom: 120px; }
-        .estudio-container { position: relative; width: 100%; max-width: 1200px; margin: auto; border-radius: 10px; overflow: hidden; border: 3px solid var(--primary-color); }
-        .estudio-container img { width: 100%; display: block; height: auto; }
-        .estudio-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%); display: flex; align-items: flex-end; padding: 40px; }
-        .estudio-overlay h3 { font-family: 'Playfair Display', serif; color: white; font-size: clamp(2rem, 4vw, 3rem); text-shadow: 2px 2px 5px #000; }
-
-        /* --- SEÇÃO PROMOÇÕES --- */
-        #promocoes { background-color: var(--light-bg); }
-        .promocoes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .promo-card { background-color: var(--dark-bg); padding: 30px; border-radius: 10px; text-align: center; border: 1px solid #333; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .promo-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-        .promo-card .icon { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 20px; }
-        .promo-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; margin-bottom: 15px; }
-        .promo-card p { font-size: 0.95rem; color: #ccc; margin-bottom: 25px; }
-        .promo-button { display: inline-block; padding: 12px 30px; background-color: transparent; color: var(--primary-color); text-decoration: none; font-weight: bold; border-radius: 50px; border: 2px solid var(--primary-color); transition: background-color 0.3s, color 0.3s; }
-        .promo-button:hover { background-color: var(--primary-color); color: var(--dark-text); }
-
-        /* --- SEÇÃO ORÇAMENTO --- */
-        .orcamento-container { max-width: 700px; margin: 40px auto 0; background-color: var(--light-bg); padding: 40px; border-radius: 10px; border: 1px solid #333; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-size: 1.1rem; color: var(--primary-color); font-weight: bold; }
-        .form-group select { width: 100%; padding: 15px; background-color: #252525; border: 1px solid #444; color: #e0e0e0; font-size: 1rem; border-radius: 5px; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23c9a435' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; }
-        #resultado-orcamento { margin-top: 30px; padding: 25px; background-color: var(--dark-bg); border: 2px dashed var(--primary-color); text-align: center; border-radius: 5px; }
-        #resultado-orcamento h3 { margin: 0; font-size: 1.5rem; color: white; font-family: 'Montserrat', sans-serif; }
-        #resultado-orcamento p { margin: 10px 0; font-size: 2rem; }
-        #valor-estimado { color: var(--primary-color); font-weight: bold; }
-
-        /* --- SEÇÃO FAQ --- */
-        #faq .container { max-width: 800px; }
-        .faq-item { background-color: var(--light-bg); margin-bottom: 10px; border-radius: 5px; border-left: 3px solid var(--primary-color); }
-        .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 20px; font-size: 1.2rem; font-weight: bold; color: var(--text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-question i { transition: transform 0.3s ease; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; }
-        .faq-answer p { padding: 0 20px 20px 20px; margin: 0; color: #ccc; }
-        .faq-item.active .faq-answer { max-height: 300px; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); }
-
-        /* --- SEÇÃO CONTATO --- */
-        #contato .container { text-align: center; }
-        .social-links { margin: 30px 0 40px; }
-        .social-links a { color: #e0e0e0; font-size: 2.5rem; margin: 0 20px; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
-        .social-links a:hover { color: var(--primary-color); transform: translateY(-5px); }
-        .map-container { margin-top: 40px; border-radius: 10px; overflow: hidden; border: 3px solid var(--primary-color); height: 450px; }
-        .map-container iframe { width: 100%; height: 100%; border: 0; filter: invert(90%) hue-rotate(200deg) brightness(0.9); }
-
-        /* --- BOTÕES FLUTUANTES --- */
-        .action-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 15px; }
-        .float-btn { width: 60px; height: 60px; color: #FFF; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s, opacity 0.3s; }
-        .whatsapp-float { background-color: #25D366; }
-        .back-to-top { background-color: var(--primary-color); opacity: 0; visibility: hidden; }
-        .back-to-top.visible { opacity: 1; visibility: visible; }
-        .float-btn:hover { transform: scale(1.1); }
-
-        /* --- FOOTER --- */
-        footer { text-align: center; padding: 30px; background-color: #000; }
-        footer p { margin: 0; }
-        
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 992px) {
-            .sobre-content { flex-direction: column; text-align: center; }
-            .sobre-img { margin-bottom: 30px; }
+        .nav-links {
+            list-style: none;
+            display: flex;
         }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cor-texto-principal);
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--cor-destaque);
+            transition: width 0.3s ease-out;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--cor-destaque);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Menu Hamburger para Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 2rem;
+            color: var(--cor-texto-principal);
+        }
+
+        /* 4. SEÇÃO HERÓI (INÍCIO) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* TROQUE A IMAGEM DE FUNDO AQUI */
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), url('https://picsum.photos/1920/1080?grayscale&blur=2') no-repeat center center/cover;
+            padding: 0 5%;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--cor-texto-secundario);
+            margin-bottom: 30px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--cor-destaque);
+            color: var(--cor-fundo);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            border: 2px solid var(--cor-destaque);
+        }
+
+        .btn-cta:hover {
+            background-color: transparent;
+            color: var(--cor-destaque);
+            transform: translateY(-3px);
+        }
+
+        /* 5. SEÇÃO PORTFÓLIO */
+        #portfolio {
+             background-color: var(--cor-fundo-secundaria);
+        }
+        #portfolio h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s;
+            font-size: 2rem;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* 6. MODAL DO PORTFÓLIO */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover {
+            color: var(--cor-destaque);
+        }
+
+        /* 7. SEÇÃO SOBRE */
+        #sobre .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .sobre-img {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .sobre-img img {
+            width: 100%;
+            border-radius: 5px;
+            /* Efeito P&B na foto do artista */
+            filter: grayscale(1);
+            transition: filter 0.3s;
+        }
+        
+        .sobre-img img:hover {
+            filter: grayscale(0);
+        }
+
+        .sobre-texto {
+            flex: 1;
+        }
+        
+        .sobre-texto h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .sobre-texto p {
+            color: var(--cor-texto-secundario);
+            margin-bottom: 15px;
+        }
+
+        /* 8. SEÇÃO CONTATO */
+        #contato {
+            background-color: var(--cor-fundo-secundaria);
+        }
+
+        #contato h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: #222;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: var(--cor-texto-principal);
+            font-family: var(--fonte-corpo);
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cor-destaque);
+        }
+        
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: var(--cor-destaque);
+            color: var(--cor-fundo);
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-submit:hover {
+            background-color: #c09b2d;
+        }
+
+        /* 9. RODAPÉ */
+        .footer {
+            background-color: #000;
+            padding: 40px 5%;
+            text-align: center;
+        }
+        
+        .social-links a {
+            color: var(--cor-texto-secundario);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--cor-destaque);
+            transform: translateY(-5px);
+        }
+        
+        .footer p {
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* 10. MEDIA QUERIES (RESPONSIVIDADE) */
         @media (max-width: 768px) {
-            .nav-links { position: fixed; top: 0; left: -100%; width: 70%; height: 100vh; background-color: var(--light-bg); flex-direction: column; align-items: center; justify-content: center; transition: left 0.5s ease; padding-top: 80px; }
-            .nav-links.active { left: 0; }
-            .nav-links li { margin: 20px 0; }
-            .menu-toggle { display: block; z-index: 1001; }
-            .portfolio-gallery { grid-template-columns: 1fr; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Começa escondido */
+                width: 70%;
+                height: 100vh;
+                background-color: var(--cor-fundo-secundaria);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s ease-in-out;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001; /* Fica acima do menu */
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            #sobre .container {
+                flex-direction: column;
+            }
+
+            .sobre-img {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#inicio" class="logo">Magrelo Tattoo</a>
+    <header class="header">
+        <a href="#" class="logo">SEU NOME</a>
         <nav>
             <ul class="nav-links">
+                <li><a href="#inicio" class="active">Início</a></li>
                 <li><a href="#portfolio">Portfólio</a></li>
-                <li><a href="#sobre">O Artista</a></li>
-                <li><a href="#promocoes">Promoções</a></li>
-                <li><a href="#orcamento">Orçamento</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
     </header>
 
-    <main>
-        <section id="inicio">
-            <div class="hero-content fade-in">
-                <h1>Magrelo Tattoo</h1>
-                <p>Sua história na pele, com arte e exclusividade.</p>
-                <a href="#orcamento" class="cta-button">Faça seu Orçamento</a>
-            </div>
-        </section>
-        
-        <section id="portfolio">
-            <div class="container">
-                <h2 class="section-title fade-in">Portfólio</h2>
-                <div class="portfolio-filters fade-in">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="fineline">Fine Line</button>
-                    <button class="filter-btn" data-filter="blackwork">Blackwork</button>
-                    <button class="filter-btn" data-filter="oldschool">Old School</button>
-                    <button class="filter-btn" data-filter="colorido">Colorido</button>
-                </div>
-                <div class="portfolio-gallery">
-                    <figure class="gallery-item fade-in" data-category="fineline"><img src="https://images.unsplash.com/photo-1541690034479-7a7029515647?q=80&w=600" alt="Tatuagem Fine Line 1" loading="lazy"></figure>
-                    <figure class="gallery-item fade-in" data-category="blackwork"><img src="https://images.unsplash.com/photo-1628189638703-a084043a571f?q=80&w=600" alt="Tatuagem Blackwork 1" loading="lazy"></figure>
-                    <figure class="gallery-item fade-in" data-category="colorido"><img src="https://images.unsplash.com/photo-1594191638299-4d8b63e8a4a5?q=80&w=600" alt="Tatuagem Colorida 1" loading="lazy"></figure>
-                    <figure class="gallery-item fade-in" data-category="oldschool"><img src="https://images.unsplash.com/photo-1575713434113-86c41b6534d7?q=80&w=600" alt="Tatuagem Old School 1" loading="lazy"></figure>
-                    <figure class="gallery-item fade-in" data-category="fineline"><img src="https://images.unsplash.com/photo-1521256079237-73b3fe4b5c77?q=80&w=600" alt="Tatuagem Fine Line 2" loading="lazy"></figure>
-                    <figure class="gallery-item fade-in" data-category="blackwork"><img src="https://images.unsplash.com/photo-1623821049750-281b39f75f91?q=80&w=600" alt="Tatuagem Blackwork 2" loading="lazy"></figure>
-                    <figure class="gallery-item fade-in" data-category="colorido"><img src="https://images.unsplash.com/photo-1632763261799-28f090d638c4?q=80&w=600" alt="Tatuagem Colorida 2" loading="lazy"></figure>
-                    <figure class="gallery-item fade-in" data-category="oldschool"><img src="https://images.unsplash.com/photo-1636113827532-62d4e74e4eea?q=80&w=600" alt="Tatuagem Old School 2" loading="lazy"></figure>
-                </div>
-            </div>
-        </section>
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Sua Pele, Nossa Tela</h1>
+            <p>Criando arte permanente com paixão, precisão e um estilo único. Transforme suas ideias em uma obra-prima inesquecível.</p>
+            <a href="#portfolio" class="btn-cta">Ver Meus Trabalhos</a>
+        </div>
+    </section>
 
-        <section id="sobre">
-            <div class="container">
-                <h2 class="section-title fade-in">O Artista</h2>
-                <div class="sobre-content fade-in">
-                    <div class="sobre-img"><img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=600" alt="Foto do Artista"></div>
-                    <div class="sobre-text">
-                        <h3>Alex "Magrelo" Inkwell</h3>
-                        <h4>Especialista em criação de desenhos exclusivos e autorais.</h4>
-                        <p>Com mais de 10 anos de experiência, Alex transformou sua paixão pela arte em uma carreira dedicada a criar tatuagens que contam histórias. Seu estilo favorito é o blackwork, mas ele adora explorar o fine line para criar peças delicadas e cheias de significado.</p>
-                        <p>Cada traço é pensado para ser único, refletindo a personalidade e o desejo de cada cliente. O estúdio é um espaço onde a arte e a confiança se encontram para criar obras que durarão para sempre.</p>
-                    </div>
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2>Portfólio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/400/400?random=1&grayscale" alt="Tatuagem 1">
+                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/400/400?random=2&grayscale" alt="Tatuagem 2">
+                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/400/400?random=3&grayscale" alt="Tatuagem 3">
+                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/400/400?random=4&grayscale" alt="Tatuagem 4">
+                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/400/400?random=5&grayscale" alt="Tatuagem 5">
+                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/400/400?random=6&grayscale" alt="Tatuagem 6">
+                    <div class="portfolio-overlay"><i class="fas fa-expand"></i></div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="estudio">
-             <div class="container fade-in">
-                <div class="estudio-container">
-                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1894&auto=format&fit=crop" alt="Foto do estúdio Magrelo Tattoo">
-                    <div class="estudio-overlay"><h3>Onde tudo começou...</h3></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="promocoes">
-            <div class="container fade-in">
-                <h2 class="section-title">Promoções Especiais</h2>
-                <p style="text-align:center; color: #ccc;">Confira nossas ofertas ativas e garanta sua tattoo com um preço especial!</p>
-                <div class="promocoes-grid">
-                    <div class="promo-card"><div class="icon"><i class="fas fa-users"></i></div><h3>Tattoo em Dobro</h3><p>Traga um amigo para tatuar no mesmo dia e ambos ganham 15% de desconto em suas tatuagens. Válido para tattoos acima de R$300.</p><a href="#contato" class="promo-button">Agende Agora</a></div>
-                    <div class="promo-card"><div class="icon"><i class="fas fa-birthday-cake"></i></div><h3>Aniversariante do Mês</h3><p>Faz aniversário este mês? Apresente seu documento e ganhe 20% de desconto no seu presente em forma de tattoo!</p><a href="#contato" class="promo-button">Quero meu Presente</a></div>
-                    <div class="promo-card"><div class="icon"><i class="fas fa-bolt"></i></div><h3>Flash Day</h3><p>Fique de olho em nossas redes sociais! Todo final de mês rola um Flash Day com dezenas de desenhos exclusivos por um preço fixo e imperdível.</p><a href="https://instagram.com" target="_blank" class="promo-button">Siga no Instagram</a></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="orcamento">
-            <div class="container fade-in">
-                <h2 class="section-title">Calculadora de Orçamento</h2>
-                <p style="text-align:center; color: #ccc;">Obtenha uma estimativa rápida para sua próxima tatuagem. Para um valor exato, entre em contato.</p>
-                <div class="orcamento-container">
-                    <form id="orcamento-form">
-                        <div class="form-group"><label for="tamanho">Tamanho:</label><select id="tamanho" name="tamanho"><option value="pequeno">Pequeno (até 10cm)</option><option value="medio">Médio (10cm a 20cm)</option><option value="grande">Grande (acima de 20cm)</option></select></div>
-                        <div class="form-group"><label for="estilo">Estilo:</label><select id="estilo" name="estilo"><option value="traco">Só Traço (Fine Line)</option><option value="sombreado">Sombreamento (Black & Grey)</option><option value="colorido">Colorido</option></select></div>
-                        <div class="form-group"><label for="complexidade">Complexidade:</label><select id="complexidade" name="complexidade"><option value="baixa">Baixa (símbolos, escritas)</option><option value="media">Média (florais, mandalas)</option><option value="alta">Alta (realismo, retratos)</option></select></div>
-                    </form>
-                    <div id="resultado-orcamento"><h3>Valor Estimado</h3><p id="valor-estimado">R$ 0,00</p><small style="color: #888;">*Valor aproximado. Preço final confirmado após consulta.</small></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq">
-            <div class="container fade-in">
-                <h2 class="section-title">Perguntas Frequentes</h2>
-                <div class="faq-item"><button class="faq-question">Quais são os cuidados pós-tatuagem?<i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Mantenha o plástico por 4h; Lave com sabonete neutro 2-3x ao dia; Seque suavemente; Aplique uma fina camada da pomada recomendada; Evite sol, mar e piscina por 30 dias; Não coce nem arranque as casquinhas; Beba bastante água.</p></div></div>
-                <div class="faq-item"><button class="faq-question">Tatuagem dói?<i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>A dor é subjetiva e varia de pessoa para pessoa e da área do corpo. Algumas áreas são mais sensíveis que outras. Conversamos sobre isso durante a consulta para te deixar o mais confortável possível.</p></div></div>
-                <div class="faq-item"><button class="faq-question">Preciso agendar um horário?<i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Sim, trabalhamos exclusivamente com hora marcada para garantir total dedicação a cada cliente. Você pode solicitar um agendamento através do nosso WhatsApp ou formulário de contato.</p></div></div>
-            </div>
-        </section>
-
-        <section id="contato">
-            <div class="container fade-in">
-                <h2 class="section-title">Entre em Contato</h2>
-                <p style="text-align: center;">Siga nas redes sociais e venha conhecer o estúdio!</p>
-                <div class="social-links"><a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a><a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-                <p><strong>Endereço:</strong><br>Av. Brasil, 1234 - Centro<br>Rolândia, PR</p>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.812345678901!2d-51.469998884488!3d-23.32211222233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDE5JzE5LjYiUyA1McKwMjgnMTIuMCJX!5e0!3m2!1spt-BR!2sbr!4v1622055612345!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <div id="imageModal" class="modal">
-        <span class="close-modal">×</span>
-        <img class="modal-content" id="modalImage">
+    <div class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img src="" alt="Tatuagem em destaque" id="modal-img">
+        </div>
     </div>
 
-    <div class="action-buttons">
-        <a href="#inicio" class="float-btn back-to-top" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></a>
-        <a href="https://api.whatsapp.com/send?phone=5543999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Magrelo%20Tattoo%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="float-btn whatsapp-float" target="_blank" aria-label="Contato por WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    </div>
+    <section id="sobre" class="section">
+        <div class="container">
+            <div class="sobre-img">
+                <img src="https://picsum.photos/400/500?random=10" alt="Foto do Tatuador">
+            </div>
+            <div class="sobre-texto">
+                <h2>Sobre o Artista</h2>
+                <p>Desde cedo, a arte tem sido minha maior paixão. Encontrei na tatuagem a forma perfeita de expressar criatividade e conectar-me com as histórias das pessoas. Meu trabalho é focado em linhas finas (fine line) e blackwork, buscando sempre um resultado elegante e atemporal.</p>
+                <p>Cada tatuagem é um projeto único, desenvolvido em colaboração com o cliente para garantir que a arte na pele seja um reflexo fiel de sua personalidade e de suas ideias. A biossegurança e o uso de materiais de alta qualidade são prioridades absolutas no meu estúdio.</p>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>© 2025 Magrelo Tattoo. Todos os direitos reservados.</p>
+    <section id="contato" class="section">
+        <div class="container">
+            <h2>Faça seu Orçamento</h2>
+            <form action="#" class="contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Seu Nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Seu Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="5" placeholder="Descreva sua ideia de tatuagem..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p>&copy; 2025 Nome do Estúdio. Todos os direitos reservados.</p>
     </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+        // JAVASCRIPT - INTERATIVIDADE
 
-        /**
-         * Animação dos elementos ao rolar a página.
-         */
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 1. ANIMAÇÃO DE SCROLL (Fade-in)
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
             });
-        }, appearOptions);
-        faders.forEach(fader => appearOnScroll.observe(fader));
-
-        /**
-         * Lógica do Menu Mobile (Hambúrguer).
-         */
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const navLinkItems = document.querySelectorAll('.nav-links li a');
-        const closeMenu = () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        };
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-        navLinkItems.forEach(link => link.addEventListener('click', closeMenu));
-
-        /**
-         * Destaca o link da seção atual na navegação.
-         */
-        const sections = document.querySelectorAll('main section');
-        const navLi = document.querySelectorAll('header nav .nav-links li a');
-        window.addEventListener('scroll', () => {
-            let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
+                observer.observe(section);
             });
-            navLi.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href') === `#${current}`) {
-                    a.classList.add('active');
-                }
-            });
-        });
 
-        /**
-         * Lógica do Filtro do Portfólio.
-         */
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        if (filterButtons.length > 0) {
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    document.querySelector('.filter-btn.active').classList.remove('active');
-                    button.classList.add('active');
-                    const filter = button.getAttribute('data-filter');
-                    galleryItems.forEach(item => {
-                        item.style.display = 'none';
-                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                            item.style.display = 'block';
-                        }
-                    });
+            // 2. MENU HAMBURGER (MOBILE)
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // Alterna o ícone entre menu e 'X'
+                const icon = hamburger.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fecha o menu ao clicar em um link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = hamburger.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 });
             });
-        }
 
-        /**
-         * Lógica do Modal de Imagem (Lightbox).
-         */
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        const galleryImages = document.querySelectorAll('.gallery-item img');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const closeTheModal = () => {
-            if (modal) {
+            // 3. MODAL DO PORTFÓLIO
+            const modal = document.querySelector('.modal');
+            const modalImg = document.getElementById('modal-img');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const closeModalBtn = document.querySelector('.close-modal');
+
+            portfolioItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const imgSrc = item.querySelector('img').src;
+                    modalImg.src = imgSrc;
+                    modal.style.display = 'flex'; // Usar flex para centralizar
+                });
+            });
+            
+            const closeModal = () => {
                 modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
             }
-        };
-        galleryImages.forEach(img => {
-            img.addEventListener('click', () => {
-                if(modal) {
-                    modal.style.display = 'block';
-                    modalImg.src = img.src;
-                    document.body.style.overflow = 'hidden';
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                // Fecha o modal se clicar fora da imagem
+                if (e.target === modal) {
+                    closeModal();
                 }
             });
-        });
-        if(closeModalBtn) closeModalBtn.addEventListener('click', closeTheModal);
-        if(modal) modal.addEventListener('click', e => { if (e.target === modal) closeTheModal(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal && modal.style.display === 'block') closeTheModal(); });
 
-        /**
-         * Lógica da Calculadora de Orçamento.
-         */
-        const orcamentoForm = document.getElementById('orcamento-form');
-        const calcularOrcamento = () => {
-            if (!orcamentoForm) return;
-            const valorEstimadoEl = document.getElementById('valor-estimado');
-            const tamanho = document.getElementById('tamanho').value;
-            const estilo = document.getElementById('estilo').value;
-            const complexidade = document.getElementById('complexidade').value;
-            const precoBase = 150;
-            const mults = { tamanho: { pequeno: 1, medio: 2.2, grande: 4 }, estilo: { traco: 1, sombreado: 1.5, colorido: 2 }, complexidade: { baixa: 1, media: 1.6, alta: 2.5 } };
-            const valorFinal = precoBase * mults.tamanho[tamanho] * mults.estilo[estilo] * mults.complexidade[complexidade];
-            valorEstimadoEl.textContent = `R$ ${valorFinal.toFixed(2).replace('.', ',')}`;
-        };
-        if(orcamentoForm) {
-            orcamentoForm.addEventListener('change', calcularOrcamento);
-            calcularOrcamento(); // Calcula o valor inicial
-        }
+            // 4. ATIVAR LINK DO MENU CONFORME A ROLAGEM
+            const navLinksA = document.querySelectorAll('.nav-links a');
+            const allSections = document.querySelectorAll('section');
 
-        /**
-         * Lógica do FAQ (Accordion).
-         */
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                allSections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinksA.forEach(a => {
+                    a.classList.remove('active');
+                    if(a.getAttribute('href').includes(current)){
+                        a.classList.add('active');
+                    }
+                });
             });
-        });
 
-        /**
-         * Lógica do Botão "Voltar ao Topo".
-         */
-        const backToTopButton = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            if (backToTopButton) {
-                backToTopButton.classList.toggle('visible', window.pageYOffset > 300);
-            }
         });
-        if (backToTopButton) {
-            backToTopButton.addEventListener('click', e => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    });
     </script>
-
 </body>
 </html>
