@@ -3,51 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estúdio de Tatuagem [Nome do Artista/Estúdio]</title>
+    <title>InkStyle Studio - Sua História na Pele</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
-        /* --- GERAL & FONTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Teko:wght@400;700&display=swap');
-
-        :root {
-            --cor-primaria: #f0a500; /* Um dourado/âmbar que se destaca no escuro */
-            --cor-fundo: #1a1a1a;
-            --cor-fundo-secundario: #2c2c2c;
-            --cor-texto: #e0e0e0;
-            --cor-texto-claro: #ffffff;
-            --fonte-titulo: 'Teko', sans-serif;
-            --fonte-corpo: 'Roboto', sans-serif;
-        }
-
+        /* CSS Reset e Configurações Globais */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: var(--fonte-corpo);
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
             line-height: 1.6;
         }
 
-        h1, h2, h3 {
-            font-family: var(--fonte-titulo);
-            font-weight: 700;
-            color: var(--cor-primaria);
-            text-transform: uppercase;
+        /* Estilos Gerais de Seção */
+        section {
+            padding: 100px 5%;
+            min-height: 100vh;
+            border-bottom: 1px solid #222;
         }
 
+        h1, h2, h3 {
+            font-family: 'Garamond', serif; /* Uma fonte mais clássica para títulos */
+            color: #D4AF37; /* Dourado */
+            margin-bottom: 20px;
+        }
+        
         h2 {
-            font-size: 3.5rem;
             text-align: center;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        section {
-            padding: 80px 5%;
+        p {
+            margin-bottom: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .container {
@@ -55,311 +58,165 @@
             margin: 0 auto;
         }
 
-        /* --- HEADER & NAVEGAÇÃO --- */
+        /* ------------------------- */
+        /* --- CABEÇALHO E NAV --- */
+        /* ------------------------- */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             padding: 15px 5%;
-            background-color: rgba(26, 26, 26, 0.85);
+            background-color: rgba(18, 18, 18, 0.85);
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            transition: background-color 0.3s;
+            border-bottom: 1px solid #222;
         }
 
         .logo {
-            font-family: var(--fonte-titulo);
-            font-size: 2rem;
-            color: var(--cor-primaria);
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #D4AF37;
             text-decoration: none;
         }
 
-        nav a {
-            font-family: var(--fonte-titulo);
-            font-size: 1.4rem;
-            color: var(--cor-texto-claro);
-            text-decoration: none;
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
             margin-left: 25px;
-            transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var(--cor-primaria);
+        nav ul li a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
-        
-        /* --- SEÇÃO INÍCIO --- */
+
+        nav ul li a:hover {
+            color: #D4AF37;
+        }
+
+        /* ------------------------- */
+        /* --- SEÇÃO 1: INÍCIO --- */
+        /* ------------------------- */
         #inicio {
-            height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1599238885830-17a43a91724a?q=80&w=1974&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1593432333979-383348911b37?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            /* ↑↑↑ TROCAR IMAGEM DE FUNDO AQUI ↑↑↑ */
         }
 
         .hero-content {
             max-width: 800px;
         }
 
-        .hero-content h1 {
-            font-size: 5rem;
+        #inicio h1 {
+            font-size: 4rem;
             margin-bottom: 10px;
         }
 
-        .slogan {
-            font-size: 1.8rem;
-            color: var(--cor-texto-claro);
-            margin-bottom: 30px;
-            font-family: var(--fonte-titulo);
-            font-weight: 400;
-        }
-
-        .cta-principal {
-            display: inline-block;
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo);
-            padding: 15px 40px;
+        #inicio p {
             font-size: 1.5rem;
-            font-weight: 700;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: #D4AF37;
+            color: #121212;
             text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
             border-radius: 5px;
-            transition: transform 0.3s, background-color 0.3s;
-            font-family: var(--fonte-titulo);
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .cta-principal:hover {
+        .cta-button:hover {
+            background-color: #ffdf70;
             transform: scale(1.05);
-            background-color: #fff;
         }
 
-        /* --- SEÇÃO PORTFÓLIO --- */
-        .filtros-portfolio {
+        /* ------------------------- */
+        /* --- SEÇÃO 2: PORTFÓLIO --- */
+        /* ------------------------- */
+        .portfolio-filters {
             text-align: center;
             margin-bottom: 40px;
         }
 
-        .filtro-btn {
-            background: none;
-            border: 2px solid var(--cor-primaria);
-            color: var(--cor-primaria);
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
             padding: 10px 20px;
-            margin: 0 10px;
+            margin: 5px;
             cursor: pointer;
+            border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
-            font-family: var(--fonte-titulo);
-            font-size: 1.2rem;
         }
 
-        .filtro-btn.ativo, .filtro-btn:hover {
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo);
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #D4AF37;
+            color: #121212;
         }
 
-        .galeria-portfolio {
+        .portfolio-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 15px;
         }
 
-        .galeria-item {
+        .gallery-item {
             overflow: hidden;
+            border-radius: 5px;
             cursor: pointer;
             position: relative;
         }
         
-        .galeria-item img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease-out;
+            transition: transform 0.4s ease;
         }
 
-        .galeria-item:hover img {
+        .gallery-item:hover img {
             transform: scale(1.1);
         }
 
-        /* --- SEÇÃO SOBRE --- */
-        #sobre {
-            background-color: var(--cor-fundo-secundario);
-        }
-        .sobre-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        .sobre-img {
-            flex-basis: 40%;
-            max-width: 400px;
-        }
-        .sobre-img img {
-            width: 100%;
-            border-radius: 5px;
-            border: 3px solid var(--cor-primaria);
-        }
-        .sobre-texto {
-            flex-basis: 60%;
-        }
-        .sobre-texto h3 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        .especializacao {
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo);
-            padding: 5px 15px;
-            font-family: var(--fonte-titulo);
-            font-size: 1.5rem;
-            display: inline-block;
-            margin-top: 20px;
-        }
-        
-        /* --- SEÇÃO ORÇAMENTO --- */
-        .orcamento-container {
-            display: flex;
-            gap: 50px;
-            background-color: var(--cor-fundo-secundario);
-            padding: 40px;
-            border-radius: 10px;
-        }
-
-        .calculadora {
-            flex-basis: 60%;
-        }
-
-        .resultado-orcamento {
-            flex-basis: 40%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--cor-fundo);
-            padding: 30px;
-            border-radius: 5px;
-        }
-
-        .controle-grupo {
-            margin-bottom: 25px;
-        }
-
-        .controle-grupo label {
-            display: block;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-family: var(--fonte-titulo);
-            color: var(--cor-texto-claro);
-        }
-
-        .controle-grupo select, .controle-grupo input {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--cor-fundo);
-            border: 1px solid var(--cor-primaria);
-            color: var(--cor-texto);
-            font-size: 1rem;
-            border-radius: 5px;
-        }
-
-        #valor-estimado {
-            font-family: var(--fonte-titulo);
-            font-size: 3.5rem;
-            color: var(--cor-primaria);
-            margin-top: 10px;
-            font-weight: 700;
-        }
-
-        .resultado-orcamento p {
-            text-align: center;
-        }
-
-        /* --- SEÇÃO CUIDADOS --- */
-        #cuidados {
-            background-color: var(--cor-fundo-secundario);
-        }
-        .cuidados-lista {
-            list-style: none;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .cuidados-lista li {
-            background-color: var(--cor-fundo);
-            margin-bottom: 15px;
-            padding: 20px;
-            border-left: 5px solid var(--cor-primaria);
-            transition: transform 0.3s;
-        }
-        .cuidados-lista li:hover {
-            transform: translateX(10px);
-        }
-
-        /* --- SEÇÃO CONTATO --- */
-        #contato .container {
-            text-align: center;
-        }
-        .contato-links {
-            margin: 30px 0;
-        }
-        .contato-links a {
-            margin: 0 15px;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .contato-links a:hover {
-            transform: scale(1.1);
-        }
-        .contato-links img {
-            width: 50px;
-            height: 50px;
-        }
-        .mapa {
-            border: 3px solid var(--cor-primaria);
-            border-radius: 5px;
-            overflow: hidden;
-            height: 450px;
-            width: 100%;
-        }
-
-        /* --- WHATSAPP FLUTUANTE --- */
-        .whatsapp-flutuante {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 100;
-            transition: transform 0.3s;
-        }
-        .whatsapp-flutuante:hover {
-            transform: scale(1.1);
-        }
-        .whatsapp-flutuante img {
-            width: 60px;
-            height: 60px;
-        }
-        
-        /* --- MODAL DA GALERIA --- */
+        /* Modal (Lightbox) para Imagens */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1001;
-            padding-top: 100px;
+            z-index: 2000;
+            padding-top: 50px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0, 0, 0, 0.9);
         }
         .modal-content {
             margin: auto;
             display: block;
-            width: 80%;
-            max-width: 700px;
+            width: auto;
+            max-width: 90%;
+            max-height: 90vh;
         }
-        .close {
+        .close-modal {
             position: absolute;
             top: 15px;
             right: 35px;
@@ -369,234 +226,441 @@
             transition: 0.3s;
             cursor: pointer;
         }
+        .close-modal:hover {
+            color: #bbb;
+        }
+
+        /* ------------------------- */
+        /* --- SEÇÃO 3: SOBRE --- */
+        /* ------------------------- */
+        .sobre-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .sobre-img {
+            flex-basis: 40%;
+        }
+        .sobre-img img {
+            width: 100%;
+            border-radius: 50%;
+            border: 5px solid #D4AF37;
+        }
+        .sobre-text {
+            flex-basis: 60%;
+        }
+        .sobre-text h3 {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        /* ------------------------- */
+        /* --- SEÇÃO 4: ORÇAMENTO --- */
+        /* ------------------------- */
+        .orcamento-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #D4AF37;
+        }
+        
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: #252525;
+            border: 1px solid #444;
+            color: #e0e0e0;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        #resultado-orcamento {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #121212;
+            border: 1px dashed #D4AF37;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        #resultado-orcamento h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        #resultado-orcamento p {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        #valor-estimado {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        /* ------------------------- */
+        /* --- SEÇÃO 5: CUIDADOS --- */
+        /* ------------------------- */
+        #cuidados ul {
+            list-style: none;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        #cuidados li {
+            background-color: #1a1a1a;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #D4AF37;
+            border-radius: 3px;
+        }
+
+        /* ------------------------- */
+        /* --- SEÇÃO 6: CONTATO --- */
+        /* ------------------------- */
+        #contato .container {
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 30px 0;
+        }
+
+        .social-links a {
+            color: #e0e0e0;
+            font-size: 2.5rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #D4AF37;
+        }
+
+        .map-container {
+            margin-top: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #D4AF37;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+        }
+
+        /* --- BOTÃO WHATSAPP FLUTUANTE --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
 
         /* --- FOOTER --- */
         footer {
-            background-color: #000;
             text-align: center;
             padding: 20px;
-            font-size: 0.9rem;
+            background-color: #1a1a1a;
         }
         
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 768px) {
-            h2 { font-size: 2.5rem; }
-            .hero-content h1 { font-size: 3.5rem; }
-            .slogan { font-size: 1.5rem; }
-            nav { display: none; /* Simplificando para mobile, mas um menu hamburger seria ideal */}
-            .sobre-container, .orcamento-container { flex-direction: column; }
-            .mapa { height: 300px; }
-        }
-
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#inicio" class="logo">[NOME ESTÚDIO]</a>
+        <a href="#inicio" class="logo">InkStyle Studio</a>
         <nav>
-            <a href="#inicio">Início</a>
-            <a href="#portfolio">Portfólio</a>
-            <a href="#sobre">Artista</a>
-            <a href="#orcamento">Orçamento</a>
-            <a href="#contato">Contato</a>
+            <ul>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#sobre">O Artista</a></li>
+                <li><a href="#orcamento">Orçamento</a></li>
+                <li><a href="#cuidados">Cuidados</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-
-        <section id="inicio">
-            <div class="hero-content">
-                <h1>[NOME DO ARTISTA/ESTÚDIO]</h1>
-                <p class="slogan">Sua história na pele.</p>
-                <a href="#orcamento" class="cta-principal">FAÇA SEU ORÇAMENTO</a>
-            </div>
-        </section>
-
-        <section id="portfolio">
-            <div class="container">
-                <h2>Portfólio</h2>
-                <div class="filtros-portfolio">
-                    <button class="filtro-btn ativo" onclick="filtrarPortfolio('tudo')">Todos</button>
-                    <button class="filtro-btn" onclick="filtrarPortfolio('fineline')">Fine Line</button>
-                    <button class="filtro-btn" onclick="filtrarPortfolio('blackwork')">Blackwork</button>
-                    <button class="filtro-btn" onclick="filtrarPortfolio('oldschool')">Old School</button>
-                    <button class="filtro-btn" onclick="filtrarPortfolio('colorido')">Colorido</button>
-                </div>
-                <div class="galeria-portfolio">
-                    <div class="galeria-item fineline">
-                        <img src="https://images.unsplash.com/photo-1555431182-d45bf5a69a03?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem Fine Line" onclick="abrirModal(this.src)">
-                    </div>
-                    <div class="galeria-item blackwork">
-                        <img src="https://images.unsplash.com/photo-1617886947321-220a28312a14?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Blackwork" onclick="abrirModal(this.src)">
-                    </div>
-                     <div class="galeria-item oldschool">
-                        <img src="https://images.unsplash.com/photo-1629868322923-c64ab4a7431f?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem Old School" onclick="abrirModal(this.src)">
-                    </div>
-                    <div class="galeria-item colorido">
-                        <img src="https://images.unsplash.com/photo-1617691669818-56193746a58a?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Colorida" onclick="abrirModal(this.src)">
-                    </div>
-                    <div class="galeria-item fineline">
-                        <img src="https://images.unsplash.com/photo-1625207185489-354314a5144b?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Fine Line 2" onclick="abrirModal(this.src)">
-                    </div>
-                    <div class="galeria-item blackwork">
-                        <img src="https://images.unsplash.com/photo-1605335165839-95a1240a5a40?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Blackwork 2" onclick="abrirModal(this.src)">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div id="myModal" class="modal" onclick="this.style.display='none'">
-          <span class="close" onclick="fecharModal()">&times;</span>
-          <img class="modal-content" id="imgModal">
+    <section id="inicio">
+        <div class="hero-content">
+            <h1>InkStyle Studio</h1>
+            <p>Sua história na pele.</p>
+            <a href="#orcamento" class="cta-button">FAÇA SEU ORÇAMENTO</a>
         </div>
+    </section>
 
-        <section id="sobre">
-            <div class="container sobre-container">
+    <section id="portfolio">
+        <div class="container">
+            <h2>Portfólio</h2>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="fineline">Fine Line</button>
+                <button class="filter-btn" data-filter="blackwork">Blackwork</button>
+                <button class="filter-btn" data-filter="oldschool">Old School</button>
+                <button class="filter-btn" data-filter="colorido">Colorido</button>
+            </div>
+
+            <div class="portfolio-gallery">
+                <div class="gallery-item" data-category="fineline">
+                    <img src="https://images.unsplash.com/photo-1541690034479-7a7029515647?q=80&w=600" alt="Tatuagem Fine Line 1">
+                </div>
+                <div class="gallery-item" data-category="blackwork">
+                    <img src="https://images.unsplash.com/photo-1628189638703-a084043a571f?q=80&w=600" alt="Tatuagem Blackwork 1">
+                </div>
+                <div class="gallery-item" data-category="colorido">
+                    <img src="https://images.unsplash.com/photo-1594191638299-4d8b63e8a4a5?q=80&w=600" alt="Tatuagem Colorida 1">
+                </div>
+                <div class="gallery-item" data-category="oldschool">
+                    <img src="https://images.unsplash.com/photo-1575713434113-86c41b6534d7?q=80&w=600" alt="Tatuagem Old School 1">
+                </div>
+                <div class="gallery-item" data-category="fineline">
+                    <img src="https://images.unsplash.com/photo-1521256079237-73b3fe4b5c77?q=80&w=600" alt="Tatuagem Fine Line 2">
+                </div>
+                <div class="gallery-item" data-category="blackwork">
+                    <img src="https://images.unsplash.com/photo-1623821049750-281b39f75f91?q=80&w=600" alt="Tatuagem Blackwork 2">
+                </div>
+                 <div class="gallery-item" data-category="colorido">
+                    <img src="https://images.unsplash.com/photo-1632763261799-28f090d638c4?q=80&w=600" alt="Tatuagem Colorida 2">
+                </div>
+                <div class="gallery-item" data-category="oldschool">
+                    <img src="https://images.unsplash.com/photo-1636113827532-62d4e74e4eea?q=80&w=600" alt="Tatuagem Old School 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <section id="sobre">
+        <div class="container">
+            <h2>Sobre o Artista</h2>
+            <div class="sobre-content">
                 <div class="sobre-img">
-                    <img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=1974&auto=format&fit=crop" alt="Foto do Tatuador">
+                     <img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=600" alt="Foto do Artista">
                 </div>
-                <div class="sobre-texto">
-                    <h2>Sobre o Artista</h2>
-                    <h3>[NOME DO SEU AMIGO]</h3>
-                    <p>Com mais de [X] anos de experiência, encontrei na tatuagem uma forma de expressar arte e transformar a vida das pessoas. Minha paixão é criar designs únicos que contam uma história na pele, unindo técnica e sentimento.</p>
-                    <p>Meu foco está nos estilos Blackwork e Fine Line, onde exploro contrastes e detalhes para dar vida a cada traço.</p>
-                    <div class="especializacao">Criação de desenhos exclusivos e autorais</div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="orcamento">
-            <div class="container">
-                <h2>Orçamento Interativo</h2>
-                <div class="orcamento-container">
-                    <div class="calculadora">
-                        <div class="controle-grupo">
-                            <label for="tamanho">Tamanho:</label>
-                            <select id="tamanho" onchange="calcularOrcamento()">
-                                <option value="1">Pequeno (até 10cm)</option>
-                                <option value="1.5">Médio (até 15cm)</option>
-                                <option value="2.5">Grande (acima de 15cm)</option>
-                            </select>
-                        </div>
-                         <div class="controle-grupo">
-                            <label for="estilo">Estilo:</label>
-                            <select id="estilo" onchange="calcularOrcamento()">
-                                <option value="1">Só Traço (Fine Line)</option>
-                                <option value="1.8">Sombreado (Blackwork)</option>
-                                <option value="2.5">Colorido</option>
-                            </select>
-                        </div>
-                        <div class="controle-grupo">
-                            <label for="complexidade">Complexidade:</label>
-                             <select id="complexidade" onchange="calcularOrcamento()">
-                                <option value="1">Baixa</option>
-                                <option value="1.5">Média</option>
-                                <option value="2.2">Alta</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="resultado-orcamento">
-                        <p>Valor Estimado:</p>
-                        <div id="valor-estimado">R$ 250</div>
-                        <p><small>Este é um valor aproximado. Para um orçamento preciso, entre em contato.</small></p>
-                    </div>
+                <div class="sobre-text">
+                    <h3>Alex Inkwell</h3>
+                    <h4>Especialista em criação de desenhos exclusivos e autorais.</h4>
+                    <p>Com mais de 10 anos de experiência, Alex transformou sua paixão pela arte em uma carreira dedicada a criar tatuagens que contam histórias. Seu estilo favorito é o blackwork, mas ele adora explorar o fine line para criar peças delicadas e cheias de significado.</p>
+                    <p>Cada traço é pensado para ser único, refletindo a personalidade e o desejo de cada cliente. O estúdio é um espaço onde a arte e a confiança se encontram para criar obras que durarão para sempre.</p>
                 </div>
             </div>
-        </section>
-        
-        <section id="cuidados">
-            <div class="container">
-                <h2>Cuidados Pós-Tattoo</h2>
-                <ul class="cuidados-lista">
-                    <li>Manter o plástico por [X] horas, conforme orientação.</li>
-                    <li>Lavar a tatuagem com sabonete neutro e água corrente, 2 a 3 vezes ao dia.</li>
-                    <li>Secar suavemente com papel toalha, sem esfregar.</li>
-                    <li>Aplicar uma camada fina da pomada cicatrizante recomendada.</li>
-                    <li>Evitar sol, piscina, mar e alimentos gordurosos durante a cicatrização.</li>
-                    <li>Não coçar ou remover as casquinhas que se formarem.</li>
-                </ul>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contato">
-            <div class="container">
-                <h2>Contato</h2>
-                <p>Vamos transformar sua ideia em arte? Entre em contato e agende seu horário.</p>
-                <div class="contato-links">
-                     <a href="#" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                    </a>
+    <section id="orcamento">
+        <div class="container">
+            <h2>Calculadora de Orçamento</h2>
+            <div class="orcamento-container">
+                <form id="orcamento-form">
+                    <div class="form-group">
+                        <label for="tamanho">Tamanho:</label>
+                        <select id="tamanho" name="tamanho">
+                            <option value="pequeno">Pequeno (até 10cm)</option>
+                            <option value="medio">Médio (10cm a 20cm)</option>
+                            <option value="grande">Grande (acima de 20cm)</option>
+                        </select>
                     </div>
-                <h3>Endereço do Estúdio</h3>
-                <p>[Seu Endereço, Número, Bairro, Cidade - Estado]</p>
-                <div class="mapa">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.446139428807!2d-46.63646548554287!3d-23.55243888468729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a6058e51c9%3A0x80331505c21844b3!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1672598858533!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="form-group">
+                        <label for="estilo">Estilo:</label>
+                        <select id="estilo" name="estilo">
+                            <option value="traco">Só Traço (Fine Line)</option>
+                            <option value="sombreado">Sombreamento (Black & Grey)</option>
+                            <option value="colorido">Colorido</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="complexidade">Complexidade do Desenho:</label>
+                        <select id="complexidade" name="complexidade">
+                            <option value="baixa">Baixa (símbolos, escritas simples)</option>
+                            <option value="media">Média (florais, mandalas simples)</option>
+                            <option value="alta">Alta (realismo, retratos, desenhos complexos)</option>
+                        </select>
+                    </div>
+                </form>
+
+                <div id="resultado-orcamento">
+                     <h3>Valor Estimado</h3>
+                     <p id="valor-estimado">R$ 350,00</p>
+                     <small style="color: #888;">*Este é um valor aproximado. O preço final será confirmado após consulta.</small>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <section id="cuidados">
+        <div class="container">
+            <h2>Cuidados Pós-Tattoo</h2>
+            <ul>
+                <li>Mantenha o plástico filme por, no máximo, 4 horas.</li>
+                <li>Lave a tatuagem com sabonete neutro e água corrente, 2 a 3 vezes por dia.</li>
+                <li>Seque a área suavemente com papel toalha, sem esfregar.</li>
+                <li>Aplique uma camada fina da pomada cicatrizante recomendada pelo seu tatuador.</li>
+                <li>Evite exposição ao sol, banhos de mar, piscina e sauna por pelo menos 30 dias.</li>
+                <li>Não coce e não arranque as casquinhas que se formarem.</li>
+                <li>Beba bastante água e mantenha uma alimentação saudável para ajudar na cicatrização.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <p>Siga nas redes sociais e venha conhecer o estúdio!</p>
+            
+            <div class="social-links">
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <p>
+                <strong>Endereço:</strong><br>
+                Rua da Arte, 123 - Centro<br>
+                Sua Cidade, SEU ESTADO
+            </p>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197582236895!2d-46.65882238554261!3d-23.56133236748443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0x206d05a9c51a79f8!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1684345214532!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
     
-    <a href="https://api.whatsapp.com/send?phone=SEUNUMERO&text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20orçamento." class="whatsapp-flutuante" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="Contato WhatsApp">
+    <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
     <footer>
-        <p>&copy; 2025 [Nome do Estúdio/Artista]. Todos os direitos reservados.</p>
+        <p>&copy; 2025 InkStyle Studio. Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        // --- FILTRO DO PORTFÓLIO ---
-        function filtrarPortfolio(categoria) {
-            const itens = document.querySelectorAll('.galeria-item');
-            const botoes = document.querySelectorAll('.filtro-btn');
+        document.addEventListener('DOMContentLoaded', function() {
 
-            itens.forEach(item => {
-                item.style.display = 'none';
-                if (item.classList.contains(categoria) || categoria === 'tudo') {
-                    item.style.display = 'block';
+            // --- LÓGICA DO FILTRO DO PORTFÓLIO ---
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Gerencia o botão ativo
+                    document.querySelector('.filter-btn.active').classList.remove('active');
+                    button.classList.add('active');
+
+                    const filter = button.getAttribute('data-filter');
+
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+
+            // --- LÓGICA DO MODAL (LIGHTBOX) ---
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const galleryImages = document.querySelectorAll('.gallery-item img');
+            const closeModal = document.querySelector('.close-modal');
+
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    modal.style.display = 'block';
+                    modalImg.src = img.src;
+                });
+            });
+
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            // Fecha o modal se clicar fora da imagem
+            window.addEventListener('click', (event) => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
                 }
             });
 
-            botoes.forEach(botao => {
-                botao.classList.remove('ativo');
+
+            // --- LÓGICA DA CALCULADORA DE ORÇAMENTO ---
+            const form = document.getElementById('orcamento-form');
+            const valorEstimadoEl = document.getElementById('valor-estimado');
+            
+            const inputs = form.querySelectorAll('select');
+
+            function calcularOrcamento() {
+                const tamanho = document.getElementById('tamanho').value;
+                const estilo = document.getElementById('estilo').value;
+                const complexidade = document.getElementById('complexidade').value;
+
+                // --- LÓGICA DE PREÇOS (AJUSTE AQUI) ---
+                let precoBase = 150; // Preço mínimo de partida
+                
+                // Multiplicador por tamanho
+                let multTamanho = 1;
+                if (tamanho === 'medio') multTamanho = 2;
+                if (tamanho === 'grande') multTamanho = 3.5;
+
+                // Multiplicador por estilo
+                let multEstilo = 1;
+                if (estilo === 'sombreado') multEstilo = 1.4;
+                if (estilo === 'colorido') multEstilo = 1.8;
+
+                // Multiplicador por complexidade
+                let multComplexidade = 1;
+                if (complexidade === 'media') multComplexidade = 1.5;
+                if (complexidade === 'alta') multComplexidade = 2.2;
+                
+                const valorFinal = precoBase * multTamanho * multEstilo * multComplexidade;
+
+                valorEstimadoEl.textContent = `R$ ${valorFinal.toFixed(2).replace('.', ',')}`;
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('change', calcularOrcamento);
             });
-            event.target.classList.add('ativo');
-        }
 
-        // --- MODAL DA GALERIA ---
-        const modal = document.getElementById("myModal");
-        const modalImg = document.getElementById("imgModal");
-        
-        function abrirModal(src) {
-          modal.style.display = "block";
-          modalImg.src = src;
-        }
-
-        function fecharModal() {
-          modal.style.display = "none";
-        }
-
-        // --- CALCULADORA DE ORÇAMENTO INTERATIVA ---
-        function calcularOrcamento() {
-            const valorBase = 250; // Valor mínimo da sua tatuagem
-
-            const fatorTamanho = parseFloat(document.getElementById('tamanho').value);
-            const fatorEstilo = parseFloat(document.getElementById('estilo').value);
-            const fatorComplexidade = parseFloat(document.getElementById('complexidade').value);
-            
-            const valorFinal = valorBase * fatorTamanho * fatorEstilo * fatorComplexidade;
-
-            // Arredonda para o múltiplo de 10 mais próximo para dar um valor "quebrado"
-            const valorArredondado = Math.round(valorFinal / 10) * 10;
-            
-            document.getElementById('valor-estimado').innerText = `R$ ${valorArredondado}`;
-        }
-        
-        // Calcula o orçamento inicial ao carregar a página
-        document.addEventListener('DOMContentLoaded', calcularOrcamento);
-
+            // Calcula o valor inicial ao carregar a página
+            calcularOrcamento();
+        });
     </script>
 </body>
 </html>
