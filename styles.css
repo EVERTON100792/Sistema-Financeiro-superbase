@@ -1,3 +1,21 @@
+/* * ===================================================================
+ * CSS CORRIGIDO
+ *
+ * A correção principal foi feita para o problema do cabeçalho fixo
+ * que sobrepunha o conteúdo das seções.
+ *
+ * 1. Seletor 'section[id]': Adiciona uma margem superior de rolagem
+ * a todas as seções que possuem um ID. Isso garante que, ao navegar
+ * através de links âncora (ex: #contato), a seção pare na posição
+ * correta, logo abaixo do cabeçalho.
+ *
+ * 2. Classe '.hero': Foi adicionado um 'padding-top' para compensar
+ * a altura do cabeçalho. Como a propriedade 'box-sizing' já está
+ * definida como 'border-box', isso não afeta a altura total
+ * de '100vh' da seção hero.
+ * ===================================================================
+*/
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -62,6 +80,12 @@ body {
 body.no-scroll {
     overflow: hidden;
 }
+
+/* CORREÇÃO: Adiciona margem de rolagem para âncoras para compensar a altura do cabeçalho */
+section[id] {
+    scroll-margin-top: 70px;
+}
+
 
 /* Loading Screen */
 #loading-screen {
@@ -337,6 +361,7 @@ body.no-scroll {
 /* Hero Section */
 .hero {
     height: 100vh;
+    padding-top: 70px; /* CORREÇÃO APLICADA */
     position: relative;
     display: flex;
     align-items: center;
