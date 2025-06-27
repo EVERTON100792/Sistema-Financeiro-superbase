@@ -58,6 +58,11 @@ body {
     overflow-x: hidden;
 }
 
+/* Classe para bloquear o scroll quando o menu mobile estiver aberto */
+body.no-scroll {
+    overflow: hidden;
+}
+
 /* Loading Screen */
 #loading-screen {
     position: fixed;
@@ -1845,7 +1850,11 @@ body {
     transform: translateY(-3px);
 }
 
-/* Responsive Design */
+
+/* =============================================== */
+/* =========== DESIGN RESPONSIVO ================= */
+/* =============================================== */
+
 @media (max-width: 1024px) {
     .about-content,
     .contact-content {
@@ -1868,6 +1877,17 @@ body {
     .footer-content {
         grid-template-columns: 1fr 1fr;
         gap: 30px;
+    }
+
+    /* Corrigindo o layout da calculadora e do estúdio para tablets e celulares */
+    .calculator-content,
+    .studio-gallery {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .studio-main {
+        min-height: 350px; /* Ajuste de altura para o layout de coluna única */
     }
 }
 
@@ -1942,29 +1962,80 @@ body {
         grid-template-columns: 1fr;
         gap: 15px;
     }
+
+    /* --- CORREÇÃO: Calculadora de Orçamento --- */
+    .calculator-form, .result-card {
+        padding: 30px 25px;
+    }
+    .price-range {
+        font-size: 2rem;
+    }
+    /* Muda o layout dos detalhes do resultado para empilhar em vez de lado a lado */
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .detail-value {
+        font-size: 1.1rem;
+    }
+
+    /* --- CORREÇÃO: Seção Nosso Processo --- */
+    /* Simplificando drasticamente a seção de processo para mobile */
+    .step-item,
+    .step-item.reverse {
+        grid-template-columns: 1fr; /* Força uma coluna única */
+        text-align: center;
+        gap: 25px;
+        transform: none !important; /* Remove o efeito de translação do hover */
+        padding: 30px 25px;
+    }
+
+    .step-number {
+        margin: 0 auto; /* Centraliza o número do passo */
+    }
+
+    .step-content {
+        order: 2; /* Garante que o conteúdo venha depois do número */
+    }
+    
+    .step-features {
+      justify-content: center; /* Centraliza as tags de features */
+    }
+
+    .step-image {
+        order: 3; /* Imagem vai por último */
+        width: 100%;
+        height: 250px;
+        margin-top: 10px;
+    }
     
     /* Footer */
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
     }
+
+    .footer-logo,
+    .footer-social,
+    .footer-links {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-contact {
+        align-items: center;
+    }
+    
+    .footer-contact p {
+        justify-content: center; /* Alinha o ícone e o texto no centro */
+        max-width: 300px; /* Evita que o texto quebre de forma estranha */
+    }
     
     .footer-bottom {
         flex-direction: column;
         gap: 15px;
         text-align: center;
-    }
-    
-    /* Process */
-    .step-item,
-    .step-item.reverse {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 20px;
-    }
-    
-    .step-number {
-        margin: 0 auto;
     }
     
     /* Lightbox */
@@ -1981,14 +2052,27 @@ body {
         --section-padding: 60px 0;
         --container-padding: 0 15px;
     }
+
+    /* --- CORREÇÃO: Cabeçalho Cortado --- */
+    .nav-container {
+        padding: 0 15px; /* Reduz padding para dar mais espaço */
+    }
+    .logo-text {
+        font-size: 1.4rem; /* Reduz a fonte do logo */
+        letter-spacing: 1px;
+    }
+    .logo-sub {
+        font-size: 0.6rem; /* Reduz a fonte do sub-logo */
+        letter-spacing: 3px;
+    }
     
     .title-main {
-        font-size: 2.5rem;
+        font-size: 2.8rem; /* Ajustado para melhor leitura */
         letter-spacing: 2px;
     }
     
     .title-sub {
-        font-size: 1.2rem;
+        font-size: 1.4rem; /* Ajustado para melhor leitura */
         letter-spacing: 3px;
     }
     
@@ -2008,14 +2092,13 @@ body {
     
     .service-card,
     .info-card,
-    .value-item {
+    .value-item,
+    .contact-form-container,
+    .calculator-form,
+    .result-card {
         padding: 25px 20px;
     }
-    
-    .contact-form-container {
-        padding: 25px;
-    }
-    
+
     .portfolio-grid {
         grid-template-columns: 1fr;
     }
@@ -2023,6 +2106,7 @@ body {
     .image-grid {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, 200px);
+        height: auto;
     }
     
     .main-image {
@@ -2099,86 +2183,5 @@ body {
     :root {
         --text-gray: #ffffff;
         --border-gray: #ffffff;
-    }
-}
-/* =============================================== */
-/* ============ CORREÇÕES RESPONSIVAS ============ */
-/* =============================================== */
-
-/* Adicione esta classe via JavaScript ao <body> quando o menu mobile estiver ativo */
-body.no-scroll {
-    overflow: hidden;
-}
-
-@media (max-width: 1024px) {
-    /* Corrigindo o layout da calculadora e do estúdio para tablets e celulares */
-    .calculator-content,
-    .studio-gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .studio-main {
-        min-height: 350px; /* Ajuste de altura para o layout de coluna única */
-    }
-}
-
-@media (max-width: 768px) {
-    /* --- CORREÇÃO GERAL: Seção Nosso Processo --- */
-    /* Simplificando drasticamente a seção de processo para mobile */
-    .step-item,
-    .step-item.reverse {
-        grid-template-columns: 1fr; /* Força uma coluna única */
-        text-align: center;
-        gap: 25px;
-        transform: none !important; /* Remove o efeito de translação do hover */
-        padding: 30px 25px;
-    }
-
-    .step-number {
-        margin: 0 auto; /* Centraliza o número do passo */
-    }
-
-    .step-content {
-        order: 2; /* Garante que o conteúdo venha depois do número */
-    }
-    
-    .step-features {
-      justify-content: center; /* Centraliza as tags de features */
-    }
-
-    .step-image {
-        order: 3; /* Imagem vai por último */
-        width: 100%;
-        height: 250px;
-        margin-top: 10px;
-    }
-
-    /* --- CORREÇÃO GERAL: Layout do Rodapé --- */
-    /* Garante que os itens do rodapé e os ícones sociais fiquem centralizados */
-    .footer-content {
-        text-align: center;
-    }
-
-    .footer-logo,
-    .footer-social,
-    .footer-links,
-    .footer-contact {
-        align-items: center;
-        justify-content: center;
-    }
-
-    .footer-contact p {
-        justify-content: center; /* Alinha o ícone e o texto no centro */
-    }
-}
-
-@media (max-width: 480px) {
-    /* Ajuste de fonte para o título principal em telas muito pequenas */
-    .title-main {
-        font-size: 2.8rem;
-    }
-
-    .title-sub {
-        font-size: 1.5rem;
     }
 }
