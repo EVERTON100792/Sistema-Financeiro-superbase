@@ -524,4 +524,20 @@ function initializeSocialMedia() {
     document.querySelectorAll('.social-link').forEach(link => {
         link.setAttribute('rel', 'noopener noreferrer'); // Boa prática de segurança
     });
+   // ======================================================================
+// NOVA FUNÇÃO: Seleção de Cards de Serviço
+// ======================================================================
+function initializeServiceCardSelection() {
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    serviceCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // 1. Remove a classe 'selected' de todos os cards
+            serviceCards.forEach(c => c.classList.remove('selected'));
+
+            // 2. Adiciona a classe 'selected' apenas ao card que foi clicado
+            card.classList.add('selected');
+        });
+    });
+} 
 }
