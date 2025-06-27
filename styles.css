@@ -2101,3 +2101,84 @@ body {
         --border-gray: #ffffff;
     }
 }
+/* =============================================== */
+/* ============ CORREÇÕES RESPONSIVAS ============ */
+/* =============================================== */
+
+/* Adicione esta classe via JavaScript ao <body> quando o menu mobile estiver ativo */
+body.no-scroll {
+    overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+    /* Corrigindo o layout da calculadora e do estúdio para tablets e celulares */
+    .calculator-content,
+    .studio-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .studio-main {
+        min-height: 350px; /* Ajuste de altura para o layout de coluna única */
+    }
+}
+
+@media (max-width: 768px) {
+    /* --- CORREÇÃO GERAL: Seção Nosso Processo --- */
+    /* Simplificando drasticamente a seção de processo para mobile */
+    .step-item,
+    .step-item.reverse {
+        grid-template-columns: 1fr; /* Força uma coluna única */
+        text-align: center;
+        gap: 25px;
+        transform: none !important; /* Remove o efeito de translação do hover */
+        padding: 30px 25px;
+    }
+
+    .step-number {
+        margin: 0 auto; /* Centraliza o número do passo */
+    }
+
+    .step-content {
+        order: 2; /* Garante que o conteúdo venha depois do número */
+    }
+    
+    .step-features {
+      justify-content: center; /* Centraliza as tags de features */
+    }
+
+    .step-image {
+        order: 3; /* Imagem vai por último */
+        width: 100%;
+        height: 250px;
+        margin-top: 10px;
+    }
+
+    /* --- CORREÇÃO GERAL: Layout do Rodapé --- */
+    /* Garante que os itens do rodapé e os ícones sociais fiquem centralizados */
+    .footer-content {
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-social,
+    .footer-links,
+    .footer-contact {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-contact p {
+        justify-content: center; /* Alinha o ícone e o texto no centro */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajuste de fonte para o título principal em telas muito pequenas */
+    .title-main {
+        font-size: 2.8rem;
+    }
+
+    .title-sub {
+        font-size: 1.5rem;
+    }
+}
