@@ -3,747 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magrelo Tattoo - Sua História, Nossa Arte.</title>
-
-
+    <title>[Nome do Artista] - Tatuador Profissional</title>
+    <meta name="description" content="Site profissional de [Nome do Artista]. Especialista em tatuagens Fine Line, Blackwork e Realismo. Faça seu orçamento.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/a33a369165.js" crossorigin="anonymous"></script>
 
     <style>
-        /* CSS Reset e Configurações Globais */
+        /* Configurações Globais e Variáveis de Cor */
         :root {
-            --primary-color: #ff9900; /* Laranja vibrante para destaque */
-            --dark-color: #121212;
-            --secondary-dark-color: #1e1e1e;
-            --text-color: #e0e0e0;
-            --gray-color: #888;
+            --primary-color: #E0A800; /* Um dourado/amarelo para destaque */
+            --dark-bg: #121212;       /* Fundo escuro principal */
+            --light-bg: #1E1E1E;      /* Fundo escuro um pouco mais claro para seções */
+            --text-color: #EAEAEA;    /* Cor do texto principal */
+            --text-secondary: #A0A0A0;/* Cor do texto secundário */
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Roboto', sans-serif;
         }
-
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-color);
+            font-family: var(--font-secondary);
+            background-color: var(--dark-bg);
             color: var(--text-color);
-            line-height: 1.6;
         }
 
-
-        h1, h2, h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            color: white;
-            letter-spacing: 1.5px;
-        }
-
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-
-        section {
-            padding: 6rem 2rem;
-            border-bottom: 1px solid #333;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-
-        /* Header e Navegação */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem 2rem;
-            background: rgba(18, 18, 18, 0.8);
+        /* Cabeçalho e Navegação */
+        header {
+            background-color: rgba(18, 18, 18, 0.8);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid #2a2a2a;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            transition: background 0.3s;
         }
-
-
-        .header.scrolled {
-             background: rgba(18, 18, 18, 1);
-        }
-
 
         .logo {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
             text-decoration: none;
         }
 
-
-        .logo img {
-            max-height: 60px; /* Ajuste o tamanho da logo aqui */
-        }
-
-
-        .nav-links {
+        .nav-list {
             list-style: none;
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
-
-        .nav-links a {
-            color: white;
+        .nav-list a {
+            color: var(--text-color);
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
+            font-family: var(--font-primary);
+            font-weight: 400;
+            transition: color 0.3s ease;
         }
 
-
-        .nav-links a:hover {
+        .nav-list a:hover {
             color: var(--primary-color);
         }
 
-
-        .menu-toggle {
-            display: none !important; /* Garante que o toggle não apareça */
+        /* Estilos Gerais de Seção */
+        .section {
+            padding: 6rem 5%;
+            text-align: center;
         }
 
+        .section:nth-child(even) { /* Alterna a cor de fundo */
+            background-color: var(--light-bg);
+        }
+
+        h2 {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: var(--font-primary);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ffc107;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+        }
 
         /* Seção Hero */
         #hero {
-            min-height: 100vh;
+            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('https://via.placeholder.com/1920x1080.png?text=Troque+esta+Imagem') no-repeat center center/cover;
+            height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/1600x900/?tattoo-artist') no-repeat center center/cover;
-            padding-top: 60px; /* Ajuste para a altura do header fixo */
+            color: white;
         }
 
-
         .hero-content h1 {
-            font-size: 5rem;
-            line-height: 1.1;
+            font-family: var(--font-primary);
+            font-size: 3.5rem;
             margin-bottom: 1rem;
         }
 
-
-        .hero-content .subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
+        .hero-content p {
+            font-size: 1.2rem;
             margin-bottom: 2rem;
+            color: var(--text-secondary);
         }
 
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--primary-color);
-            color: var(--dark-color);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 700;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-
-        /* Títulos de Seção */
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            font-size: 3rem;
-            position: relative;
-        }
-
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-        }
-
-
-        /* Sobre */
-        #sobre .container {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-
-        .about-image {
-            flex: 1;
-            max-width: 400px;
-        }
-
-
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-        }
-
-
-        .about-text {
-            flex: 1.2;
-        }
-
-
-        /* Portfólio */
-        .portfolio-grid {
+        /* Seção Portfólio */
+        .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
+            margin-bottom: 3rem;
         }
 
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-
-        .portfolio-item img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
+            border-radius: 5px;
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-
-        .portfolio-item:hover img {
-            transform: scale(1.1);
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
         }
 
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        /* Seção Sobre */
+        .about-content {
             display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            align-items: center;
+            gap: 3rem;
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-
-        .portfolio-overlay h3 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-        }
-
-
-        /* Artistas */
-        .artists-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-
-        .artist-card {
-            background-color: var(--secondary-dark-color);
-            padding: 2rem;
-            text-align: center;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-
-        .artist-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-        }
-
-
-        .artist-card img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+        .about-pic {
+            width: 300px;
+            height: 300px;
             object-fit: cover;
-            border: 4px solid var(--primary-color);
-            margin-bottom: 1.5rem;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
         }
 
-
-        .artist-card h3 {
-            font-size: 2rem;
-            color: var(--primary-color);
-        }
-
-
-        .artist-card p.specialty {
-            font-weight: 600;
-            color: var(--text-color);
+        .about-text p {
             margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .about-text h2{
+            text-align: left;
         }
 
-
-        .artist-socials a {
-            color: var(--gray-color);
-            margin: 0 0.5rem;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-
-        .artist-socials a:hover {
-            color: var(--primary-color);
-        }
-
-
-        /* Depoimentos */
-        .testimonials-grid {
+        /* Seção Cuidados */
+        .care-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
         }
 
-
-        .testimonial-card {
-            background: var(--secondary-dark-color);
+        .step {
+            background-color: var(--dark-bg);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 8px;
             border-left: 5px solid var(--primary-color);
         }
 
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-
-        .testimonial-card .author {
-            font-weight: 700;
-            text-align: right;
+        .step i {
+            font-size: 2.5rem;
             color: var(--primary-color);
-        }
-
-
-        /* FAQ */
-        .faq-accordion .faq-item {
-            background: var(--secondary-dark-color);
             margin-bottom: 1rem;
-            border-radius: 5px;
-            overflow: hidden;
         }
 
+        .step h3 {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
 
-        .faq-question {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            text-align: left;
-            padding: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
+        .step p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Seção Contato */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-
-        .faq-question i {
-            transition: transform 0.3s;
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #2a2a2a;
+            color: var(--text-color);
+            font-family: var(--font-secondary);
+            font-size: 1rem;
         }
 
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
 
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        .contact-form button {
+            cursor: pointer;
+            border: none;
         }
 
-
-        .faq-answer p {
-            padding: 0 1.5rem 1.5rem;
-            color: var(--gray-color);
+        .social-links {
+            margin-top: 2rem;
         }
 
-
-        /* Contato */
-        #contato {
-            display: none; /* Oculta a seção de contato anterior */
-        }
-
-
-        /* Footer */
-        .footer {
-            background: var(--secondary-dark-color);
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-
-        .footer-socials a {
-            color: var(--gray-color);
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 2rem;
             margin: 0 1rem;
-            font-size: 1.8rem;
-            transition: color 0.3s;
-            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
-
-        .footer-socials a:hover {
+        .social-links a:hover {
             color: var(--primary-color);
+            transform: translateY(-5px);
         }
 
-
-        .footer p {
-            margin-top: 1.5rem;
-            color: var(--gray-color);
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #0c0c0c;
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-
-        /* Botão Flutuante WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            text-decoration: none;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-            z-index: 999;
-            animation: pulse 2s infinite;
+        footer p {
+            margin-bottom: 0.5rem;
         }
 
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-
-        /* Responsividade */
+        /* Responsividade para Celulares */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem; /* Reduz o espaçamento em telas menores se necessário */
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+
+            .nav-list {
+                display: none; /* Simplificando para o exemplo. Um menu hamburguer seria o ideal. */
+            }
+
+            #hero {
+                height: 70vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            .about-text h2{
+                text-align: center;
             }
         }
-
-
     </style>
-</head>
+    </head>
 <body>
 
-
-    <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO_DE_WHATSAPP&text=Olá!%20Gostaria%20de%20agendar%20um%20horário." class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-
-    <header class="header">
-        <a href="#hero" class="logo">
-            <img src="magrelo-tattoo-logo.png" alt="Logo Magrelo Tattoo">
-        </a>
+    <header>
         <nav>
-            <ul class="nav-links">
-                <li><a href="#sobre">Sobre</a></li>
+            <a href="#" class="logo">[Logo ou Nome]</a>
+            <ul class="nav-list">
                 <li><a href="#portfolio">Portfólio</a></li>
-                <li><a href="#artistas">Artistas</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#cuidados">Cuidados</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <div class="menu-toggle">
-            <i class="fa fa-bars"></i>
-        </div>
     </header>
-
 
     <main>
         <section id="hero">
             <div class="hero-content">
-                <h1>Sua História, Nossa Arte.</h1>
-                <p class="subtitle">Transformamos suas ideias em tatuagens inesquecíveis.</p>
-                <a href="#footer" class="btn">Entre em Contato</a>
+                <h1>Arte na Pele que Conta sua História</h1>
+                <p>Tatuagens únicas e personalizadas, criadas por [Nome do Artista]</p>
+                <a href="#contato" class="btn">Agende seu Horário</a>
             </div>
         </section>
 
+        <section id="portfolio" class="section">
+            <h2>Portfólio</h2>
+            <p class="section-subtitle">Conheça alguns dos meus trabalhos</p>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+1" alt="Tatuagem 1"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+2" alt="Tatuagem 2"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+3" alt="Tatuagem 3"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+4" alt="Tatuagem 4"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+5" alt="Tatuagem 5"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+6" alt="Tatuagem 6"></div>
+            </div>
+            <a href="https://instagram.com/seu_instagram" target="_blank" class="btn btn-secondary">Ver mais no Instagram</a>
+        </section>
 
-        <section id="sobre">
-            <div class="container">
-                <div class="about-image">
-                    <img src="https://source.unsplash.com/400x500/?tattoo-studio-interior" alt="Interior do estúdio de tatuagem">
-                </div>
+        <section id="sobre" class="section">
+            <div class="about-content">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+do+Artista" alt="Foto do Artista" class="about-pic">
                 <div class="about-text">
-                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Nosso Estúdio</h2>
-                    <p>Bem-vindo ao Magrelo Tattoo, um espaço onde a criatividade encontra a técnica. Nosso estúdio foi fundado com a paixão por contar histórias através da arte corporal. Usamos apenas os melhores materiais, seguimos os mais rigorosos padrões de higiene e contamos com artistas talentosos prontos para criar uma obra de arte única para você.</p>
-                    <p style="margin-top: 1rem;">Acreditamos que cada tatuagem é uma jornada pessoal, e estamos aqui para guiá-lo em cada passo do processo, desde a concepção da ideia até os cuidados finais.</p>
+                    <h2>Sobre [Nome do Artista]</h2>
+                    <p>Comecei minha jornada na tatuagem em [ano]. Minha paixão é transformar ideias e sentimentos em arte permanente na pele. Sou especialista nos estilos Fine Line, Blackwork e Aquarela, buscando sempre a perfeição em cada traço.</p>
+                    <p>Acredito que cada tatuagem é uma colaboração entre o artista e o cliente. Meu objetivo é criar uma obra que você terá orgulho de carregar para sempre. Utilizo apenas materiais de alta qualidade e sigo rigorosos padrões de higiene para garantir sua segurança e o melhor resultado.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cuidados" class="section">
+            <h2>Cuidados Pós-Tatuagem</h2>
+            <p class="section-subtitle">Sua tatuagem é um investimento. Cuide bem dela!</p>
+            <div class="care-steps">
+                <div class="step">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>1. Proteção</h3>
+                    <p>Mantenha o plástico filme por, no mínimo, 4 horas. Ele protege contra bactérias nas primeiras horas cruciais.</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-hands-wash"></i>
+                    <h3>2. Higienização</h3>
+                    <p>Lave a área com sabonete neutro e água corrente, 2 a 3 vezes ao dia. Seque com papel toalha, apalpando suavemente.</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-hand-holding-medical"></i>
+                    <h3>3. Hidratação</h3>
+                    <p>Aplique uma fina camada de pomada cicatrizante recomendada após a lavagem. Não exagere na quantidade.</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-sun"></i>
+                    <h3>4. Evite</h3>
+                    <p>Nos primeiros 15 dias, evite piscina, mar, sauna e exposição direta ao sol. Use roupas leves que não atritem a área.</p>
                 </div>
             </div>
         </section>
 
-
-        <section id="portfolio">
-            <div class="container">
-                <h2 class="section-title">Nosso Trabalho</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="https://source.unsplash.com/500x500/?tattoo,dragon" alt="Tatuagem de Dragão">
-                        <div class="portfolio-overlay"><h3>Oriental</h3></div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://source.unsplash.com/500x500/?tattoo,realistic" alt="Tatuagem Realista">
-                        <div class="portfolio-overlay"><h3>Realismo</h3></div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://source.unsplash.com/500x500/?tattoo,geometric" alt="Tatuagem Geométrica">
-                        <div class="portfolio-overlay"><h3>Geométrico</h3></div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://source.unsplash.com/500x500/?tattoo,flower" alt="Tatuagem de Flor">
-                        <div class="portfolio-overlay"><h3>Fineline</h3></div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://source.unsplash.com/500x500/?tattoo,oldschool" alt="Tatuagem Old School">
-                        <div class="portfolio-overlay"><h3>Old School</h3></div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://source.unsplash.com/500x500/?tattoo,maori" alt="Tatuagem Maori">
-                        <div class="portfolio-overlay"><h3>Tribal</h3></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="artistas">
-            <div class="container">
-                <h2 class="section-title">Nossos Artistas</h2>
-                <div class="artists-grid">
-                    <div class="artist-card">
-                        <img src="https://source.unsplash.com/200x200/?portrait,tattoo-artist,male" alt="Foto do Artista 1">
-                        <h3>Carlos "Shadow"</h3>
-                        <p class="specialty">Especialista em Realismo e Preto & Cinza</p>
-                        <p>Com 10 anos de experiência, Carlos transforma fotos e ideias em obras de arte realistas na pele.</p>
-                        <div class="artist-socials">
-                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                        </div>
-                    </div>
-                    <div class="artist-card">
-                        <img src="https://source.unsplash.com/200x200/?portrait,tattoo-artist,female" alt="Foto do Artista 2">
-                        <h3>Juliana "Line"</h3>
-                        <p class="specialty">Especialista em Fineline e Geométrico</p>
-                        <p>A precisão e a delicadeza dos traços de Juliana criam tatuagens elegantes e cheias de significado.</p>
-                        <div class="artist-socials">
-                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                    </div>
-                     <div class="artist-card">
-                        <img src="https://source.unsplash.com/200x200/?portrait,tattoo-artist,person" alt="Foto do Artista 3">
-                        <h3>Ricardo "Colors"</h3>
-                        <p class="specialty">Especialista em Old School e Aquarela</p>
-                        <p>Ricardo é mestre em usar cores vibrantes para criar tatuagens ousadas e cheias de personalidade.</p>
-                        <div class="artist-socials">
-                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="depoimentos">
-            <div class="container">
-                <h2 class="section-title">O que nossos clientes dizem</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p>"A melhor experiência que já tive em um estúdio! O lugar é impecável e o artista entendeu exatamente o que eu queria. Minha tatuagem ficou perfeita!"</p>
-                        <p class="author">- Ana Silva</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"Profissionalismo do início ao fim. Me senti super seguro com a higiene e o cuidado. O resultado final superou todas as minhas expectativas. Recomendo 100%."</p>
-                        <p class="author">- Marcos Rocha</p>
-                    </div>
-                     <div class="testimonial-card">
-                        <p>"O estúdio tem uma vibe incrível e os artistas são super talentosos. Fizeram uma cobertura de uma tattoo antiga e o trabalho ficou espetacular. Virei cliente fiel."</p>
-                        <p class="author">- Bruna Costa</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="faq">
-            <div class="container">
-                <h2 class="section-title">Perguntas Frequentes</h2>
-                <div class="faq-accordion">
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            Tatuagem dói muito?
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A dor é relativa e varia de pessoa para pessoa e da área do corpo. Algumas áreas são mais sensíveis que outras. Nossos artistas são experientes em tornar o processo o mais confortável possível.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            Quais os cuidados que devo ter após fazer a tatuagem?
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Após a sessão, você receberá todas as instruções detalhadas. Basicamente, envolve manter a área limpa, hidratada com a pomada recomendada, e evitar sol, piscina e mar durante o período de cicatrização.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            Preciso agendar ou posso ir direto ao estúdio?
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Recomendamos fortemente o agendamento para garantir que o artista de sua escolha tenha tempo para criar seu desenho e atendê-lo com calma. Para tatuagens pequenas e rápidas (flash tattoos), às vezes temos encaixes. Entre em contato para verificar a disponibilidade.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            Qual o valor de uma tatuagem?
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>O valor depende do tamanho, complexidade do desenho, cores utilizadas e do artista. Para obter um orçamento, entre em contato conosco com sua ideia, tamanho aproximado e local do corpo.</p>
-                        </div>
-                    </div>
-                </div>
+        <section id="contato" class="section">
+            <h2>Faça seu Orçamento</h2>
+            <p class="section-subtitle">Vamos transformar sua ideia em realidade. Me mande sua ideia!</p>
+            <form action="https://formspree.io/f/seu_codigo_aqui" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Seu Nome" required>
+                <input type="email" name="email" placeholder="Seu E-mail" required>
+                <input type="tel" name="phone" placeholder="Seu WhatsApp (com DDD)">
+                <textarea name="message" rows="5" placeholder="Descreva sua ideia, local do corpo e tamanho aproximado." required></textarea>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </form>
+            <div class="social-links">
+                <a href="https://instagram.com/seu_instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/55SEUNUMERO" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </section>
     </main>
 
-
-    <footer class="footer" id="footer">
-        <div class="footer-socials">
-            <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO_DE_WHATSAPP" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.instagram.com/SEU_INSTAGRAM/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-        <p>&copy; 2025 Magrelo Tattoo. Todos os direitos reservados.</p>
-        <p>Siga-nos nas redes sociais!</p>
+    <footer>
+        <p>&copy; 2025 [Nome do Artista/Estúdio]. Todos os direitos reservados.</p>
+        <p>Desenvolvido por [Seu Nome ou Empresa]</p>
     </footer>
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Header Scrolled
-            const header = document.querySelector('.header');
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Adiciona uma sombra ao cabeçalho quando o usuário rola a página
+            const header = document.querySelector('header');
+            
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
                 } else {
-                    header.classList.remove('scrolled');
+                    header.style.boxShadow = 'none';
                 }
             });
 
-
-            // FAQ Accordion
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                const answer = item.querySelector('.faq-answer');
-
-
-                question.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-
-
-                    // Fecha todos os outros
-                    faqItems.forEach(otherItem => {
-                        otherItem.classList.remove('active');
-                        otherItem.querySelector('.faq-answer').style.maxHeight = 0;
-                        otherItem.querySelector('.faq-answer').style.padding = "0 1.5rem";
-                    });
-
-
-                    // Abre ou fecha o clicado
-                    if (!isActive) {
-                        item.classList.add('active');
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
-                        answer.style.padding = "0 1.5rem 1.5rem";
-
-
-                    }
-                });
-            });
-
-
-            // Animação de Scroll (Fade-in)
-            const sections = document.querySelectorAll('section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-
-            sections.forEach(section => {
-                observer.observe(section);
+            // Validação simples do formulário de contato (exemplo)
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', (e) => {
+                const phoneInput = contactForm.querySelector('input[name="phone"]');
+                if (phoneInput.value.length > 0 && phoneInput.value.length < 10) {
+                    alert('Por favor, insira um número de telefone válido com DDD.');
+                    e.preventDefault(); // Impede o envio do formulário
+                }
             });
         });
     </script>
-
-
-</body>
+    </body>
 </html>
