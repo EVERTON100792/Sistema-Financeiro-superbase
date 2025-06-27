@@ -660,9 +660,12 @@ section[id] {
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
 }
 
-.service-card.featured {
+/* Alterado de .featured para .selected */
+.service-card.selected {
     border-color: var(--accent-gold);
     background: linear-gradient(135deg, var(--primary-black) 0%, rgba(212, 175, 55, 0.05) 100%);
+    transform: translateY(-10px); /* Adicionado para manter o efeito de elevação */
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1); /* Adicionado para manter a sombra */
 }
 
 .featured-badge {
