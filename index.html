@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InkStyle Studio - Sua História na Pele</title>
+    <title>Magrelo Tattoo - Sua História na Pele</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Style+Script&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -32,7 +32,7 @@
 
         /* Variáveis de Cor */
         :root {
-            --primary-color: #c9a435; /* Dourado mais suave */
+            --primary-color: #c9a435;
             --dark-bg: #0a0a0a;
             --light-bg: #1a1a1a;
             --text-color: #e0e0e0;
@@ -42,7 +42,7 @@
         /* Estilos Gerais de Seção */
         section {
             padding: 120px 5%;
-            overflow: hidden; /* Evita que animações causem overflow */
+            overflow-x: hidden;
             border-bottom: 1px solid #222;
         }
 
@@ -51,7 +51,7 @@
             color: var(--primary-color);
             margin-bottom: 40px;
             text-align: center;
-            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Fonte responsiva */
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             text-transform: uppercase;
             letter-spacing: 3px;
         }
@@ -99,487 +99,133 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-family: 'Style Script', cursive;
+            font-size: 2.8rem;
             color: var(--primary-color);
             text-decoration: none;
+            line-height: 1;
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: bold;
-            transition: color 0.3s ease;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-color);
-        }
-
-        .menu-toggle {
-            display: none; /* Oculto por padrão */
-            font-size: 1.8rem;
-            color: var(--text-color);
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: bold; transition: color 0.3s ease; position: relative; padding-bottom: 5px; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--primary-color); transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--text-color); cursor: pointer; background: none; border: none; }
 
         /* --- SEÇÃO INÍCIO --- */
-        #inicio {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1593432333979-383348911b37?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
-            background-attachment: fixed; /* Efeito parallax */
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 5rem); /* Fonte responsiva */
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .hero-content p {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-bottom: 40px;
-            color: #ccc;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background-color: var(--primary-color);
-            color: var(--dark-text);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border: 2px solid var(--primary-color);
-        }
-
-        .cta-button:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-            transform: scale(1.05);
-        }
+        #inicio { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1593432333979-383348911b37?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover; background-attachment: fixed; }
+        .hero-content h1 { font-family: 'Style Script', cursive; font-size: clamp(5rem, 12vw, 9rem); margin-bottom: 0; color: var(--primary-color); line-height: 1; }
+        .hero-content p { font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 40px; color: #ccc; }
+        .cta-button { display: inline-block; padding: 15px 40px; background-color: var(--primary-color); color: var(--dark-text); text-decoration: none; font-size: 1.2rem; font-weight: bold; border-radius: 50px; transition: transform 0.3s ease, background-color 0.3s ease; border: 2px solid var(--primary-color); }
+        .cta-button:hover { background-color: transparent; color: var(--primary-color); transform: scale(1.05); }
         
         /* --- SEÇÃO PORTFÓLIO --- */
-        .portfolio-filters {
-            text-align: center;
-            margin-bottom: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .filter-btn {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 12px 25px;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: background-color 0.3s, color 0.3s;
-            font-weight: bold;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--primary-color);
-            color: var(--dark-text);
-        }
-
-        .portfolio-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-            position: relative;
-            aspect-ratio: 1 / 1;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease, filter 0.4s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.7);
-        }
+        .portfolio-filters { text-align: center; margin-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .filter-btn { background-color: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 12px 25px; cursor: pointer; border-radius: 50px; transition: background-color 0.3s, color 0.3s; font-weight: bold; }
+        .filter-btn:hover, .filter-btn.active { background-color: var(--primary-color); color: var(--dark-text); }
+        .portfolio-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { overflow: hidden; border-radius: 8px; cursor: pointer; position: relative; aspect-ratio: 1 / 1; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease; }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(0.7); }
 
         /* --- MODAL (LIGHTBOX) --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            animation: fadeInModal 0.5s;
-        }
-
-        @keyframes fadeInModal {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: auto;
-            max-width: 90%;
-            max-height: 90vh;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: #f1f1f1;
-            font-size: 45px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        
-        .close-modal:hover {
-            color: var(--primary-color);
-        }
+        .modal { display: none; position: fixed; z-index: 2000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); animation: fadeInModal 0.5s; }
+        @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { margin: auto; display: block; width: auto; max-width: 90%; max-height: 90vh; }
+        .close-modal { position: absolute; top: 20px; right: 40px; color: #f1f1f1; font-size: 45px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .close-modal:hover { color: var(--primary-color); }
 
         /* --- SEÇÃO SOBRE --- */
-        .sobre-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
+        .sobre-content { display: flex; align-items: center; gap: 50px; }
+        .sobre-img { flex-basis: 40%; max-width: 400px; }
+        .sobre-img img { width: 100%; border-radius: 50%; border: 8px solid var(--primary-color); box-shadow: 0 0 25px rgba(201, 164, 53, 0.3); }
+        .sobre-text { flex-basis: 60%; }
+        .sobre-text h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: white; margin-bottom: 10px; }
+        .sobre-text h4 { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 20px; font-style: italic; }
         
-        .sobre-img {
-            flex-basis: 40%;
-            max-width: 400px;
-        }
-        
-        .sobre-img img {
-            width: 100%;
-            border-radius: 50%;
-            border: 8px solid var(--primary-color);
-            box-shadow: 0 0 25px rgba(201, 164, 53, 0.3);
-        }
-        
-        .sobre-text {
-            flex-basis: 60%;
-        }
-        
-        .sobre-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: white;
-            margin-bottom: 10px;
-        }
+        /* --- SEÇÃO O ESTÚDIO --- */
+        #estudio { padding-top: 0; padding-bottom: 120px; }
+        .estudio-container { position: relative; width: 100%; max-width: 1200px; margin: auto; border-radius: 10px; overflow: hidden; border: 3px solid var(--primary-color); }
+        .estudio-container img { width: 100%; display: block; height: auto; }
+        .estudio-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%); display: flex; align-items: flex-end; padding: 40px; }
+        .estudio-overlay h3 { font-family: 'Playfair Display', serif; color: white; font-size: clamp(2rem, 4vw, 3rem); text-shadow: 2px 2px 5px #000; }
 
-        .sobre-text h4 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
+        /* --- SEÇÃO PROMOÇÕES --- */
+        #promocoes { background-color: var(--light-bg); }
+        .promocoes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .promo-card { background-color: var(--dark-bg); padding: 30px; border-radius: 10px; text-align: center; border: 1px solid #333; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .promo-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .promo-card .icon { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 20px; }
+        .promo-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; margin-bottom: 15px; }
+        .promo-card p { font-size: 0.95rem; color: #ccc; margin-bottom: 25px; }
+        .promo-button { display: inline-block; padding: 12px 30px; background-color: transparent; color: var(--primary-color); text-decoration: none; font-weight: bold; border-radius: 50px; border: 2px solid var(--primary-color); transition: background-color 0.3s, color 0.3s; }
+        .promo-button:hover { background-color: var(--primary-color); color: var(--dark-text); }
 
         /* --- SEÇÃO ORÇAMENTO --- */
-        .orcamento-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background-color: var(--light-bg);
-            padding: 40px;
-            border-radius: 10px;
-            border: 1px solid #333;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
+        .orcamento-container { max-width: 700px; margin: 40px auto 0; background-color: var(--light-bg); padding: 40px; border-radius: 10px; border: 1px solid #333; }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 10px; font-size: 1.1rem; color: var(--primary-color); font-weight: bold; }
+        .form-group select { width: 100%; padding: 15px; background-color: #252525; border: 1px solid #444; color: #e0e0e0; font-size: 1rem; border-radius: 5px; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23c9a435' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; }
+        #resultado-orcamento { margin-top: 30px; padding: 25px; background-color: var(--dark-bg); border: 2px dashed var(--primary-color); text-align: center; border-radius: 5px; }
+        #resultado-orcamento h3 { margin: 0; font-size: 1.5rem; color: white; font-family: 'Montserrat', sans-serif; }
+        #resultado-orcamento p { margin: 10px 0; font-size: 2rem; }
+        #valor-estimado { color: var(--primary-color); font-weight: bold; }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .form-group select {
-            width: 100%;
-            padding: 15px;
-            background-color: #252525;
-            border: 1px solid #444;
-            color: #e0e0e0;
-            font-size: 1rem;
-            border-radius: 5px;
-            -webkit-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23c9a435' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-        }
-
-        #resultado-orcamento {
-            margin-top: 30px;
-            padding: 25px;
-            background-color: var(--dark-bg);
-            border: 2px dashed var(--primary-color);
-            text-align: center;
-            border-radius: 5px;
-        }
-
-        #resultado-orcamento h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        #resultado-orcamento p {
-            margin: 10px 0;
-            font-size: 2rem;
-        }
-        
-        #valor-estimado {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* --- SEÇÃO FAQ (NOVA) --- */
-        #faq .container {
-            max-width: 800px;
-        }
-        .faq-item {
-            background-color: var(--light-bg);
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border-left: 3px solid var(--primary-color);
-        }
-        .faq-question {
-            width: 100%;
-            background: none;
-            border: none;
-            text-align: left;
-            padding: 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--text-color);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-question i {
-            transition: transform 0.3s ease;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-        }
-        .faq-answer p {
-            padding: 0 20px 20px 20px;
-            margin: 0;
-            color: #ccc;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 300px; /* Ajuste conforme necessário */
-        }
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
+        /* --- SEÇÃO FAQ --- */
+        #faq .container { max-width: 800px; }
+        .faq-item { background-color: var(--light-bg); margin-bottom: 10px; border-radius: 5px; border-left: 3px solid var(--primary-color); }
+        .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 20px; font-size: 1.2rem; font-weight: bold; color: var(--text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-question i { transition: transform 0.3s ease; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; }
+        .faq-answer p { padding: 0 20px 20px 20px; margin: 0; color: #ccc; }
+        .faq-item.active .faq-answer { max-height: 300px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
 
         /* --- SEÇÃO CONTATO --- */
-        #contato .container {
-            text-align: center;
-        }
+        #contato .container { text-align: center; }
+        .social-links { margin: 30px 0 40px; }
+        .social-links a { color: #e0e0e0; font-size: 2.5rem; margin: 0 20px; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
+        .social-links a:hover { color: var(--primary-color); transform: translateY(-5px); }
+        .map-container { margin-top: 40px; border-radius: 10px; overflow: hidden; border: 3px solid var(--primary-color); height: 450px; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; filter: invert(90%) hue-rotate(200deg) brightness(0.9); }
 
-        .social-links {
-            margin: 30px 0 40px;
-        }
-
-        .social-links a {
-            color: #e0e0e0;
-            font-size: 2.5rem;
-            margin: 0 20px;
-            transition: color 0.3s ease, transform 0.3s ease;
-            display: inline-block;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-
-        .map-container {
-            margin-top: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 3px solid var(--primary-color);
-            height: 450px;
-        }
-        
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            filter: invert(90%) hue-rotate(200deg) brightness(0.9);
-        }
-
-        /* --- BOTÃO WHATSAPP E VOLTAR AO TOPO --- */
-        .action-buttons {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .float-btn {
-            width: 60px;
-            height: 60px;
-            color: #FFF;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s, opacity 0.3s;
-        }
-        .whatsapp-float {
-            background-color: #25D366;
-        }
-        .back-to-top {
-            background-color: var(--primary-color);
-            opacity: 0;
-            visibility: hidden;
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .float-btn:hover {
-            transform: scale(1.1);
-        }
+        /* --- BOTÕES FLUTUANTES --- */
+        .action-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 15px; }
+        .float-btn { width: 60px; height: 60px; color: #FFF; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s, opacity 0.3s; }
+        .whatsapp-float { background-color: #25D366; }
+        .back-to-top { background-color: var(--primary-color); opacity: 0; visibility: hidden; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .float-btn:hover { transform: scale(1.1); }
 
         /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background-color: #000;
-        }
-        footer p {
-            margin: 0;
-        }
+        footer { text-align: center; padding: 30px; background-color: #000; }
+        footer p { margin: 0; }
         
-        /* --- RESPONSIVIDADE (Mobile-First approach) --- */
-        
-        /* Tablets e Telas Menores */
+        /* --- RESPONSIVIDADE --- */
         @media (max-width: 992px) {
-            .sobre-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .sobre-img {
-                margin-bottom: 30px;
-            }
+            .sobre-content { flex-direction: column; text-align: center; }
+            .sobre-img { margin-bottom: 30px; }
         }
-
-        /* Celulares */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -100%; /* Começa fora da tela */
-                width: 70%;
-                height: 100vh;
-                background-color: var(--light-bg);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: left 0.5s ease;
-                padding-top: 80px;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 20px 0;
-            }
-
-            .menu-toggle {
-                display: block; /* Mostra o botão hambúrguer */
-                z-index: 1001; /* Garante que fique sobre o menu */
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .portfolio-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
+            .nav-links { position: fixed; top: 0; left: -100%; width: 70%; height: 100vh; background-color: var(--light-bg); flex-direction: column; align-items: center; justify-content: center; transition: left 0.5s ease; padding-top: 80px; }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 20px 0; }
+            .menu-toggle { display: block; z-index: 1001; }
+            .portfolio-gallery { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#inicio" class="logo">InkStyle</a>
+        <a href="#inicio" class="logo">Magrelo Tattoo</a>
         <nav>
             <ul class="nav-links">
                 <li><a href="#portfolio">Portfólio</a></li>
                 <li><a href="#sobre">O Artista</a></li>
+                <li><a href="#promocoes">Promoções</a></li>
                 <li><a href="#orcamento">Orçamento</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contato">Contato</a></li>
@@ -591,16 +237,15 @@
     <main>
         <section id="inicio">
             <div class="hero-content fade-in">
-                <h1>InkStyle Studio</h1>
+                <h1>Magrelo Tattoo</h1>
                 <p>Sua história na pele, com arte e exclusividade.</p>
                 <a href="#orcamento" class="cta-button">Faça seu Orçamento</a>
             </div>
         </section>
-
+        
         <section id="portfolio">
             <div class="container">
                 <h2 class="section-title fade-in">Portfólio</h2>
-                
                 <div class="portfolio-filters fade-in">
                     <button class="filter-btn active" data-filter="all">Todos</button>
                     <button class="filter-btn" data-filter="fineline">Fine Line</button>
@@ -608,32 +253,15 @@
                     <button class="filter-btn" data-filter="oldschool">Old School</button>
                     <button class="filter-btn" data-filter="colorido">Colorido</button>
                 </div>
-
                 <div class="portfolio-gallery">
-                    <figure class="gallery-item fade-in" data-category="fineline">
-                        <img src="https://images.unsplash.com/photo-1541690034479-7a7029515647?q=80&w=600" alt="Tatuagem Fine Line 1" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item fade-in" data-category="blackwork">
-                        <img src="https://images.unsplash.com/photo-1628189638703-a084043a571f?q=80&w=600" alt="Tatuagem Blackwork 1" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item fade-in" data-category="colorido">
-                        <img src="https://images.unsplash.com/photo-1594191638299-4d8b63e8a4a5?q=80&w=600" alt="Tatuagem Colorida 1" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item fade-in" data-category="oldschool">
-                        <img src="https://images.unsplash.com/photo-1575713434113-86c41b6534d7?q=80&w=600" alt="Tatuagem Old School 1" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item fade-in" data-category="fineline">
-                        <img src="https://images.unsplash.com/photo-1521256079237-73b3fe4b5c77?q=80&w=600" alt="Tatuagem Fine Line 2" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item fade-in" data-category="blackwork">
-                        <img src="https://images.unsplash.com/photo-1623821049750-281b39f75f91?q=80&w=600" alt="Tatuagem Blackwork 2" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item fade-in" data-category="colorido">
-                        <img src="https://images.unsplash.com/photo-1632763261799-28f090d638c4?q=80&w=600" alt="Tatuagem Colorida 2" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item fade-in" data-category="oldschool">
-                        <img src="https://images.unsplash.com/photo-1636113827532-62d4e74e4eea?q=80&w=600" alt="Tatuagem Old School 2" loading="lazy">
-                    </figure>
+                    <figure class="gallery-item fade-in" data-category="fineline"><img src="https://images.unsplash.com/photo-1541690034479-7a7029515647?q=80&w=600" alt="Tatuagem Fine Line 1" loading="lazy"></figure>
+                    <figure class="gallery-item fade-in" data-category="blackwork"><img src="https://images.unsplash.com/photo-1628189638703-a084043a571f?q=80&w=600" alt="Tatuagem Blackwork 1" loading="lazy"></figure>
+                    <figure class="gallery-item fade-in" data-category="colorido"><img src="https://images.unsplash.com/photo-1594191638299-4d8b63e8a4a5?q=80&w=600" alt="Tatuagem Colorida 1" loading="lazy"></figure>
+                    <figure class="gallery-item fade-in" data-category="oldschool"><img src="https://images.unsplash.com/photo-1575713434113-86c41b6534d7?q=80&w=600" alt="Tatuagem Old School 1" loading="lazy"></figure>
+                    <figure class="gallery-item fade-in" data-category="fineline"><img src="https://images.unsplash.com/photo-1521256079237-73b3fe4b5c77?q=80&w=600" alt="Tatuagem Fine Line 2" loading="lazy"></figure>
+                    <figure class="gallery-item fade-in" data-category="blackwork"><img src="https://images.unsplash.com/photo-1623821049750-281b39f75f91?q=80&w=600" alt="Tatuagem Blackwork 2" loading="lazy"></figure>
+                    <figure class="gallery-item fade-in" data-category="colorido"><img src="https://images.unsplash.com/photo-1632763261799-28f090d638c4?q=80&w=600" alt="Tatuagem Colorida 2" loading="lazy"></figure>
+                    <figure class="gallery-item fade-in" data-category="oldschool"><img src="https://images.unsplash.com/photo-1636113827532-62d4e74e4eea?q=80&w=600" alt="Tatuagem Old School 2" loading="lazy"></figure>
                 </div>
             </div>
         </section>
@@ -642,15 +270,34 @@
             <div class="container">
                 <h2 class="section-title fade-in">O Artista</h2>
                 <div class="sobre-content fade-in">
-                    <div class="sobre-img">
-                        <img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=600" alt="Foto do Artista">
-                    </div>
+                    <div class="sobre-img"><img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=600" alt="Foto do Artista"></div>
                     <div class="sobre-text">
-                        <h3>Alex Inkwell</h3>
+                        <h3>Alex "Magrelo" Inkwell</h3>
                         <h4>Especialista em criação de desenhos exclusivos e autorais.</h4>
                         <p>Com mais de 10 anos de experiência, Alex transformou sua paixão pela arte em uma carreira dedicada a criar tatuagens que contam histórias. Seu estilo favorito é o blackwork, mas ele adora explorar o fine line para criar peças delicadas e cheias de significado.</p>
                         <p>Cada traço é pensado para ser único, refletindo a personalidade e o desejo de cada cliente. O estúdio é um espaço onde a arte e a confiança se encontram para criar obras que durarão para sempre.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="estudio">
+             <div class="container fade-in">
+                <div class="estudio-container">
+                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1894&auto=format&fit=crop" alt="Foto do estúdio Magrelo Tattoo">
+                    <div class="estudio-overlay"><h3>Onde tudo começou...</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="promocoes">
+            <div class="container fade-in">
+                <h2 class="section-title">Promoções Especiais</h2>
+                <p style="text-align:center; color: #ccc;">Confira nossas ofertas ativas e garanta sua tattoo com um preço especial!</p>
+                <div class="promocoes-grid">
+                    <div class="promo-card"><div class="icon"><i class="fas fa-users"></i></div><h3>Tattoo em Dobro</h3><p>Traga um amigo para tatuar no mesmo dia e ambos ganham 15% de desconto em suas tatuagens. Válido para tattoos acima de R$300.</p><a href="#contato" class="promo-button">Agende Agora</a></div>
+                    <div class="promo-card"><div class="icon"><i class="fas fa-birthday-cake"></i></div><h3>Aniversariante do Mês</h3><p>Faz aniversário este mês? Apresente seu documento e ganhe 20% de desconto no seu presente em forma de tattoo!</p><a href="#contato" class="promo-button">Quero meu Presente</a></div>
+                    <div class="promo-card"><div class="icon"><i class="fas fa-bolt"></i></div><h3>Flash Day</h3><p>Fique de olho em nossas redes sociais! Todo final de mês rola um Flash Day com dezenas de desenhos exclusivos por um preço fixo e imperdível.</p><a href="https://instagram.com" target="_blank" class="promo-button">Siga no Instagram</a></div>
                 </div>
             </div>
         </section>
@@ -661,37 +308,11 @@
                 <p style="text-align:center; color: #ccc;">Obtenha uma estimativa rápida para sua próxima tatuagem. Para um valor exato, entre em contato.</p>
                 <div class="orcamento-container">
                     <form id="orcamento-form">
-                        <div class="form-group">
-                            <label for="tamanho">Tamanho:</label>
-                            <select id="tamanho" name="tamanho">
-                                <option value="pequeno">Pequeno (até 10cm)</option>
-                                <option value="medio">Médio (10cm a 20cm)</option>
-                                <option value="grande">Grande (acima de 20cm)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="estilo">Estilo:</label>
-                            <select id="estilo" name="estilo">
-                                <option value="traco">Só Traço (Fine Line)</option>
-                                <option value="sombreado">Sombreamento (Black & Grey)</option>
-                                <option value="colorido">Colorido</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="complexidade">Complexidade do Desenho:</label>
-                            <select id="complexidade" name="complexidade">
-                                <option value="baixa">Baixa (símbolos, escritas)</option>
-                                <option value="media">Média (florais, mandalas)</option>
-                                <option value="alta">Alta (realismo, retratos)</option>
-                            </select>
-                        </div>
+                        <div class="form-group"><label for="tamanho">Tamanho:</label><select id="tamanho" name="tamanho"><option value="pequeno">Pequeno (até 10cm)</option><option value="medio">Médio (10cm a 20cm)</option><option value="grande">Grande (acima de 20cm)</option></select></div>
+                        <div class="form-group"><label for="estilo">Estilo:</label><select id="estilo" name="estilo"><option value="traco">Só Traço (Fine Line)</option><option value="sombreado">Sombreamento (Black & Grey)</option><option value="colorido">Colorido</option></select></div>
+                        <div class="form-group"><label for="complexidade">Complexidade:</label><select id="complexidade" name="complexidade"><option value="baixa">Baixa (símbolos, escritas)</option><option value="media">Média (florais, mandalas)</option><option value="alta">Alta (realismo, retratos)</option></select></div>
                     </form>
-
-                    <div id="resultado-orcamento">
-                        <h3>Valor Estimado</h3>
-                        <p id="valor-estimado">R$ 0,00</p>
-                        <small style="color: #888;">*Este valor é uma aproximação. O preço final será confirmado após consulta.</small>
-                    </div>
+                    <div id="resultado-orcamento"><h3>Valor Estimado</h3><p id="valor-estimado">R$ 0,00</p><small style="color: #888;">*Valor aproximado. Preço final confirmado após consulta.</small></div>
                 </div>
             </div>
         </section>
@@ -699,33 +320,9 @@
         <section id="faq">
             <div class="container fade-in">
                 <h2 class="section-title">Perguntas Frequentes</h2>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Quais são os cuidados pós-tatuagem?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Mantenha o plástico por 4h; Lave com sabonete neutro 2-3x ao dia; Seque suavemente; Aplique uma fina camada da pomada recomendada; Evite sol, mar e piscina por 30 dias; Não coce nem arranque as casquinhas; Beba bastante água.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Tatuagem dói?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>A dor é subjetiva e varia de pessoa para pessoa e da área do corpo. Algumas áreas são mais sensíveis que outras. Conversamos sobre isso durante a consulta para te deixar o mais confortável possível.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Preciso agendar um horário?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim, trabalhamos exclusivamente com hora marcada para garantir total dedicação a cada cliente. Você pode solicitar um agendamento através do nosso WhatsApp ou formulário de contato.</p>
-                    </div>
-                </div>
+                <div class="faq-item"><button class="faq-question">Quais são os cuidados pós-tatuagem?<i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Mantenha o plástico por 4h; Lave com sabonete neutro 2-3x ao dia; Seque suavemente; Aplique uma fina camada da pomada recomendada; Evite sol, mar e piscina por 30 dias; Não coce nem arranque as casquinhas; Beba bastante água.</p></div></div>
+                <div class="faq-item"><button class="faq-question">Tatuagem dói?<i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>A dor é subjetiva e varia de pessoa para pessoa e da área do corpo. Algumas áreas são mais sensíveis que outras. Conversamos sobre isso durante a consulta para te deixar o mais confortável possível.</p></div></div>
+                <div class="faq-item"><button class="faq-question">Preciso agendar um horário?<i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Sim, trabalhamos exclusivamente com hora marcada para garantir total dedicação a cada cliente. Você pode solicitar um agendamento através do nosso WhatsApp ou formulário de contato.</p></div></div>
             </div>
         </section>
 
@@ -733,94 +330,74 @@
             <div class="container fade-in">
                 <h2 class="section-title">Entre em Contato</h2>
                 <p style="text-align: center;">Siga nas redes sociais e venha conhecer o estúdio!</p>
-                
-                <div class="social-links">
-                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                </div>
-
-                <p>
-                    <strong>Endereço:</strong><br>
-                    Rua da Arte, 123 - Centro<br>
-                    Sua Cidade, SEU ESTADO
-                </p>
-
+                <div class="social-links"><a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a><a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+                <p><strong>Endereço:</strong><br>Av. Brasil, 1234 - Centro<br>Rolândia, PR</p>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.83543450937!2d144.9537353159042!3d-37.81720974202117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sbr!4v1622553311893!5m2!1sen!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.812345678901!2d-51.469998884488!3d-23.32211222233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDE5JzE5LjYiUyA1McKwMjgnMTIuMCJX!5e0!3m2!1spt-BR!2sbr!4v1622055612345!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
     </main>
     
     <div id="imageModal" class="modal">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal">×</span>
         <img class="modal-content" id="modalImage">
     </div>
 
     <div class="action-buttons">
-        <a href="#" class="float-btn back-to-top" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></a>
-        <a href="https://api.whatsapp.com/send?phone=5511999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="float-btn whatsapp-float" target="_blank" aria-label="Contato por WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+        <a href="#inicio" class="float-btn back-to-top" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></a>
+        <a href="https://api.whatsapp.com/send?phone=5543999998888&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Magrelo%20Tattoo%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="float-btn whatsapp-float" target="_blank" aria-label="Contato por WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <footer>
-        <p>© 2025 InkStyle Studio. Todos os direitos reservados. Desenvolvido com ❤️.</p>
+        <p>© 2025 Magrelo Tattoo. Todos os direitos reservados.</p>
     </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // --- OBSERVER PARA ANIMAÇÕES DE SCROLL ---
+        /**
+         * Animação dos elementos ao rolar a página.
+         */
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = {
-            threshold: 0.2,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
+                if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     appearOnScroll.unobserve(entry.target);
                 }
             });
         }, appearOptions);
+        faders.forEach(fader => appearOnScroll.observe(fader));
 
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
-
-
-        // --- MENU HAMBÚRGUER (MOBILE) ---
+        /**
+         * Lógica do Menu Mobile (Hambúrguer).
+         */
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const navLinkItems = document.querySelectorAll('.nav-links li a');
-
+        const closeMenu = () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        };
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             const icon = menuToggle.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
         });
+        navLinkItems.forEach(link => link.addEventListener('click', closeMenu));
 
-        // Fecha o menu ao clicar em um link
-        navLinkItems.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.querySelector('i').classList.add('fa-bars');
-                    menuToggle.querySelector('i').classList.remove('fa-times');
-                }
-            });
-        });
-
-        // --- NAVEGAÇÃO ATIVA ---
-        const sections = document.querySelectorAll('section');
-        const navLi = document.querySelectorAll('nav .nav-links li a');
-
+        /**
+         * Destaca o link da seção atual na navegação.
+         */
+        const sections = document.querySelectorAll('main section');
+        const navLi = document.querySelectorAll('header nav .nav-links li a');
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
@@ -829,124 +406,111 @@
                     current = section.getAttribute('id');
                 }
             });
-
             navLi.forEach(a => {
                 a.classList.remove('active');
-                if (a.getAttribute('href').includes(current)) {
+                if (a.getAttribute('href') === `#${current}`) {
                     a.classList.add('active');
                 }
             });
         });
 
-
-        // --- FILTRO DO PORTFÓLIO ---
+        /**
+         * Lógica do Filtro do Portfólio.
+         */
         const filterButtons = document.querySelectorAll('.filter-btn');
         const galleryItems = document.querySelectorAll('.gallery-item');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelector('.filter-btn.active').classList.remove('active');
-                button.classList.add('active');
-                const filter = button.getAttribute('data-filter');
-
-                galleryItems.forEach(item => {
-                    item.style.display = 'none'; // Esconde todos primeiro
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        // Usar timeout para criar um efeito de reaparecimento escalonado
-                        setTimeout(() => {
-                           item.style.display = 'block';
-                        }, 100);
-                    }
+        if (filterButtons.length > 0) {
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelector('.filter-btn.active').classList.remove('active');
+                    button.classList.add('active');
+                    const filter = button.getAttribute('data-filter');
+                    galleryItems.forEach(item => {
+                        item.style.display = 'none';
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        }
+                    });
                 });
             });
-        });
+        }
 
-        // --- MODAL (LIGHTBOX) ---
+        /**
+         * Lógica do Modal de Imagem (Lightbox).
+         */
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         const galleryImages = document.querySelectorAll('.gallery-item img');
-        const closeModal = document.querySelector('.close-modal');
-
+        const closeModalBtn = document.querySelector('.close-modal');
+        const closeTheModal = () => {
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        };
         galleryImages.forEach(img => {
             img.addEventListener('click', () => {
-                modal.style.display = 'block';
-                modalImg.src = img.src;
-                document.body.style.overflow = 'hidden'; // Impede o scroll do fundo
+                if(modal) {
+                    modal.style.display = 'block';
+                    modalImg.src = img.src;
+                    document.body.style.overflow = 'hidden';
+                }
             });
         });
-        
-        const closeTheModal = () => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        };
+        if(closeModalBtn) closeModalBtn.addEventListener('click', closeTheModal);
+        if(modal) modal.addEventListener('click', e => { if (e.target === modal) closeTheModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal && modal.style.display === 'block') closeTheModal(); });
 
-        closeModal.addEventListener('click', closeTheModal);
-        
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeTheModal();
-            }
-        });
-        
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && modal.style.display === 'block') {
-                closeTheModal();
-            }
-        });
-
-
-        // --- CALCULADORA DE ORÇAMENTO ---
-        const form = document.getElementById('orcamento-form');
-        const valorEstimadoEl = document.getElementById('valor-estimado');
-        
-        function calcularOrcamento() {
+        /**
+         * Lógica da Calculadora de Orçamento.
+         */
+        const orcamentoForm = document.getElementById('orcamento-form');
+        const calcularOrcamento = () => {
+            if (!orcamentoForm) return;
+            const valorEstimadoEl = document.getElementById('valor-estimado');
             const tamanho = document.getElementById('tamanho').value;
             const estilo = document.getElementById('estilo').value;
             const complexidade = document.getElementById('complexidade').value;
-
-            let precoBase = 150; 
-            
-            const mults = {
-                tamanho: { pequeno: 1, medio: 2.2, grande: 4 },
-                estilo: { traco: 1, sombreado: 1.5, colorido: 2 },
-                complexidade: { baixa: 1, media: 1.6, alta: 2.5 }
-            };
-
+            const precoBase = 150;
+            const mults = { tamanho: { pequeno: 1, medio: 2.2, grande: 4 }, estilo: { traco: 1, sombreado: 1.5, colorido: 2 }, complexidade: { baixa: 1, media: 1.6, alta: 2.5 } };
             const valorFinal = precoBase * mults.tamanho[tamanho] * mults.estilo[estilo] * mults.complexidade[complexidade];
-            
             valorEstimadoEl.textContent = `R$ ${valorFinal.toFixed(2).replace('.', ',')}`;
+        };
+        if(orcamentoForm) {
+            orcamentoForm.addEventListener('change', calcularOrcamento);
+            calcularOrcamento(); // Calcula o valor inicial
         }
 
-        form.addEventListener('change', calcularOrcamento);
-        calcularOrcamento();
-
-
-        // --- FAQ ACCORDION ---
+        /**
+         * Lógica do FAQ (Accordion).
+         */
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-                // Fecha todos os outros itens
                 faqItems.forEach(i => i.classList.remove('active'));
-                // Abre ou fecha o item clicado
-                if (!isActive) {
-                    item.classList.add('active');
-                }
+                if (!isActive) item.classList.add('active');
             });
         });
-        
-        // --- BOTÃO VOLTAR AO TOPO ---
+
+        /**
+         * Lógica do Botão "Voltar ao Topo".
+         */
         const backToTopButton = document.querySelector('.back-to-top');
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
+            if (backToTopButton) {
+                backToTopButton.classList.toggle('visible', window.pageYOffset > 300);
             }
         });
-
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', e => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
     });
     </script>
+
 </body>
 </html>
