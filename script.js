@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeScrollEffects();
     initializePortfolio();
     initializeLightbox();
-    initializeAnimations();
+    initializeAnimations(); // A animação dos cards de serviço foi movida para cá
     initializeBudgetCalculator();
     initializeSocialMedia();
-    initializeServiceCardSelection(); // <-- CORREÇÃO: Chamada da nova função
+    initializeServiceCardSelection(); 
     
     // Update filtered images initially
     updateFilteredImages();
@@ -182,6 +182,7 @@ function initializeScrollEffects() {
         });
     }, observerOptions);
     
+    // CORREÇÃO: Removido o .service-card daqui para ser controlado pela sua própria função
     const animateElements = document.querySelectorAll('.portfolio-item, .step-item, .value-item, .info-card');
     animateElements.forEach(el => observer.observe(el));
 }
@@ -198,16 +199,6 @@ function initializePortfolio() {
             filterPortfolioItems(filter);
             
             updateFilteredImages(filter);
-        });
-    });
-    
-    portfolioItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            item.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'translateY(0) scale(1)';
         });
     });
 }
@@ -345,6 +336,7 @@ function updateLightboxContent() {
 
 // Animations
 function initializeAnimations() {
+    // Animação dos contadores
     const statsNumbers = document.querySelectorAll('.stat-number');
     const statsObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -354,28 +346,22 @@ function initializeAnimations() {
             }
         });
     });
-    
     statsNumbers.forEach(num => statsObserver.observe(num));
     
+    // CORREÇÃO: Animação dos cards de serviço ao aparecer na tela
     const serviceCards = document.querySelectorAll('.service-card');
     const servicesObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-in');
                 }, index * 150);
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
     
-    serviceCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        servicesObserver.observe(card);
-    });
+    serviceCards.forEach(card => servicesObserver.observe(card));
 }
 
 function animateCounter(element) {
@@ -525,21 +511,20 @@ function initializeSocialMedia() {
     });
 }
 
-// CORREÇÃO: Nova função para seleção dos cards de serviço
+// CORREÇÃO DEFINITIVA: Função de seleção dos cards de serviço
 function initializeServiceCardSelection() {
     const serviceCards = document.querySelectorAll('.service-card');
 
     serviceCards.forEach(card => {
         card.addEventListener('click', () => {
-            // 1. Remove a classe 'selected' de todos os cards
+            // Remove a classe 'selected' de todos os outros cards
             serviceCards.forEach(c => {
-                c.classList.remove('selected');
-                // Garante que o efeito de "levantar" seja removido se não for hover
-                c.style.transform = ''; 
-                c.style.boxShadow = '';
+                if (c !== card) { // Não remove do card que acabou de ser clicado
+                    c.classList.remove('selected');
+                }
             });
 
-            // 2. Adiciona a classe 'selected' apenas ao card que foi clicado
+            // Adiciona (ou alterna) a classe 'selected' no card clicado
             card.classList.add('selected');
         });
     });
