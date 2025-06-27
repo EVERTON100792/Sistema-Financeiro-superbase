@@ -3,456 +3,600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Nome do Artista] - Tatuador Profissional</title>
-    <meta name="description" content="Site profissional de [Nome do Artista]. Especialista em tatuagens Fine Line, Blackwork e Realismo. Faça seu orçamento.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    
-    <script src="https://kit.fontawesome.com/a33a369165.js" crossorigin="anonymous"></script>
-
+    <title>Estúdio de Tatuagem [Nome do Artista/Estúdio]</title>
     <style>
-        /* Configurações Globais e Variáveis de Cor */
+        /* --- GERAL & FONTES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Teko:wght@400;700&display=swap');
+
         :root {
-            --primary-color: #E0A800; /* Um dourado/amarelo para destaque */
-            --dark-bg: #121212;       /* Fundo escuro principal */
-            --light-bg: #1E1E1E;      /* Fundo escuro um pouco mais claro para seções */
-            --text-color: #EAEAEA;    /* Cor do texto principal */
-            --text-secondary: #A0A0A0;/* Cor do texto secundário */
-            --font-primary: 'Montserrat', sans-serif;
-            --font-secondary: 'Roboto', sans-serif;
+            --cor-primaria: #f0a500; /* Um dourado/âmbar que se destaca no escuro */
+            --cor-fundo: #1a1a1a;
+            --cor-fundo-secundario: #2c2c2c;
+            --cor-texto: #e0e0e0;
+            --cor-texto-claro: #ffffff;
+            --fonte-titulo: 'Teko', sans-serif;
+            --fonte-corpo: 'Roboto', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: var(--font-secondary);
-            background-color: var(--dark-bg);
-            color: var(--text-color);
+            font-family: var(--fonte-corpo);
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
         }
 
-        /* Cabeçalho e Navegação */
-        header {
-            background-color: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #2a2a2a;
-            padding: 1rem 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-primary);
+        h1, h2, h3 {
+            font-family: var(--fonte-titulo);
             font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-list {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-list a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-family: var(--font-primary);
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .nav-list a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Estilos Gerais de Seção */
-        .section {
-            padding: 6rem 5%;
-            text-align: center;
-        }
-
-        .section:nth-child(even) { /* Alterna a cor de fundo */
-            background-color: var(--light-bg);
+            color: var(--cor-primaria);
+            text-transform: uppercase;
         }
 
         h2 {
-            font-family: var(--font-primary);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-        }
-
-        /* Botões */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--dark-bg);
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            font-family: var(--font-primary);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #ffc107;
-            transform: translateY(-3px);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--primary-color);
-            color: var(--dark-bg);
-        }
-
-        /* Seção Hero */
-        #hero {
-            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('https://via.placeholder.com/1920x1080.png?text=Troque+esta+Imagem') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-size: 3.5rem;
             text-align: center;
-            color: white;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        section {
+            padding: 80px 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER & NAVEGAÇÃO --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 5%;
+            background-color: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .logo {
+            font-family: var(--fonte-titulo);
+            font-size: 2rem;
+            color: var(--cor-primaria);
+            text-decoration: none;
+        }
+
+        nav a {
+            font-family: var(--fonte-titulo);
+            font-size: 1.4rem;
+            color: var(--cor-texto-claro);
+            text-decoration: none;
+            margin-left: 25px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cor-primaria);
+        }
+        
+        /* --- SEÇÃO INÍCIO --- */
+        #inicio {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1599238885830-17a43a91724a?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
         }
 
         .hero-content h1 {
-            font-family: var(--font-primary);
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 5rem;
+            margin-bottom: 10px;
         }
 
-        .hero-content p {
+        .slogan {
+            font-size: 1.8rem;
+            color: var(--cor-texto-claro);
+            margin-bottom: 30px;
+            font-family: var(--fonte-titulo);
+            font-weight: 400;
+        }
+
+        .cta-principal {
+            display: inline-block;
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+            font-family: var(--fonte-titulo);
+        }
+
+        .cta-principal:hover {
+            transform: scale(1.05);
+            background-color: #fff;
+        }
+
+        /* --- SEÇÃO PORTFÓLIO --- */
+        .filtros-portfolio {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filtro-btn {
+            background: none;
+            border: 2px solid var(--cor-primaria);
+            color: var(--cor-primaria);
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: var(--fonte-titulo);
             font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
         }
 
-        /* Seção Portfólio */
-        .gallery {
+        .filtro-btn.ativo, .filtro-btn:hover {
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+        }
+
+        .galeria-portfolio {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-bottom: 3rem;
+            gap: 15px;
         }
 
-        .gallery-item img {
+        .galeria-item {
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .galeria-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 5px;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: transform 0.4s ease-out;
         }
 
-        .gallery-item img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.2);
+        .galeria-item:hover img {
+            transform: scale(1.1);
         }
 
-        /* Seção Sobre */
-        .about-content {
+        /* --- SEÇÃO SOBRE --- */
+        #sobre {
+            background-color: var(--cor-fundo-secundario);
+        }
+        .sobre-container {
             display: flex;
             align-items: center;
-            gap: 3rem;
-            text-align: left;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 50px;
         }
-
-        .about-pic {
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid var(--primary-color);
+        .sobre-img {
+            flex-basis: 40%;
+            max-width: 400px;
         }
-
-        .about-text p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
+        .sobre-img img {
+            width: 100%;
+            border-radius: 5px;
+            border: 3px solid var(--cor-primaria);
         }
-        .about-text h2{
-            text-align: left;
+        .sobre-texto {
+            flex-basis: 60%;
         }
-
-        /* Seção Cuidados */
-        .care-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .step {
-            background-color: var(--dark-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 5px solid var(--primary-color);
-        }
-
-        .step i {
+        .sobre-texto h3 {
             font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
+        }
+        .especializacao {
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+            padding: 5px 15px;
+            font-family: var(--fonte-titulo);
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        /* --- SEÇÃO ORÇAMENTO --- */
+        .orcamento-container {
+            display: flex;
+            gap: 50px;
+            background-color: var(--cor-fundo-secundario);
+            padding: 40px;
+            border-radius: 10px;
         }
 
-        .step h3 {
-            font-family: var(--font-primary);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+        .calculadora {
+            flex-basis: 60%;
         }
 
-        .step p {
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* Seção Contato */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
+        .resultado-orcamento {
+            flex-basis: 40%;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 1rem;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--cor-fundo);
+            padding: 30px;
             border-radius: 5px;
-            border: 1px solid #333;
-            background-color: #2a2a2a;
-            color: var(--text-color);
-            font-family: var(--font-secondary);
+        }
+
+        .controle-grupo {
+            margin-bottom: 25px;
+        }
+
+        .controle-grupo label {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: var(--fonte-titulo);
+            color: var(--cor-texto-claro);
+        }
+
+        .controle-grupo select, .controle-grupo input {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--cor-fundo);
+            border: 1px solid var(--cor-primaria);
+            color: var(--cor-texto);
             font-size: 1rem;
+            border-radius: 5px;
         }
 
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
+        #valor-estimado {
+            font-family: var(--fonte-titulo);
+            font-size: 3.5rem;
+            color: var(--cor-primaria);
+            margin-top: 10px;
+            font-weight: 700;
         }
 
-        .contact-form button {
-            cursor: pointer;
-            border: none;
-        }
-
-        .social-links {
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 2rem;
-            margin: 0 1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-
-        /* Rodapé */
-        footer {
+        .resultado-orcamento p {
             text-align: center;
-            padding: 2rem;
-            background-color: #0c0c0c;
-            color: var(--text-secondary);
+        }
+
+        /* --- SEÇÃO CUIDADOS --- */
+        #cuidados {
+            background-color: var(--cor-fundo-secundario);
+        }
+        .cuidados-lista {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .cuidados-lista li {
+            background-color: var(--cor-fundo);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-left: 5px solid var(--cor-primaria);
+            transition: transform 0.3s;
+        }
+        .cuidados-lista li:hover {
+            transform: translateX(10px);
+        }
+
+        /* --- SEÇÃO CONTATO --- */
+        #contato .container {
+            text-align: center;
+        }
+        .contato-links {
+            margin: 30px 0;
+        }
+        .contato-links a {
+            margin: 0 15px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .contato-links a:hover {
+            transform: scale(1.1);
+        }
+        .contato-links img {
+            width: 50px;
+            height: 50px;
+        }
+        .mapa {
+            border: 3px solid var(--cor-primaria);
+            border-radius: 5px;
+            overflow: hidden;
+            height: 450px;
+            width: 100%;
+        }
+
+        /* --- WHATSAPP FLUTUANTE --- */
+        .whatsapp-flutuante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 100;
+            transition: transform 0.3s;
+        }
+        .whatsapp-flutuante:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-flutuante img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        /* --- MODAL DA GALERIA --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
             font-size: 0.9rem;
         }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsividade para Celulares */
+        
+        /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-
-            .nav-list {
-                display: none; /* Simplificando para o exemplo. Um menu hamburguer seria o ideal. */
-            }
-
-            #hero {
-                height: 70vh;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .section {
-                padding: 4rem 5%;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            .about-text h2{
-                text-align: center;
-            }
+            h2 { font-size: 2.5rem; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .slogan { font-size: 1.5rem; }
+            nav { display: none; /* Simplificando para mobile, mas um menu hamburger seria ideal */}
+            .sobre-container, .orcamento-container { flex-direction: column; }
+            .mapa { height: 300px; }
         }
+
     </style>
-    </head>
+</head>
 <body>
 
     <header>
+        <a href="#inicio" class="logo">[NOME ESTÚDIO]</a>
         <nav>
-            <a href="#" class="logo">[Logo ou Nome]</a>
-            <ul class="nav-list">
-                <li><a href="#portfolio">Portfólio</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#cuidados">Cuidados</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+            <a href="#inicio">Início</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#sobre">Artista</a>
+            <a href="#orcamento">Orçamento</a>
+            <a href="#contato">Contato</a>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
+
+        <section id="inicio">
             <div class="hero-content">
-                <h1>Arte na Pele que Conta sua História</h1>
-                <p>Tatuagens únicas e personalizadas, criadas por [Nome do Artista]</p>
-                <a href="#contato" class="btn">Agende seu Horário</a>
+                <h1>[NOME DO ARTISTA/ESTÚDIO]</h1>
+                <p class="slogan">Sua história na pele.</p>
+                <a href="#orcamento" class="cta-principal">FAÇA SEU ORÇAMENTO</a>
             </div>
         </section>
 
-        <section id="portfolio" class="section">
-            <h2>Portfólio</h2>
-            <p class="section-subtitle">Conheça alguns dos meus trabalhos</p>
-            <div class="gallery">
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+1" alt="Tatuagem 1"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+2" alt="Tatuagem 2"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+3" alt="Tatuagem 3"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+4" alt="Tatuagem 4"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+5" alt="Tatuagem 5"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png?text=Tattoo+6" alt="Tatuagem 6"></div>
+        <section id="portfolio">
+            <div class="container">
+                <h2>Portfólio</h2>
+                <div class="filtros-portfolio">
+                    <button class="filtro-btn ativo" onclick="filtrarPortfolio('tudo')">Todos</button>
+                    <button class="filtro-btn" onclick="filtrarPortfolio('fineline')">Fine Line</button>
+                    <button class="filtro-btn" onclick="filtrarPortfolio('blackwork')">Blackwork</button>
+                    <button class="filtro-btn" onclick="filtrarPortfolio('oldschool')">Old School</button>
+                    <button class="filtro-btn" onclick="filtrarPortfolio('colorido')">Colorido</button>
+                </div>
+                <div class="galeria-portfolio">
+                    <div class="galeria-item fineline">
+                        <img src="https://images.unsplash.com/photo-1555431182-d45bf5a69a03?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem Fine Line" onclick="abrirModal(this.src)">
+                    </div>
+                    <div class="galeria-item blackwork">
+                        <img src="https://images.unsplash.com/photo-1617886947321-220a28312a14?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Blackwork" onclick="abrirModal(this.src)">
+                    </div>
+                     <div class="galeria-item oldschool">
+                        <img src="https://images.unsplash.com/photo-1629868322923-c64ab4a7431f?q=80&w=1964&auto=format&fit=crop" alt="Tatuagem Old School" onclick="abrirModal(this.src)">
+                    </div>
+                    <div class="galeria-item colorido">
+                        <img src="https://images.unsplash.com/photo-1617691669818-56193746a58a?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Colorida" onclick="abrirModal(this.src)">
+                    </div>
+                    <div class="galeria-item fineline">
+                        <img src="https://images.unsplash.com/photo-1625207185489-354314a5144b?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Fine Line 2" onclick="abrirModal(this.src)">
+                    </div>
+                    <div class="galeria-item blackwork">
+                        <img src="https://images.unsplash.com/photo-1605335165839-95a1240a5a40?q=80&w=1974&auto=format&fit=crop" alt="Tatuagem Blackwork 2" onclick="abrirModal(this.src)">
+                    </div>
+                </div>
             </div>
-            <a href="https://instagram.com/seu_instagram" target="_blank" class="btn btn-secondary">Ver mais no Instagram</a>
         </section>
 
-        <section id="sobre" class="section">
-            <div class="about-content">
-                <img src="https://via.placeholder.com/400x400.png?text=Foto+do+Artista" alt="Foto do Artista" class="about-pic">
-                <div class="about-text">
-                    <h2>Sobre [Nome do Artista]</h2>
-                    <p>Comecei minha jornada na tatuagem em [ano]. Minha paixão é transformar ideias e sentimentos em arte permanente na pele. Sou especialista nos estilos Fine Line, Blackwork e Aquarela, buscando sempre a perfeição em cada traço.</p>
-                    <p>Acredito que cada tatuagem é uma colaboração entre o artista e o cliente. Meu objetivo é criar uma obra que você terá orgulho de carregar para sempre. Utilizo apenas materiais de alta qualidade e sigo rigorosos padrões de higiene para garantir sua segurança e o melhor resultado.</p>
+        <div id="myModal" class="modal" onclick="this.style.display='none'">
+          <span class="close" onclick="fecharModal()">&times;</span>
+          <img class="modal-content" id="imgModal">
+        </div>
+
+        <section id="sobre">
+            <div class="container sobre-container">
+                <div class="sobre-img">
+                    <img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=1974&auto=format&fit=crop" alt="Foto do Tatuador">
+                </div>
+                <div class="sobre-texto">
+                    <h2>Sobre o Artista</h2>
+                    <h3>[NOME DO SEU AMIGO]</h3>
+                    <p>Com mais de [X] anos de experiência, encontrei na tatuagem uma forma de expressar arte e transformar a vida das pessoas. Minha paixão é criar designs únicos que contam uma história na pele, unindo técnica e sentimento.</p>
+                    <p>Meu foco está nos estilos Blackwork e Fine Line, onde exploro contrastes e detalhes para dar vida a cada traço.</p>
+                    <div class="especializacao">Criação de desenhos exclusivos e autorais</div>
                 </div>
             </div>
         </section>
         
-        <section id="cuidados" class="section">
-            <h2>Cuidados Pós-Tatuagem</h2>
-            <p class="section-subtitle">Sua tatuagem é um investimento. Cuide bem dela!</p>
-            <div class="care-steps">
-                <div class="step">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>1. Proteção</h3>
-                    <p>Mantenha o plástico filme por, no mínimo, 4 horas. Ele protege contra bactérias nas primeiras horas cruciais.</p>
+        <section id="orcamento">
+            <div class="container">
+                <h2>Orçamento Interativo</h2>
+                <div class="orcamento-container">
+                    <div class="calculadora">
+                        <div class="controle-grupo">
+                            <label for="tamanho">Tamanho:</label>
+                            <select id="tamanho" onchange="calcularOrcamento()">
+                                <option value="1">Pequeno (até 10cm)</option>
+                                <option value="1.5">Médio (até 15cm)</option>
+                                <option value="2.5">Grande (acima de 15cm)</option>
+                            </select>
+                        </div>
+                         <div class="controle-grupo">
+                            <label for="estilo">Estilo:</label>
+                            <select id="estilo" onchange="calcularOrcamento()">
+                                <option value="1">Só Traço (Fine Line)</option>
+                                <option value="1.8">Sombreado (Blackwork)</option>
+                                <option value="2.5">Colorido</option>
+                            </select>
+                        </div>
+                        <div class="controle-grupo">
+                            <label for="complexidade">Complexidade:</label>
+                             <select id="complexidade" onchange="calcularOrcamento()">
+                                <option value="1">Baixa</option>
+                                <option value="1.5">Média</option>
+                                <option value="2.2">Alta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="resultado-orcamento">
+                        <p>Valor Estimado:</p>
+                        <div id="valor-estimado">R$ 250</div>
+                        <p><small>Este é um valor aproximado. Para um orçamento preciso, entre em contato.</small></p>
+                    </div>
                 </div>
-                <div class="step">
-                    <i class="fas fa-hands-wash"></i>
-                    <h3>2. Higienização</h3>
-                    <p>Lave a área com sabonete neutro e água corrente, 2 a 3 vezes ao dia. Seque com papel toalha, apalpando suavemente.</p>
-                </div>
-                <div class="step">
-                    <i class="fas fa-hand-holding-medical"></i>
-                    <h3>3. Hidratação</h3>
-                    <p>Aplique uma fina camada de pomada cicatrizante recomendada após a lavagem. Não exagere na quantidade.</p>
-                </div>
-                <div class="step">
-                    <i class="fas fa-sun"></i>
-                    <h3>4. Evite</h3>
-                    <p>Nos primeiros 15 dias, evite piscina, mar, sauna e exposição direta ao sol. Use roupas leves que não atritem a área.</p>
+            </div>
+        </section>
+        
+        <section id="cuidados">
+            <div class="container">
+                <h2>Cuidados Pós-Tattoo</h2>
+                <ul class="cuidados-lista">
+                    <li>Manter o plástico por [X] horas, conforme orientação.</li>
+                    <li>Lavar a tatuagem com sabonete neutro e água corrente, 2 a 3 vezes ao dia.</li>
+                    <li>Secar suavemente com papel toalha, sem esfregar.</li>
+                    <li>Aplicar uma camada fina da pomada cicatrizante recomendada.</li>
+                    <li>Evitar sol, piscina, mar e alimentos gordurosos durante a cicatrização.</li>
+                    <li>Não coçar ou remover as casquinhas que se formarem.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contato">
+            <div class="container">
+                <h2>Contato</h2>
+                <p>Vamos transformar sua ideia em arte? Entre em contato e agende seu horário.</p>
+                <div class="contato-links">
+                     <a href="#" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                    </a>
+                    </div>
+                <h3>Endereço do Estúdio</h3>
+                <p>[Seu Endereço, Número, Bairro, Cidade - Estado]</p>
+                <div class="mapa">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.446139428807!2d-46.63646548554287!3d-23.55243888468729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a6058e51c9%3A0x80331505c21844b3!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1672598858533!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
 
-        <section id="contato" class="section">
-            <h2>Faça seu Orçamento</h2>
-            <p class="section-subtitle">Vamos transformar sua ideia em realidade. Me mande sua ideia!</p>
-            <form action="https://formspree.io/f/seu_codigo_aqui" method="POST" class="contact-form">
-                <input type="text" name="name" placeholder="Seu Nome" required>
-                <input type="email" name="email" placeholder="Seu E-mail" required>
-                <input type="tel" name="phone" placeholder="Seu WhatsApp (com DDD)">
-                <textarea name="message" rows="5" placeholder="Descreva sua ideia, local do corpo e tamanho aproximado." required></textarea>
-                <button type="submit" class="btn">Enviar Mensagem</button>
-            </form>
-            <div class="social-links">
-                <a href="https://instagram.com/seu_instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/55SEUNUMERO" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </section>
     </main>
+    
+    <a href="https://api.whatsapp.com/send?phone=SEUNUMERO&text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20orçamento." class="whatsapp-flutuante" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="Contato WhatsApp">
+    </a>
 
     <footer>
-        <p>&copy; 2025 [Nome do Artista/Estúdio]. Todos os direitos reservados.</p>
-        <p>Desenvolvido por [Seu Nome ou Empresa]</p>
+        <p>&copy; 2025 [Nome do Estúdio/Artista]. Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // Adiciona uma sombra ao cabeçalho quando o usuário rola a página
-            const header = document.querySelector('header');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
-                } else {
-                    header.style.boxShadow = 'none';
+        // --- FILTRO DO PORTFÓLIO ---
+        function filtrarPortfolio(categoria) {
+            const itens = document.querySelectorAll('.galeria-item');
+            const botoes = document.querySelectorAll('.filtro-btn');
+
+            itens.forEach(item => {
+                item.style.display = 'none';
+                if (item.classList.contains(categoria) || categoria === 'tudo') {
+                    item.style.display = 'block';
                 }
             });
 
-            // Validação simples do formulário de contato (exemplo)
-            const contactForm = document.querySelector('.contact-form');
-            contactForm.addEventListener('submit', (e) => {
-                const phoneInput = contactForm.querySelector('input[name="phone"]');
-                if (phoneInput.value.length > 0 && phoneInput.value.length < 10) {
-                    alert('Por favor, insira um número de telefone válido com DDD.');
-                    e.preventDefault(); // Impede o envio do formulário
-                }
+            botoes.forEach(botao => {
+                botao.classList.remove('ativo');
             });
-        });
+            event.target.classList.add('ativo');
+        }
+
+        // --- MODAL DA GALERIA ---
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("imgModal");
+        
+        function abrirModal(src) {
+          modal.style.display = "block";
+          modalImg.src = src;
+        }
+
+        function fecharModal() {
+          modal.style.display = "none";
+        }
+
+        // --- CALCULADORA DE ORÇAMENTO INTERATIVA ---
+        function calcularOrcamento() {
+            const valorBase = 250; // Valor mínimo da sua tatuagem
+
+            const fatorTamanho = parseFloat(document.getElementById('tamanho').value);
+            const fatorEstilo = parseFloat(document.getElementById('estilo').value);
+            const fatorComplexidade = parseFloat(document.getElementById('complexidade').value);
+            
+            const valorFinal = valorBase * fatorTamanho * fatorEstilo * fatorComplexidade;
+
+            // Arredonda para o múltiplo de 10 mais próximo para dar um valor "quebrado"
+            const valorArredondado = Math.round(valorFinal / 10) * 10;
+            
+            document.getElementById('valor-estimado').innerText = `R$ ${valorArredondado}`;
+        }
+        
+        // Calcula o orçamento inicial ao carregar a página
+        document.addEventListener('DOMContentLoaded', calcularOrcamento);
+
     </script>
-    </body>
+</body>
 </html>
