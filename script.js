@@ -5,7 +5,6 @@ const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const backToTopBtn = document.getElementById('back-to-top');
-const contactForm = document.getElementById('contact-form');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const lightbox = document.getElementById('lightbox');
@@ -32,11 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeScrollEffects();
     initializePortfolio();
-    initializeContactForm();
     initializeLightbox();
     initializeAnimations();
     initializeBudgetCalculator();
-    initializeSocialMedia(); // <-- NOVO: Inicializa os botões de redes sociais
+    initializeSocialMedia();
     
     // Update filtered images initially
     updateFilteredImages();
@@ -50,8 +48,6 @@ function hideLoadingScreen() {
         isLoading = false;
         document.body.style.overflow = 'visible';
         
-        // CORREÇÃO: Mover a chamada do efeito de digitação para cá
-        // para garantir que ele inicie apenas após a tela de carregamento sumir.
         const heroSubtitle = document.querySelector('.hero-subtitle');
         if (heroSubtitle) {
             typeWriter(heroSubtitle, heroSubtitle.textContent, 100);
@@ -61,10 +57,8 @@ function hideLoadingScreen() {
 
 // Navigation
 function initializeNavigation() {
-    // Mobile menu toggle
     navToggle.addEventListener('click', toggleMobileMenu);
     
-    // Close mobile menu when clicking on links
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             closeMobileMenu();
@@ -72,10 +66,8 @@ function initializeNavigation() {
         });
     });
     
-    // Scroll event for navbar
     window.addEventListener('scroll', handleNavbarScroll);
     
-    // Smooth scroll for navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -92,7 +84,6 @@ function initializeNavigation() {
         });
     });
     
-    // Scroll indicator in hero
     const scrollIndicator = document.querySelector('.scroll-indicator');
     if (scrollIndicator) {
         scrollIndicator.addEventListener('click', () => {
@@ -123,7 +114,6 @@ function handleNavbarScroll() {
         navbar.classList.remove('scrolled');
     }
     
-    // Update active nav link based on scroll position
     updateActiveNavLink();
 }
 
@@ -154,7 +144,6 @@ function highlightActiveNavLink(clickedLink) {
 
 // Scroll Effects
 function initializeScrollEffects() {
-    // Back to top button
     window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
             backToTopBtn.classList.add('visible');
@@ -170,7 +159,6 @@ function initializeScrollEffects() {
         });
     });
     
-    // Parallax effect for hero background
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const heroImage = document.querySelector('.hero-image');
@@ -179,7 +167,6 @@ function initializeScrollEffects() {
         }
     });
     
-    // Intersection Observer for animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -189,37 +176,30 @@ function initializeScrollEffects() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target); // Unobserve after animation
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Observe elements for animation
-    // CORREÇÃO: Removido '.service-card' desta lista para evitar conflito com o outro observer.
     const animateElements = document.querySelectorAll('.portfolio-item, .step-item, .value-item, .info-card');
     animateElements.forEach(el => observer.observe(el));
 }
 
 // Portfolio
 function initializePortfolio() {
-    // Filter functionality
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const filter = btn.getAttribute('data-filter');
             
-            // Update active filter button
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
-            // Filter portfolio items
             filterPortfolioItems(filter);
             
-            // Update filtered images for lightbox
             updateFilteredImages(filter);
         });
     });
     
-    // Portfolio item hover effects
     portfolioItems.forEach(item => {
         item.addEventListener('mouseenter', () => {
             item.style.transform = 'translateY(-10px) scale(1.02)';
@@ -271,190 +251,8 @@ function updateFilteredImages(filter = 'all') {
     });
 }
 
-// Contact Form
-function initializeContactForm() {
-    if (!contactForm) return;
-    contactForm.addEventListener('submit', handleFormSubmit);
-    
-    // Form validation
-    const inputs = contactForm.querySelectorAll('input, textarea, select');
-    inputs.forEach(input => {
-        input.addEventListener('blur', validateField);
-        input.addEventListener('input', clearFieldError);
-    });
-    
-    // Phone number formatting
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
-        phoneInput.addEventListener('input', formatPhoneNumber);
-    }
-}
-
-function handleFormSubmit(e) {
-    e.preventDefault();
-    
-    // Validate form
-    if (!validateForm()) {
-        return;
-    }
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
-    
-    // Show loading state
-    const submitBtn = contactForm.querySelector('.form-submit');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitBtn.disabled = true;
-    
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
-        // Success message
-        showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-        
-        // Reset form
-        contactForm.reset();
-        
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Send WhatsApp message (optional)
-        sendWhatsAppMessage(data);
-    }, 2000);
-}
-
-function validateForm() {
-    const requiredFields = contactForm.querySelectorAll('[required]');
-    let isValid = true;
-    
-    requiredFields.forEach(field => {
-        if (!validateField({ target: field })) {
-            isValid = false;
-        }
-    });
-    
-    return isValid;
-}
-
-function validateField(e) {
-    const field = e.target;
-    const value = field.value.trim();
-    const fieldName = field.name;
-    let isValid = true;
-    let errorMessage = '';
-    
-    // Clear previous errors
-    clearFieldError({ target: field });
-    
-    // Required field validation
-    if (field.hasAttribute('required') && !value) {
-        errorMessage = 'Este campo é obrigatório';
-        isValid = false;
-    }
-    
-    // Email validation
-    if (fieldName === 'email' && value) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
-            errorMessage = 'Email inválido';
-            isValid = false;
-        }
-    }
-    
-    // Phone validation
-    if (fieldName === 'phone' && value) {
-        const phoneRegex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-        if (!phoneRegex.test(value)) {
-            errorMessage = 'Telefone inválido. Use o formato: (11) 99999-9999';
-            isValid = false;
-        }
-    }
-    
-    // Show error if invalid
-    if (!isValid) {
-        showFieldError(field, errorMessage);
-    }
-    
-    return isValid;
-}
-
-function showFieldError(field, message) {
-    field.style.borderColor = 'var(--accent-red)';
-    
-    // Remove existing error message
-    const existingError = field.parentNode.querySelector('.field-error');
-    if (existingError) {
-        existingError.remove();
-    }
-    
-    // Add error message
-    const errorElement = document.createElement('span');
-    errorElement.className = 'field-error';
-    errorElement.textContent = message;
-    errorElement.style.color = 'var(--accent-red)';
-    errorElement.style.fontSize = '0.8rem';
-    errorElement.style.marginTop = '5px';
-    errorElement.style.display = 'block';
-    
-    field.parentNode.appendChild(errorElement);
-}
-
-function clearFieldError(e) {
-    const field = e.target;
-    field.style.borderColor = 'var(--border-gray)';
-    
-    const errorElement = field.parentNode.querySelector('.field-error');
-    if (errorElement) {
-        errorElement.remove();
-    }
-}
-
-function formatPhoneNumber(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    
-    if (value.length >= 11) {
-        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-    } else if (value.length >= 7) {
-        value = value.replace(/(\d{2})(\d{4})(\d+)/, '($1) $2-$3');
-    } else if (value.length >= 3) {
-        value = value.replace(/(\d{2})(\d+)/, '($1) $2');
-    }
-    
-    e.target.value = value;
-}
-
-function sendWhatsAppMessage(data) {
-    const message = `
-Olá! Gostaria de agendar uma consulta no Magrelo Tattoo.
-
-*Nome:* ${data.name}
-*Telefone:* ${data.phone}
-*Email:* ${data.email}
-*Serviço:* ${data.service || 'Não especificado'}
-*Orçamento:* ${data.budget || 'Não especificado'}
-
-*Descrição da ideia:*
-${data.message}
-
-Aguardo retorno. Obrigado!
-    `.trim();
-    
-    const encodedMessage = encodeURIComponent(message);
-    // CORREÇÃO: Substitua o número abaixo pelo seu número de WhatsApp com o código do país.
-    const whatsappNumber = '5511999999999'; // Ex: 5511987654321
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    
-    // Open WhatsApp in new tab after a delay
-    setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-    }, 1000);
-}
-
 // Lightbox
 function initializeLightbox() {
-    // Open lightbox when clicking portfolio items
     portfolioItems.forEach((item, index) => {
         const btn = item.querySelector('.portfolio-btn');
         if (btn) {
@@ -464,13 +262,11 @@ function initializeLightbox() {
             });
         }
         
-        // Also open on image click
         item.addEventListener('click', () => {
             openLightbox(item, index);
         });
     });
     
-    // Close lightbox
     lightboxClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
@@ -478,11 +274,9 @@ function initializeLightbox() {
         }
     });
     
-    // Navigation
     lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
     lightboxNext.addEventListener('click', () => navigateLightbox(1));
     
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (lightbox.classList.contains('active')) {
             switch (e.key) {
@@ -505,7 +299,6 @@ function openLightbox(item, index = 0) {
     const title = item.querySelector('h4')?.textContent || 'Sem título';
     const category = item.querySelector('p')?.textContent || 'Categoria';
     
-    // Find current image index in filtered array
     currentImageIndex = filteredImages.findIndex(imgData => imgData.src === img.src);
     if (currentImageIndex === -1) currentImageIndex = 0;
     
@@ -540,7 +333,6 @@ function updateLightboxContent() {
     lightboxTitle.textContent = currentImage.title;
     lightboxCategory.textContent = currentImage.category;
     
-    // Hide navigation if only one image
     if (filteredImages.length <= 1) {
         lightboxPrev.style.display = 'none';
         lightboxNext.style.display = 'none';
@@ -552,7 +344,6 @@ function updateLightboxContent() {
 
 // Animations
 function initializeAnimations() {
-    // Counter animation for stats
     const statsNumbers = document.querySelectorAll('.stat-number');
     const statsObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -565,7 +356,6 @@ function initializeAnimations() {
     
     statsNumbers.forEach(num => statsObserver.observe(num));
     
-    // Stagger animation for service cards
     const serviceCards = document.querySelectorAll('.service-card');
     const servicesObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, index) => {
@@ -573,7 +363,7 @@ function initializeAnimations() {
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                }, index * 150); // Aumentei o delay para um efeito mais visível
+                }, index * 150);
                 observer.unobserve(entry.target);
             }
         });
@@ -639,38 +429,30 @@ function calculateBudget() {
     const colors = document.getElementById('colors');
     const resultDiv = document.getElementById('calculator-result');
     
-    // Validate all fields are selected
     if (!style.value || !size.value || !complexity.value || !bodyArea.value || !colors.value) {
         showNotification('Por favor, preencha todos os campos para calcular o orçamento.', 'warning');
         return;
     }
     
-    // Get base price from style
     const basePrice = getBasePrice(style.value);
-    
-    // Get time estimate from size
     const timeRange = getTimeRange(size.value);
     
-    // Get multipliers
     const styleMultiplier = parseFloat(style.selectedOptions[0].dataset.multiplier) || 1;
     const complexityMultiplier = parseFloat(complexity.selectedOptions[0].dataset.multiplier) || 1;
     const areaMultiplier = parseFloat(bodyArea.selectedOptions[0].dataset.multiplier) || 1;
     const colorMultiplier = parseFloat(colors.selectedOptions[0].dataset.multiplier) || 1;
     
-    // Calculate final price
     const totalMultiplier = styleMultiplier * complexityMultiplier * areaMultiplier * colorMultiplier;
     const hourlyRate = basePrice * totalMultiplier;
     
     const minPrice = Math.round(hourlyRate * timeRange.min);
     const maxPrice = Math.round(hourlyRate * timeRange.max);
     
-    // Update result display
     document.getElementById('price-min').textContent = `R$ ${minPrice.toLocaleString()}`;
     document.getElementById('price-max').textContent = `R$ ${maxPrice.toLocaleString()}`;
     document.getElementById('time-estimate').textContent = `${timeRange.min}-${timeRange.max}h`;
     document.getElementById('hourly-rate').textContent = `R$ ${Math.round(hourlyRate)}`;
     
-    // Show result with animation
     resultDiv.style.display = 'block';
     setTimeout(() => {
         resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -735,90 +517,11 @@ function removeNotification(notification) {
     }, 300);
 }
 
-// ======================================================================
-// NOVO: Funcionalidade para Botões de Redes Sociais
-// ======================================================================
+// Social Media Links
 function initializeSocialMedia() {
-    // --- ATENÇÃO: SUBSTITUA OS LINKS '#' PELOS SEUS LINKS REAIS ---
-    const socialLinks = {
-        instagram: 'https://instagram.com/seu_usuario',
-        facebook: 'https://facebook.com/sua_pagina',
-        whatsapp: 'https://wa.me/5511999999999' // Use o mesmo número da função sendWhatsAppMessage
-    };
-
-    // Supondo que seus botões no HTML tenham estes IDs
-    const instagramBtn = document.getElementById('social-instagram');
-    const facebookBtn = document.getElementById('social-facebook');
-    const whatsappBtn = document.getElementById('social-whatsapp');
-
-    if (instagramBtn) {
-        instagramBtn.href = socialLinks.instagram;
-    }
-    if (facebookBtn) {
-        facebookBtn.href = socialLinks.facebook;
-    }
-    if (whatsappBtn) {
-        whatsappBtn.href = socialLinks.whatsapp;
-    }
-
-    // Adiciona evento para abrir em nova aba, caso não esteja no HTML
+    // A correção principal foi feita diretamente no HTML com `target="_blank"`.
+    // Esta função pode ser usada para futuras manipulações se necessário.
     document.querySelectorAll('.social-link').forEach(link => {
-        link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer'); // Boa prática de segurança
     });
 }
-
-// Utility Functions
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-// Error Handling
-window.addEventListener('error', (e) => {
-    console.error('JavaScript Error:', e.error);
-    showNotification('Ocorreu um erro inesperado no site.', 'error');
-});
-
-// Performance Monitoring
-window.addEventListener('load', () => {
-    const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
-    console.log(`Page loaded in ${loadTime}ms`);
-});
-
-// Service Worker Registration (for PWA capabilities)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('Service Worker registrado com sucesso.'))
-        //     .catch(error => console.log('Falha no registro do Service Worker:', error));
-    });
-}
-
-// Export functions for external use
-window.MagreloTattoo = {
-    openLightbox,
-    closeLightbox,
-    showNotification,
-    toggleMobileMenu
-};
